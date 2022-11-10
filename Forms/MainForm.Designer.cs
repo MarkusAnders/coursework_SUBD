@@ -30,65 +30,70 @@ namespace coursework
 		private void InitializeComponent()
 		{
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-			this.дневникToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.списокКлассовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.списокПредметовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.списокУчениковToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.обновитьТаблицуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// menuStrip1
 			// 
+			this.menuStrip1.Font = new System.Drawing.Font("Segoe UI Historic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.дневникToolStripMenuItem,
+            this.списокУчениковToolStripMenuItem,
+            this.обновитьТаблицуToolStripMenuItem,
             this.списокКлассовToolStripMenuItem,
-            this.списокПредметовToolStripMenuItem,
-            this.списокУчениковToolStripMenuItem});
+            this.списокПредметовToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
-			this.menuStrip1.Size = new System.Drawing.Size(1187, 31);
+			this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+			this.menuStrip1.Size = new System.Drawing.Size(890, 27);
 			this.menuStrip1.TabIndex = 0;
 			this.menuStrip1.Text = "menuStrip1";
 			// 
-			// дневникToolStripMenuItem
-			// 
-			this.дневникToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.дневникToolStripMenuItem.Name = "дневникToolStripMenuItem";
-			this.дневникToolStripMenuItem.Size = new System.Drawing.Size(92, 27);
-			this.дневникToolStripMenuItem.Text = "Дневник";
-			// 
 			// списокКлассовToolStripMenuItem
 			// 
-			this.списокКлассовToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.списокКлассовToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI Emoji", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.списокКлассовToolStripMenuItem.Name = "списокКлассовToolStripMenuItem";
-			this.списокКлассовToolStripMenuItem.Size = new System.Drawing.Size(147, 27);
+			this.списокКлассовToolStripMenuItem.Size = new System.Drawing.Size(124, 23);
 			this.списокКлассовToolStripMenuItem.Text = "Список классов";
+			this.списокКлассовToolStripMenuItem.Click += new System.EventHandler(this.списокКлассовToolStripMenuItem_Click);
 			// 
 			// списокПредметовToolStripMenuItem
 			// 
-			this.списокПредметовToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.списокПредметовToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI Emoji", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.списокПредметовToolStripMenuItem.Name = "списокПредметовToolStripMenuItem";
-			this.списокПредметовToolStripMenuItem.Size = new System.Drawing.Size(176, 27);
+			this.списокПредметовToolStripMenuItem.Size = new System.Drawing.Size(147, 23);
 			this.списокПредметовToolStripMenuItem.Text = "Список предметов ";
+			this.списокПредметовToolStripMenuItem.Click += new System.EventHandler(this.списокПредметовToolStripMenuItem_Click);
 			// 
 			// списокУчениковToolStripMenuItem
 			// 
-			this.списокУчениковToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.списокУчениковToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI Emoji", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.списокУчениковToolStripMenuItem.Name = "списокУчениковToolStripMenuItem";
-			this.списокУчениковToolStripMenuItem.Size = new System.Drawing.Size(160, 27);
+			this.списокУчениковToolStripMenuItem.Size = new System.Drawing.Size(133, 23);
 			this.списокУчениковToolStripMenuItem.Text = "Список учеников";
+			this.списокУчениковToolStripMenuItem.Click += new System.EventHandler(this.списокУчениковToolStripMenuItem_Click);
+			// 
+			// обновитьТаблицуToolStripMenuItem
+			// 
+			this.обновитьТаблицуToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI Emoji", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.обновитьТаблицуToolStripMenuItem.Name = "обновитьТаблицуToolStripMenuItem";
+			this.обновитьТаблицуToolStripMenuItem.Size = new System.Drawing.Size(174, 23);
+			this.обновитьТаблицуToolStripMenuItem.Text = "Достижения учащихся ";
 			// 
 			// MainForm
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1187, 626);
+			this.ClientSize = new System.Drawing.Size(890, 509);
 			this.Controls.Add(this.menuStrip1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.MainMenuStrip = this.menuStrip1;
+			this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.MaximizeBox = false;
-			this.MinimizeBox = false;
 			this.Name = "MainForm";
 			this.ShowIcon = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -105,10 +110,10 @@ namespace coursework
 		#endregion
 
 		private System.Windows.Forms.MenuStrip menuStrip1;
-		private System.Windows.Forms.ToolStripMenuItem дневникToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem списокКлассовToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem списокПредметовToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem списокУчениковToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem обновитьТаблицуToolStripMenuItem;
 	}
 }
 
