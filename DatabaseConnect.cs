@@ -5,8 +5,8 @@ namespace coursework
 {
 	public class DatabaseConnect
 	{
-		static SQLiteConnection connection;
-		static public void Connect()
+		public SQLiteConnection connection;
+		public void Connect()
 		{
 			try
 			{
@@ -19,7 +19,7 @@ namespace coursework
 			}
 		}
 
-		static public void Disconnect()
+		public void Disconnect()
 		{
 			connection.Close();
 		}
