@@ -30,15 +30,16 @@ namespace coursework
 		private void InitializeComponent()
 		{
 			this.GridListStudents = new System.Windows.Forms.DataGridView();
+			this.BoxEditList = new System.Windows.Forms.GroupBox();
+			this.button_deleteStudent = new System.Windows.Forms.Button();
+			this.button_editStudent = new System.Windows.Forms.Button();
+			this.button_addStudent = new System.Windows.Forms.Button();
 			this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.surname = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.patronymic = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.classNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataOfBirthday = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.BoxEditList = new System.Windows.Forms.GroupBox();
-			this.button_deleteStudent = new System.Windows.Forms.Button();
-			this.button_editStudent = new System.Windows.Forms.Button();
-			this.button_addStudent = new System.Windows.Forms.Button();
+			this.Фотография = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			((System.ComponentModel.ISupportInitialize)(this.GridListStudents)).BeginInit();
 			this.BoxEditList.SuspendLayout();
 			this.SuspendLayout();
@@ -47,56 +48,25 @@ namespace coursework
 			// 
 			this.GridListStudents.AllowUserToAddRows = false;
 			this.GridListStudents.AllowUserToDeleteRows = false;
+			this.GridListStudents.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+			this.GridListStudents.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
 			this.GridListStudents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.GridListStudents.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.name,
             this.surname,
             this.patronymic,
             this.classNumber,
-            this.dataOfBirthday});
-			this.GridListStudents.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataOfBirthday,
+            this.Фотография});
+			this.GridListStudents.Dock = System.Windows.Forms.DockStyle.Left;
 			this.GridListStudents.Location = new System.Drawing.Point(0, 0);
 			this.GridListStudents.Name = "GridListStudents";
+			this.GridListStudents.ReadOnly = true;
 			this.GridListStudents.RowHeadersWidth = 51;
 			this.GridListStudents.RowTemplate.Height = 24;
 			this.GridListStudents.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.GridListStudents.Size = new System.Drawing.Size(1165, 414);
+			this.GridListStudents.Size = new System.Drawing.Size(963, 414);
 			this.GridListStudents.TabIndex = 0;
-			// 
-			// name
-			// 
-			this.name.HeaderText = "Имя";
-			this.name.MinimumWidth = 6;
-			this.name.Name = "name";
-			this.name.Width = 125;
-			// 
-			// surname
-			// 
-			this.surname.HeaderText = "Фамилия";
-			this.surname.MinimumWidth = 6;
-			this.surname.Name = "surname";
-			this.surname.Width = 150;
-			// 
-			// patronymic
-			// 
-			this.patronymic.HeaderText = "Отчество";
-			this.patronymic.MinimumWidth = 6;
-			this.patronymic.Name = "patronymic";
-			this.patronymic.Width = 150;
-			// 
-			// classNumber
-			// 
-			this.classNumber.HeaderText = "Класс";
-			this.classNumber.MinimumWidth = 6;
-			this.classNumber.Name = "classNumber";
-			this.classNumber.Width = 80;
-			// 
-			// dataOfBirthday
-			// 
-			this.dataOfBirthday.HeaderText = "Дата рождения";
-			this.dataOfBirthday.MinimumWidth = 6;
-			this.dataOfBirthday.Name = "dataOfBirthday";
-			this.dataOfBirthday.Width = 125;
 			// 
 			// BoxEditList
 			// 
@@ -145,6 +115,53 @@ namespace coursework
 			this.button_addStudent.UseVisualStyleBackColor = true;
 			this.button_addStudent.Click += new System.EventHandler(this.button_addStudent_Click);
 			// 
+			// name
+			// 
+			this.name.HeaderText = "Имя";
+			this.name.MinimumWidth = 6;
+			this.name.Name = "name";
+			this.name.ReadOnly = true;
+			this.name.Width = 64;
+			// 
+			// surname
+			// 
+			this.surname.HeaderText = "Фамилия";
+			this.surname.MinimumWidth = 6;
+			this.surname.Name = "surname";
+			this.surname.ReadOnly = true;
+			this.surname.Width = 99;
+			// 
+			// patronymic
+			// 
+			this.patronymic.HeaderText = "Отчество";
+			this.patronymic.MinimumWidth = 6;
+			this.patronymic.Name = "patronymic";
+			this.patronymic.ReadOnly = true;
+			// 
+			// classNumber
+			// 
+			this.classNumber.HeaderText = "Класс";
+			this.classNumber.MinimumWidth = 6;
+			this.classNumber.Name = "classNumber";
+			this.classNumber.ReadOnly = true;
+			this.classNumber.Width = 76;
+			// 
+			// dataOfBirthday
+			// 
+			this.dataOfBirthday.HeaderText = "Дата рождения";
+			this.dataOfBirthday.MinimumWidth = 6;
+			this.dataOfBirthday.Name = "dataOfBirthday";
+			this.dataOfBirthday.ReadOnly = true;
+			this.dataOfBirthday.Width = 128;
+			// 
+			// Фотография
+			// 
+			this.Фотография.HeaderText = "Фотография";
+			this.Фотография.MinimumWidth = 6;
+			this.Фотография.Name = "Фотография";
+			this.Фотография.ReadOnly = true;
+			this.Фотография.Width = 121;
+			// 
 			// ListStudents
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -175,5 +192,6 @@ namespace coursework
 		private System.Windows.Forms.DataGridViewTextBoxColumn patronymic;
 		private System.Windows.Forms.DataGridViewTextBoxColumn classNumber;
 		private System.Windows.Forms.DataGridViewTextBoxColumn dataOfBirthday;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Фотография;
 	}
 }

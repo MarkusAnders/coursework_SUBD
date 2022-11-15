@@ -63,11 +63,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DatabaseConnect.cs" />
-    <Compile Include="EditInfoStudent.cs">
+    <Compile Include="Forms\AddStudent.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EditInfoStudent.Designer.cs">
+    <Compile Include="Forms\AddStudent.Designer.cs">
+      <DependentUpon>AddStudent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DatabaseConnect.cs" />
+    <Compile Include="Forms\EditInfoStudent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EditInfoStudent.Designer.cs">
       <DependentUpon>EditInfoStudent.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\MainForm.cs">
@@ -90,7 +96,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="EditInfoStudent.resx">
+    <EmbeddedResource Include="Forms\AddStudent.resx">
+      <DependentUpon>AddStudent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EditInfoStudent.resx">
       <DependentUpon>EditInfoStudent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ListStudents.resx">

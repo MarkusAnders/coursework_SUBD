@@ -1,22 +1,23 @@
 ﻿using System;
 using System.Data;
-using System.Data.SQLite;
 using System.Drawing;
 using System.IO;
+using System.Data.SQLite;
 using System.Windows.Forms;
 
 namespace coursework
 {
-	public partial class EditInfoStudent : Form
+	public partial class AddStudent : Form
 	{
 		readonly DatabaseConnect conn = new DatabaseConnect();
-		public EditInfoStudent()
+
+		public AddStudent()
 		{
 			InitializeComponent();
 		}
-		#region[EditInfoStudent]
 
-		private void button_confirmEditInfo_Click(object sender, EventArgs e)
+		#region[AddNewStudent]
+		private void button_addStudent_Click(object sender, EventArgs e)
 		{
 			conn.Connect();
 
@@ -53,10 +54,9 @@ namespace coursework
 				conn.Disconnect();
 			}
 		}
-
 		#endregion
 
-		#region[PhotoStudent]
+		#region[PhotoAddForStudent]
 		private void button_addPhotoStudent_Click(object sender, EventArgs e)
 		{
 			OpenFileDialog ofd = new OpenFileDialog();
@@ -66,11 +66,6 @@ namespace coursework
 				picturePhotoStudent.Image = Image.FromFile(ofd.FileName);
 			}
 		}
-		private void button_deletePhotoStudent_Click(object sender, EventArgs e)
-		{
-			picturePhotoStudent.Image = null;
-		}
-
 		#endregion
 
 		private void button_cancellation_Click(object sender, EventArgs e)
@@ -78,6 +73,5 @@ namespace coursework
 			this.Close();
 		}
 
-		
 	}
 }

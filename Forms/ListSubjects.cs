@@ -18,11 +18,11 @@ namespace coursework
 
 		private void ListSubjects_Load(object sender, EventArgs e)
 		{
+			conn.Connect();
 			GridListSubjects.DefaultCellStyle.Font = new Font("Microsoft Sans Serif", 10);
 			try
 			{
 				int counter = 0;
-				conn.Connect();
 				SQLiteCommand cmd = new SQLiteCommand("select * from academic_subject", conn.connection);
 				SQLiteDataReader reader = cmd.ExecuteReader();
 				while (reader.Read())

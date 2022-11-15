@@ -67,6 +67,7 @@ namespace coursework
 			this.GridListSubjects.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.GridListSubjects.Location = new System.Drawing.Point(0, 31);
 			this.GridListSubjects.Name = "GridListSubjects";
+			this.GridListSubjects.ReadOnly = true;
 			this.GridListSubjects.RowHeadersWidth = 51;
 			this.GridListSubjects.RowTemplate.Height = 24;
 			this.GridListSubjects.Size = new System.Drawing.Size(800, 419);
@@ -77,6 +78,7 @@ namespace coursework
 			this.Subjects.HeaderText = "Предмет";
 			this.Subjects.MinimumWidth = 6;
 			this.Subjects.Name = "Subjects";
+			this.Subjects.ReadOnly = true;
 			this.Subjects.Width = 200;
 			// 
 			// Hours
@@ -84,6 +86,7 @@ namespace coursework
 			this.Hours.HeaderText = "Кол-во часов";
 			this.Hours.MinimumWidth = 6;
 			this.Hours.Name = "Hours";
+			this.Hours.ReadOnly = true;
 			this.Hours.Width = 125;
 			// 
 			// ListSubjects
