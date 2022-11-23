@@ -23,7 +23,6 @@ namespace coursework
 		{
 			conn.Connect();
 
-			GridListStudents.DefaultCellStyle.Font = new Font("Microsoft Sans Serif", 10);
 			try
 			{
 				int counter = 0;

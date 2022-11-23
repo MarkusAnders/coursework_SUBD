@@ -41,8 +41,8 @@ namespace coursework
 			DateTime dataOfBirthDay = Convert.ToDateTime(dateOfBirthDay.Value);
 			MemoryStream ms = new MemoryStream();
 
-			if (picturePhotoStudent.Image == null || nameOfTextBox.Text == null || surnameOfTextBox.Text == null || patronymicOfTextBox.Text == null 
-				|| classOfTextBox.Text == null || dateOfBirthDay.Text == null)
+			if (picturePhotoStudent.Image == null || nameOfTextBox.Text == null || surnameOfTextBox.Text == null 
+				|| patronymicOfTextBox.Text == null || classOfTextBox.Text == null || dateOfBirthDay.Text == null)
 			{
 				MessageBox.Show("Не вся данные заполнены!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
