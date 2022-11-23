@@ -97,6 +97,7 @@ namespace coursework
 				}
 				this.Close();
 				conn.Disconnect();
+				// as
 			}
 		}
 		#endregion
