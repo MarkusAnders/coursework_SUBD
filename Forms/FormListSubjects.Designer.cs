@@ -1,7 +1,7 @@
 ﻿
 namespace coursework
 {
-	partial class ListSubjects
+	partial class FormListSubjects
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -89,7 +89,7 @@ namespace coursework
 			this.Hours.ReadOnly = true;
 			this.Hours.Width = 125;
 			// 
-			// ListSubjects
+			// FormListSubjects
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -98,7 +98,7 @@ namespace coursework
 			this.Controls.Add(this.menuStrip1);
 			this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.MainMenuStrip = this.menuStrip1;
-			this.Name = "ListSubjects";
+			this.Name = "FormListSubjects";
 			this.ShowIcon = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Список предметов";

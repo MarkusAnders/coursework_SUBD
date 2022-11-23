@@ -63,53 +63,44 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forms\AddStudent.cs">
+    <Compile Include="Forms\FormAddStudent.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\AddStudent.Designer.cs">
-      <DependentUpon>AddStudent.cs</DependentUpon>
+    <Compile Include="Forms\FormAddStudent.Designer.cs">
+      <DependentUpon>FormAddStudent.cs</DependentUpon>
     </Compile>
     <Compile Include="DatabaseConnect.cs" />
-    <Compile Include="Forms\EditInfoStudent.cs">
+    <Compile Include="Forms\FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\EditInfoStudent.Designer.cs">
-      <DependentUpon>EditInfoStudent.cs</DependentUpon>
+    <Compile Include="Forms\FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\MainForm.cs">
+    <Compile Include="Forms\FormListSubjects.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <Compile Include="Forms\FormListSubjects.Designer.cs">
+      <DependentUpon>FormListSubjects.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ListSubjects.cs">
+    <Compile Include="Forms\FormListStudents.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\ListSubjects.Designer.cs">
-      <DependentUpon>ListSubjects.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\ListStudents.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\ListStudents.Designer.cs">
-      <DependentUpon>ListStudents.cs</DependentUpon>
+    <Compile Include="Forms\FormListStudents.Designer.cs">
+      <DependentUpon>FormListStudents.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Forms\AddStudent.resx">
-      <DependentUpon>AddStudent.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FormAddStudent.resx">
+      <DependentUpon>FormAddStudent.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\EditInfoStudent.resx">
-      <DependentUpon>EditInfoStudent.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FormListStudents.resx">
+      <DependentUpon>FormListStudents.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ListStudents.resx">
-      <DependentUpon>ListStudents.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FormListSubjects.resx">
+      <DependentUpon>FormListSubjects.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ListSubjects.resx">
-      <DependentUpon>ListSubjects.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

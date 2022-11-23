@@ -7,11 +7,11 @@ using System.Windows.Forms;
 
 namespace coursework
 {
-	public partial class ListSubjects : Form
+	public partial class FormListSubjects : Form
 	{
         readonly DatabaseConnect conn = new DatabaseConnect();
         
-        public ListSubjects()
+        public FormListSubjects()
 		{
 			InitializeComponent();
 		}

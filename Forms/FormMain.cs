@@ -8,11 +8,11 @@ using System.Windows.Forms;
 
 namespace coursework
 {
-	public partial class MainForm : Form
+	public partial class FormMain : Form
 	{
 		readonly DatabaseConnect conn = new DatabaseConnect();
 		public SQLiteCommand cmd = new SQLiteCommand();
-		public MainForm()
+		public FormMain()
 		{
 			InitializeComponent();
 		}
@@ -34,13 +34,13 @@ namespace coursework
 
 		private void списокПредметовToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			ListSubjects Lsubjects = new ListSubjects();
+			FormListSubjects Lsubjects = new FormListSubjects();
 			Lsubjects.ShowDialog();
 		}
 
 		private void списокУчениковToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			ListStudents Lstudents = new ListStudents();
+			FormListStudents Lstudents = new FormListStudents();
 			Lstudents.ShowDialog();
 		}
 	}

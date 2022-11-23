@@ -1,7 +1,7 @@
 ﻿
 namespace coursework
 {
-	partial class AddStudent
+	partial class FormAddStudent
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -44,7 +44,7 @@ namespace coursework
 			this.label2 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
 			this.button_cancellation = new System.Windows.Forms.Button();
-			this.button_addStudent = new System.Windows.Forms.Button();
+			this.button_confirmTask = new System.Windows.Forms.Button();
 			this.button_addPhotoStudent = new System.Windows.Forms.Button();
 			this.picturePhotoStudent = new System.Windows.Forms.PictureBox();
 			this.groupBox6 = new System.Windows.Forms.GroupBox();
@@ -222,17 +222,17 @@ namespace coursework
 			this.button_cancellation.UseVisualStyleBackColor = true;
 			this.button_cancellation.Click += new System.EventHandler(this.button_cancellation_Click);
 			// 
-			// button_addStudent
+			// button_confirmTask
 			// 
-			this.button_addStudent.Font = new System.Drawing.Font("Segoe UI Emoji", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button_addStudent.Location = new System.Drawing.Point(370, 370);
-			this.button_addStudent.Margin = new System.Windows.Forms.Padding(4);
-			this.button_addStudent.Name = "button_addStudent";
-			this.button_addStudent.Size = new System.Drawing.Size(180, 42);
-			this.button_addStudent.TabIndex = 23;
-			this.button_addStudent.Text = "Добавить";
-			this.button_addStudent.UseVisualStyleBackColor = true;
-			this.button_addStudent.Click += new System.EventHandler(this.button_addStudent_Click);
+			this.button_confirmTask.Font = new System.Drawing.Font("Segoe UI Emoji", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.button_confirmTask.Location = new System.Drawing.Point(370, 370);
+			this.button_confirmTask.Margin = new System.Windows.Forms.Padding(4);
+			this.button_confirmTask.Name = "button_confirmTask";
+			this.button_confirmTask.Size = new System.Drawing.Size(180, 42);
+			this.button_confirmTask.TabIndex = 23;
+			this.button_confirmTask.Text = "Подвердить";
+			this.button_confirmTask.UseVisualStyleBackColor = true;
+			this.button_confirmTask.Click += new System.EventHandler(this.button_confirmTask_Click);
 			// 
 			// button_addPhotoStudent
 			// 
@@ -284,15 +284,16 @@ namespace coursework
 			// label1
 			// 
 			this.label1.AutoSize = true;
+			this.label1.Dock = System.Windows.Forms.DockStyle.Top;
 			this.label1.Font = new System.Drawing.Font("Segoe UI Emoji", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label1.Location = new System.Drawing.Point(13, 0);
+			this.label1.Location = new System.Drawing.Point(0, 0);
 			this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(302, 30);
+			this.label1.Size = new System.Drawing.Size(71, 30);
 			this.label1.TabIndex = 21;
-			this.label1.Text = "Добавление нового ученика";
+			this.label1.Text = "label1";
 			// 
-			// AddStudent
+			// FormAddStudent
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -302,14 +303,14 @@ namespace coursework
 			this.Controls.Add(this.groupBox3);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.button_cancellation);
-			this.Controls.Add(this.button_addStudent);
+			this.Controls.Add(this.button_confirmTask);
 			this.Controls.Add(this.groupBox6);
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.label1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
-			this.Name = "AddStudent";
+			this.Name = "FormAddStudent";
 			this.ShowIcon = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.groupBox5.ResumeLayout(false);
@@ -346,11 +347,11 @@ namespace coursework
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.Button button_cancellation;
-		private System.Windows.Forms.Button button_addStudent;
+		private System.Windows.Forms.Button button_confirmTask;
 		private System.Windows.Forms.Button button_addPhotoStudent;
 		private System.Windows.Forms.PictureBox picturePhotoStudent;
 		private System.Windows.Forms.GroupBox groupBox6;
 		private System.Windows.Forms.GroupBox groupBox1;
-		private System.Windows.Forms.Label label1;
+		public System.Windows.Forms.Label label1;
 	}
 }
