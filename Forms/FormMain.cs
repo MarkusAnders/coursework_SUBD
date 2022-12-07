@@ -8,11 +8,11 @@ using System.Windows.Forms;
 
 namespace coursework
 {
-	public partial class MainForm : Form
+	public partial class FormMain : Form
 	{
-		static SQLiteCommand cmd = new SQLiteCommand();
 		readonly DatabaseConnect conn = new DatabaseConnect();
-		public MainForm()
+		public SQLiteCommand cmd = new SQLiteCommand();
+		public FormMain()
 		{
 			InitializeComponent();
 		}
@@ -27,20 +27,15 @@ namespace coursework
 			conn.Disconnect();
 		}
 
-		private void списокКлассовToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-
-		}
-
 		private void списокПредметовToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			ListSubjects Lsubjects = new ListSubjects();
+			FormListSubjects Lsubjects = new FormListSubjects();
 			Lsubjects.ShowDialog();
 		}
 
 		private void списокУчениковToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			ListStudents Lstudents = new ListStudents();
+			FormListStudents Lstudents = new FormListStudents();
 			Lstudents.ShowDialog();
 		}
 	}

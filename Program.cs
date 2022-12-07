@@ -16,7 +16,11 @@ namespace coursework
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
+<<<<<<< HEAD
+			Application.Run(new FormMain());
+=======
 			Application.Run(new MainForm());
+>>>>>>> 7c18ac7 (Добавление класса подключение базы данных)
 		}
 	}
 }

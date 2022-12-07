@@ -5,8 +5,13 @@ namespace coursework
 {
 	public class DatabaseConnect
 	{
+<<<<<<< HEAD
 		public SQLiteConnection connection;
 		public void Connect()
+=======
+		static SQLiteConnection connection;
+		static public void Connect()
+>>>>>>> 7c18ac7 (Добавление класса подключение базы данных)
 		{
 			try
 			{
@@ -19,7 +24,11 @@ namespace coursework
 			}
 		}
 
+<<<<<<< HEAD
 		public void Disconnect()
+=======
+		static public void Disconnect()
+>>>>>>> 7c18ac7 (Добавление класса подключение базы данных)
 		{
 			connection.Close();
 		}
