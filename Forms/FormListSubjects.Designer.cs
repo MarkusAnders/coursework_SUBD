@@ -284,7 +284,6 @@ namespace coursework
 			this.Name = "FormListSubjects";
 			this.ShowIcon = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "Список предметов";
 			this.Load += new System.EventHandler(this.ListSubjects_Load);
 			this.panel3.ResumeLayout(false);
 			this.panel3.PerformLayout();
