@@ -128,10 +128,10 @@ namespace coursework
 								command.Parameters.Add("dataOfBirthDay", DbType.Date).Value = dataOfBirthDay;
 								command.Parameters.Add("image", DbType.Binary, 8000).Value = photo;
 								command.Parameters.Add("id", DbType.Int32).Value = id;
+								command.ExecuteNonQuery();
 
 								MessageBox.Show("Данные были изменены!", "", MessageBoxButtons.OK);
 							}
-							command.ExecuteNonQuery();
 						}
 					}
 				}
@@ -171,7 +171,7 @@ namespace coursework
 			else
 				e.Handled = true;
 		}
-		
+
 		#endregion
 
 	}

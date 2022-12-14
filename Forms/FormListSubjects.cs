@@ -33,6 +33,12 @@ namespace coursework
 				this.Close();
 			}
 			conn.Disconnect();
+
+			for (int i = 0; i < GridListSubjects.Rows.Count; i++)
+			{
+				GridListSubjects.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(222, 222, 222);
+				i++;
+			}
 		}
 
 		//public void ReloadTableStudents()
@@ -78,7 +84,7 @@ namespace coursework
 		#endregion
 
 		#region[Кнопки добавление, редактирование, удаления и закрытия]
-		private void button_addRecord_Click(object sender, EventArgs e)
+		private void button_addRecord_Click_1(object sender, EventArgs e)
 		{
 			FormAddEditSubject formAES = new FormAddEditSubject();
 			formAES.label7.Text = "Добавление нового предмета";
@@ -86,7 +92,8 @@ namespace coursework
 			formAES.button_editRecord.Image = Image.FromFile(Path.Combine(Application.StartupPath, @"icon/add-subject.png"));
 			formAES.ShowDialog();
 		}
-		private void button_editRecord_Click(object sender, EventArgs e)
+
+		private void button_editRecord_Click_1(object sender, EventArgs e)
 		{
 			int id = int.Parse(GridListSubjects.SelectedRows[0].Cells["id"].Value.ToString());
 			string nameSubject = GridListSubjects.SelectedRows[0].Cells["Subjects"].Value.ToString();
@@ -94,7 +101,12 @@ namespace coursework
 			new FormAddEditSubject(id, nameSubject, hourSubject).ShowDialog();
 		}
 
-		private void button_deleteRecord_Click(object sender, EventArgs e)
+		private void button_reloadData_Click(object sender, EventArgs e)
+		{
+			RefreshTable(GridListSubjects);
+		}
+
+		private void button_deleteRecord_Click_1(object sender, EventArgs e)
 		{
 			if (MessageBox.Show("Вы прадва хотите удалить запись?", "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
 			{
@@ -109,7 +121,7 @@ namespace coursework
 			}
 		}
 
-		private void button_exitFromFrom_Click(object sender, EventArgs e)
+		private void button_closeForm_Click(object sender, EventArgs e)
 		{
 			this.Close();
 		}
@@ -160,5 +172,6 @@ namespace coursework
 		}
 
 		#endregion
+
 	}
 }

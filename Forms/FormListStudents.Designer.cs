@@ -29,8 +29,8 @@ namespace coursework
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormListStudents));
 			this.GridListStudents = new System.Windows.Forms.DataGridView();
 			this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,8 +42,9 @@ namespace coursework
 			this.dataOfBirthDay = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.image = new System.Windows.Forms.DataGridViewImageColumn();
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.button_exitFromFrom = new System.Windows.Forms.Button();
+			this.button_closeForm = new System.Windows.Forms.Button();
 			this.button_deleteRecord = new System.Windows.Forms.Button();
+			this.button_reloadData = new System.Windows.Forms.Button();
 			this.button_editRecord = new System.Windows.Forms.Button();
 			this.button_addRecord = new System.Windows.Forms.Button();
 			this.panel4 = new System.Windows.Forms.Panel();
@@ -63,17 +64,17 @@ namespace coursework
 			this.GridListStudents.AllowUserToDeleteRows = false;
 			this.GridListStudents.AllowUserToResizeColumns = false;
 			this.GridListStudents.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-			this.GridListStudents.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
+			this.GridListStudents.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
 			this.GridListStudents.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.GridListStudents.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-			dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-			dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
-			dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.GridListStudents.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+			dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
+			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.GridListStudents.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
 			this.GridListStudents.ColumnHeadersHeight = 29;
 			this.GridListStudents.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
@@ -84,25 +85,25 @@ namespace coursework
             this.classNumber,
             this.dataOfBirthDay,
             this.image});
-			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-			dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-			dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-			dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
-			dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-			dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-			this.GridListStudents.DefaultCellStyle = dataGridViewCellStyle4;
+			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+			dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
+			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+			this.GridListStudents.DefaultCellStyle = dataGridViewCellStyle2;
 			this.GridListStudents.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.GridListStudents.GridColor = System.Drawing.Color.Gainsboro;
-			this.GridListStudents.Location = new System.Drawing.Point(0, 49);
-			this.GridListStudents.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.GridListStudents.Location = new System.Drawing.Point(0, 50);
+			this.GridListStudents.Margin = new System.Windows.Forms.Padding(2);
 			this.GridListStudents.Name = "GridListStudents";
 			this.GridListStudents.ReadOnly = true;
 			this.GridListStudents.RowHeadersVisible = false;
 			this.GridListStudents.RowHeadersWidth = 51;
 			this.GridListStudents.RowTemplate.Height = 24;
 			this.GridListStudents.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.GridListStudents.Size = new System.Drawing.Size(933, 494);
+			this.GridListStudents.Size = new System.Drawing.Size(887, 532);
 			this.GridListStudents.TabIndex = 0;
 			// 
 			// id
@@ -181,43 +182,43 @@ namespace coursework
 			// 
 			this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.panel1.Controls.Add(this.button_exitFromFrom);
+			this.panel1.Controls.Add(this.button_closeForm);
 			this.panel1.Controls.Add(this.button_deleteRecord);
+			this.panel1.Controls.Add(this.button_reloadData);
 			this.panel1.Controls.Add(this.button_editRecord);
 			this.panel1.Controls.Add(this.button_addRecord);
 			this.panel1.Controls.Add(this.panel4);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-			this.panel1.Location = new System.Drawing.Point(933, 0);
+			this.panel1.Location = new System.Drawing.Point(887, 0);
 			this.panel1.Margin = new System.Windows.Forms.Padding(0);
 			this.panel1.Name = "panel1";
 			this.panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-			this.panel1.Size = new System.Drawing.Size(239, 543);
+			this.panel1.Size = new System.Drawing.Size(191, 582);
 			this.panel1.TabIndex = 3;
 			// 
-			// button_exitFromFrom
+			// button_closeForm
 			// 
-			this.button_exitFromFrom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
-			this.button_exitFromFrom.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-			this.button_exitFromFrom.Dock = System.Windows.Forms.DockStyle.Top;
-			this.button_exitFromFrom.FlatAppearance.BorderSize = 0;
-			this.button_exitFromFrom.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(140)))), ((int)(((byte)(243)))));
-			this.button_exitFromFrom.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
-			this.button_exitFromFrom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.button_exitFromFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.button_exitFromFrom.ForeColor = System.Drawing.Color.Gainsboro;
-			this.button_exitFromFrom.Image = ((System.Drawing.Image)(resources.GetObject("button_exitFromFrom.Image")));
-			this.button_exitFromFrom.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.button_exitFromFrom.Location = new System.Drawing.Point(0, 235);
-			this.button_exitFromFrom.Margin = new System.Windows.Forms.Padding(4);
-			this.button_exitFromFrom.Name = "button_exitFromFrom";
-			this.button_exitFromFrom.Padding = new System.Windows.Forms.Padding(0, 0, 20, 0);
-			this.button_exitFromFrom.Size = new System.Drawing.Size(237, 62);
-			this.button_exitFromFrom.TabIndex = 10;
-			this.button_exitFromFrom.Text = "Закрыть  ";
-			this.button_exitFromFrom.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.button_exitFromFrom.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-			this.button_exitFromFrom.UseVisualStyleBackColor = false;
-			this.button_exitFromFrom.Click += new System.EventHandler(this.button_exitFromFrom_Click);
+			this.button_closeForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+			this.button_closeForm.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+			this.button_closeForm.Dock = System.Windows.Forms.DockStyle.Top;
+			this.button_closeForm.FlatAppearance.BorderSize = 0;
+			this.button_closeForm.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(140)))), ((int)(((byte)(243)))));
+			this.button_closeForm.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
+			this.button_closeForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.button_closeForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+			this.button_closeForm.ForeColor = System.Drawing.Color.Gainsboro;
+			this.button_closeForm.Image = ((System.Drawing.Image)(resources.GetObject("button_closeForm.Image")));
+			this.button_closeForm.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.button_closeForm.Location = new System.Drawing.Point(0, 249);
+			this.button_closeForm.Name = "button_closeForm";
+			this.button_closeForm.Padding = new System.Windows.Forms.Padding(0, 0, 15, 0);
+			this.button_closeForm.Size = new System.Drawing.Size(189, 50);
+			this.button_closeForm.TabIndex = 11;
+			this.button_closeForm.Text = "Закрыть  ";
+			this.button_closeForm.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.button_closeForm.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+			this.button_closeForm.UseVisualStyleBackColor = false;
+			this.button_closeForm.Click += new System.EventHandler(this.button_closeForm_Click);
 			// 
 			// button_deleteRecord
 			// 
@@ -228,21 +229,44 @@ namespace coursework
 			this.button_deleteRecord.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(140)))), ((int)(((byte)(243)))));
 			this.button_deleteRecord.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
 			this.button_deleteRecord.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.button_deleteRecord.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.button_deleteRecord.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
 			this.button_deleteRecord.ForeColor = System.Drawing.Color.Gainsboro;
 			this.button_deleteRecord.Image = ((System.Drawing.Image)(resources.GetObject("button_deleteRecord.Image")));
 			this.button_deleteRecord.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.button_deleteRecord.Location = new System.Drawing.Point(0, 173);
-			this.button_deleteRecord.Margin = new System.Windows.Forms.Padding(4);
+			this.button_deleteRecord.Location = new System.Drawing.Point(0, 199);
 			this.button_deleteRecord.Name = "button_deleteRecord";
-			this.button_deleteRecord.Padding = new System.Windows.Forms.Padding(0, 0, 20, 0);
-			this.button_deleteRecord.Size = new System.Drawing.Size(237, 62);
-			this.button_deleteRecord.TabIndex = 9;
+			this.button_deleteRecord.Padding = new System.Windows.Forms.Padding(0, 0, 15, 0);
+			this.button_deleteRecord.Size = new System.Drawing.Size(189, 50);
+			this.button_deleteRecord.TabIndex = 10;
 			this.button_deleteRecord.Text = "Удалить  ";
 			this.button_deleteRecord.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.button_deleteRecord.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
 			this.button_deleteRecord.UseVisualStyleBackColor = false;
 			this.button_deleteRecord.Click += new System.EventHandler(this.button_deleteRecord_Click);
+			// 
+			// button_reloadData
+			// 
+			this.button_reloadData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+			this.button_reloadData.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+			this.button_reloadData.Dock = System.Windows.Forms.DockStyle.Top;
+			this.button_reloadData.FlatAppearance.BorderSize = 0;
+			this.button_reloadData.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(140)))), ((int)(((byte)(243)))));
+			this.button_reloadData.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
+			this.button_reloadData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.button_reloadData.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+			this.button_reloadData.ForeColor = System.Drawing.Color.Gainsboro;
+			this.button_reloadData.Image = ((System.Drawing.Image)(resources.GetObject("button_reloadData.Image")));
+			this.button_reloadData.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.button_reloadData.Location = new System.Drawing.Point(0, 149);
+			this.button_reloadData.Name = "button_reloadData";
+			this.button_reloadData.Padding = new System.Windows.Forms.Padding(0, 0, 15, 0);
+			this.button_reloadData.Size = new System.Drawing.Size(189, 50);
+			this.button_reloadData.TabIndex = 9;
+			this.button_reloadData.Text = "Обновить  ";
+			this.button_reloadData.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.button_reloadData.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+			this.button_reloadData.UseVisualStyleBackColor = false;
+			this.button_reloadData.Click += new System.EventHandler(this.button_reloadData_Click);
 			// 
 			// button_editRecord
 			// 
@@ -253,15 +277,14 @@ namespace coursework
 			this.button_editRecord.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(140)))), ((int)(((byte)(243)))));
 			this.button_editRecord.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
 			this.button_editRecord.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.button_editRecord.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.button_editRecord.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
 			this.button_editRecord.ForeColor = System.Drawing.Color.Gainsboro;
 			this.button_editRecord.Image = ((System.Drawing.Image)(resources.GetObject("button_editRecord.Image")));
 			this.button_editRecord.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.button_editRecord.Location = new System.Drawing.Point(0, 111);
-			this.button_editRecord.Margin = new System.Windows.Forms.Padding(4);
+			this.button_editRecord.Location = new System.Drawing.Point(0, 99);
 			this.button_editRecord.Name = "button_editRecord";
-			this.button_editRecord.Padding = new System.Windows.Forms.Padding(0, 0, 20, 0);
-			this.button_editRecord.Size = new System.Drawing.Size(237, 62);
+			this.button_editRecord.Padding = new System.Windows.Forms.Padding(0, 0, 15, 0);
+			this.button_editRecord.Size = new System.Drawing.Size(189, 50);
 			this.button_editRecord.TabIndex = 8;
 			this.button_editRecord.Text = "Информация  ";
 			this.button_editRecord.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -277,15 +300,14 @@ namespace coursework
 			this.button_addRecord.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(140)))), ((int)(((byte)(243)))));
 			this.button_addRecord.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
 			this.button_addRecord.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.button_addRecord.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.button_addRecord.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
 			this.button_addRecord.ForeColor = System.Drawing.Color.Gainsboro;
 			this.button_addRecord.Image = ((System.Drawing.Image)(resources.GetObject("button_addRecord.Image")));
 			this.button_addRecord.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.button_addRecord.Location = new System.Drawing.Point(0, 49);
-			this.button_addRecord.Margin = new System.Windows.Forms.Padding(4);
 			this.button_addRecord.Name = "button_addRecord";
-			this.button_addRecord.Padding = new System.Windows.Forms.Padding(0, 0, 20, 0);
-			this.button_addRecord.Size = new System.Drawing.Size(237, 62);
+			this.button_addRecord.Padding = new System.Windows.Forms.Padding(0, 0, 15, 0);
+			this.button_addRecord.Size = new System.Drawing.Size(189, 50);
 			this.button_addRecord.TabIndex = 7;
 			this.button_addRecord.Text = "Добавить  ";
 			this.button_addRecord.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -298,9 +320,8 @@ namespace coursework
 			this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(38)))), ((int)(((byte)(58)))));
 			this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panel4.Location = new System.Drawing.Point(0, 0);
-			this.panel4.Margin = new System.Windows.Forms.Padding(4);
 			this.panel4.Name = "panel4";
-			this.panel4.Size = new System.Drawing.Size(237, 49);
+			this.panel4.Size = new System.Drawing.Size(189, 49);
 			this.panel4.TabIndex = 6;
 			// 
 			// label1
@@ -309,9 +330,9 @@ namespace coursework
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.label1.AutoSize = true;
-			this.label1.Font = new System.Drawing.Font("Dungeon", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label1.Font = new System.Drawing.Font("Dungeon", 20F);
 			this.label1.ForeColor = System.Drawing.Color.Gainsboro;
-			this.label1.Location = new System.Drawing.Point(15, 11);
+			this.label1.Location = new System.Drawing.Point(11, 9);
 			this.label1.Margin = new System.Windows.Forms.Padding(0);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(186, 30);
@@ -326,9 +347,8 @@ namespace coursework
 			this.panel2.Controls.Add(this.panel3);
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel2.Location = new System.Drawing.Point(0, 0);
-			this.panel2.Margin = new System.Windows.Forms.Padding(4);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(933, 543);
+			this.panel2.Size = new System.Drawing.Size(887, 582);
 			this.panel2.TabIndex = 4;
 			// 
 			// panel3
@@ -338,9 +358,8 @@ namespace coursework
 			this.panel3.Controls.Add(this.label1);
 			this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panel3.Location = new System.Drawing.Point(0, 0);
-			this.panel3.Margin = new System.Windows.Forms.Padding(4);
 			this.panel3.Name = "panel3";
-			this.panel3.Size = new System.Drawing.Size(933, 49);
+			this.panel3.Size = new System.Drawing.Size(887, 50);
 			this.panel3.TabIndex = 5;
 			// 
 			// searchDateInTextBox
@@ -348,13 +367,13 @@ namespace coursework
 			this.searchDateInTextBox.Anchor = System.Windows.Forms.AnchorStyles.Right;
 			this.searchDateInTextBox.BackColor = System.Drawing.Color.Gainsboro;
 			this.searchDateInTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.searchDateInTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.2F);
-			this.searchDateInTextBox.Location = new System.Drawing.Point(686, 14);
-			this.searchDateInTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.searchDateInTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+			this.searchDateInTextBox.Location = new System.Drawing.Point(611, 16);
+			this.searchDateInTextBox.Margin = new System.Windows.Forms.Padding(2);
 			this.searchDateInTextBox.MaxLength = 30;
 			this.searchDateInTextBox.Multiline = true;
 			this.searchDateInTextBox.Name = "searchDateInTextBox";
-			this.searchDateInTextBox.Size = new System.Drawing.Size(235, 27);
+			this.searchDateInTextBox.Size = new System.Drawing.Size(266, 22);
 			this.searchDateInTextBox.TabIndex = 12;
 			this.searchDateInTextBox.Text = "Поиск";
 			this.searchDateInTextBox.Click += new System.EventHandler(this.searchDateInTextBox_Click);
@@ -363,14 +382,14 @@ namespace coursework
 			// 
 			// FormListStudents
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.WhiteSmoke;
-			this.ClientSize = new System.Drawing.Size(1172, 543);
+			this.ClientSize = new System.Drawing.Size(1078, 582);
 			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.panel1);
-			this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.MinimumSize = new System.Drawing.Size(1186, 579);
+			this.Margin = new System.Windows.Forms.Padding(2);
+			this.MinimumSize = new System.Drawing.Size(894, 476);
 			this.Name = "FormListStudents";
 			this.ShowIcon = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -392,8 +411,8 @@ namespace coursework
 		private System.Windows.Forms.Panel panel2;
 		private System.Windows.Forms.Panel panel3;
 		private System.Windows.Forms.Panel panel4;
-		private System.Windows.Forms.Button button_exitFromFrom;
 		private System.Windows.Forms.Button button_deleteRecord;
+		private System.Windows.Forms.Button button_reloadData;
 		private System.Windows.Forms.Button button_editRecord;
 		private System.Windows.Forms.Button button_addRecord;
 		public System.Windows.Forms.Label label1;
@@ -406,5 +425,6 @@ namespace coursework
 		private System.Windows.Forms.DataGridViewTextBoxColumn dataOfBirthDay;
 		private System.Windows.Forms.DataGridViewImageColumn image;
 		private System.Windows.Forms.TextBox searchDateInTextBox;
+		private System.Windows.Forms.Button button_closeForm;
 	}
 }

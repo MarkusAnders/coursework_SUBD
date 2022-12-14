@@ -34,6 +34,12 @@ namespace coursework
 				this.Close();
 			}
 			conn.Disconnect();
+
+			for (int i = 0; i < GridListStudents.Rows.Count; i++)
+			{
+				GridListStudents.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(222, 222, 222);
+				i++;
+			}
 		}
 
 		private void ReadSingleRow(DataGridView dgw, IDataRecord record)
@@ -129,6 +135,11 @@ namespace coursework
 
 		}
 
+		private void button_reloadData_Click(object sender, EventArgs e)
+		{
+			RefreshTable(GridListStudents);
+		}
+
 		private void button_deleteRecord_Click(object sender, EventArgs e)
 		{
 			if (MessageBox.Show("Вы прадва хотите удалить запись?", "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
@@ -144,10 +155,11 @@ namespace coursework
 			}
 		}
 
-		private void button_exitFromFrom_Click(object sender, EventArgs e)
+		private void button_closeForm_Click(object sender, EventArgs e)
 		{
 			this.Close();
 		}
+
 		#endregion
 
 		#region[Search Data in table]
@@ -202,6 +214,11 @@ namespace coursework
 			if (searchDateInTextBox.Text == "")
 				searchDateInTextBox.Text = "Поиск";
 		}
+
 		#endregion
+
+		
+
+		
 	}
 }

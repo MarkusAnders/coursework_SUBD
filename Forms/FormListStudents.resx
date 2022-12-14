@@ -142,7 +142,7 @@
     <value>True</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="button_exitFromFrom.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="button_closeForm.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
         xAAADsQBlSsOGwAAAuJJREFUSEuNlr9LlVEYxy8SEk0REeEgIg7iHxDNDdEkDQ0S4hRNIRIREdIS0dAg
@@ -173,6 +173,22 @@
         nAGxlSvaBOlPg3GQwb6tM18Ra99gVutYsekM/E9FLLGugv6a5VlPwTR5JxTItTdsZ7dAT5RswGaFHj3B
         KXneyqmitwOOQR4zVo6KzQLcgkye4AF0LeLuF35dPY/wiYFin42LFw36zXkN/r8oIRgSm8MNVGyMKZf7
         Bq+DRVQq296QAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="button_reloadData.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        xAAADsQBlSsOGwAAAj9JREFUSEutlbFLm1EUxYOEICJBxKFTkQ4dOnbuKKVIkSLOTg6ldAhFpIMUSulc
+        ioOIlOBQin9IBwcRERERJ4fSIYTiUESS+Dv3O88kJtEv4oHDfe+de+573/e93BTyotVqjcN1+Ax69YGg
+        gs1mc4p4CuuMV4lly/cHRYrwNdyCexS+IAYY7xFeEJ09BDCKc5iPoIqpZsQb40v4iamdOYChZNP1aQdA
+        +ha508R0qBGX6Q8lYViFDcadOINVWEPT/BjOQTvDuwhvfxrEWQpcqIgL1eEHqKcqE3eJn4njtsij71Rh
+        vQHlXbDUDScewACJ/+Arhp16vI5OMH8M/8AE3bSS5TZYfBlyGyvQ6mAoh4O8g2Eyep+ChM2URNSJek8x
+        AOQW8ZzK7xq/oFWgYnBHikDSD0u5ge1b5g4cUGPMUoj6gCchAcQVS7mB7W3mDr9u3aSlbAMWT2AkgKE3
+        wBsbqEbPBizcfEVVS7mB57vt8ne/IoH1DRazjOzajVq6E+TqCut6JmxDqwYLM2kDRZj7msL3nV4wb7kN
+        BJ1iX6pRg08tB5grbxrGFdYczjg3gKZv2f+KI8yS89+JHwlFSyo0BvU/cAgnpcEKVDtJJ1cD7N8qEkhY
+        hkueplOqR6XWfQ5/wjPNBa+rQX6Fdg4ACSOix+oz6qK3tm6KS/9CzP3rD2DQK+gqrtMmeKwne0O0a0hg
+        fA5/U0TtWEUvmevvsspY3+z6O90bFNEHVs//S9Sv9BG0+kBQQfgErrHRhJfvQKFwBbjb3w5JdyZJAAAA
+        AElFTkSuQmCC
 </value>
   </data>
   <data name="button_editRecord.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
