@@ -65,6 +65,7 @@ namespace coursework
 			this.обновитьТаблицуToolStripMenuItem.Name = "обновитьТаблицуToolStripMenuItem";
 			this.обновитьТаблицуToolStripMenuItem.Size = new System.Drawing.Size(221, 26);
 			this.обновитьТаблицуToolStripMenuItem.Text = "Достижения учащихся ";
+			this.обновитьТаблицуToolStripMenuItem.Click += new System.EventHandler(this.обновитьТаблицуToolStripMenuItem_Click);
 			// 
 			// списокПредметовToolStripMenuItem
 			// 

@@ -9,6 +9,9 @@ namespace coursework
 	{
 		readonly DatabaseConnect conn = new DatabaseConnect();
 		readonly int id = -1;
+
+		string checkingForChangesNameSubject = string.Empty;
+		string checkingForChangesHoursSubject = string.Empty;
 		public FormAddEditSubject()
 		{
 			InitializeComponent();
@@ -20,6 +23,10 @@ namespace coursework
 			this.id = id;
 			nameSubjectTextBox.Text = nameSubject;
 			hourSubjectOfTextBox.Text = hourSubject.ToString();
+
+			// Проверка изменение данных. Если не изменились, то мы не вызываем запрос update.
+			checkingForChangesNameSubject = nameSubject;
+			checkingForChangesHoursSubject = hourSubject.ToString();
 		}
 
 		#region[[Add new subject or edit info]
@@ -28,7 +35,7 @@ namespace coursework
 			conn.Connect();
 			try
 			{
-				SQLiteCommand command;
+				SQLiteCommand command = new SQLiteCommand();
 
 				if (id == -1) // Добавление нового ученика
 				{
@@ -36,25 +43,31 @@ namespace coursework
 						"insert into academic_subject (nameSubject, hours) values (@nameSubject, @hourSubject)", conn.connection);
 					command.Parameters.Add("nameSubject", DbType.String).Value = nameSubjectTextBox.Text;
 					command.Parameters.Add("hourSubject", DbType.Int32).Value = hourSubjectOfTextBox.Text;
+					command.ExecuteNonQuery();
 
-					MessageBox.Show("Запись добавлена!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					MessageBox.Show("Запись добавлена!", "", MessageBoxButtons.OK);
 				}
 				else // Редактирование информации ученика
 				{
-					if (MessageBox.Show("Вы прадва хотите изменить запись?", "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+					if (checkingForChangesNameSubject == nameSubjectTextBox.Text && checkingForChangesHoursSubject == hourSubjectOfTextBox.Text)
 					{
-						command = new SQLiteCommand(
-						"update academic_subject set nameSubject = @nameSubject, hours = @hourSubject where id = @id", conn.connection);
-						command.Parameters.Add("nameSubject", DbType.String).Value = nameSubjectTextBox.Text;
-						command.Parameters.Add("hourSubject", DbType.Int32).Value = hourSubjectOfTextBox.Text;
-						command.Parameters.Add("id", DbType.Int32).Value = id;
-
-						MessageBox.Show("Данные были изменены!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+						MessageBox.Show("Данные не изменились!", "", MessageBoxButtons.OK);
 					}
-					return;
-				}
+					else
+					{
+						if (MessageBox.Show("Вы прадва хотите изменить запись?", "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+						{
+							command = new SQLiteCommand(
+							"update academic_subject set nameSubject = @nameSubject, hours = @hourSubject where id = @id", conn.connection);
+							command.Parameters.Add("id", DbType.Int32).Value = id;
+							command.Parameters.Add("nameSubject", DbType.String).Value = nameSubjectTextBox.Text;
+							command.Parameters.Add("hourSubject", DbType.Int32).Value = hourSubjectOfTextBox.Text;
+							command.ExecuteNonQuery();
 
-				command.ExecuteNonQuery();
+							MessageBox.Show("Данные были изменены!", "", MessageBoxButtons.OK);
+						}
+					}
+				}
 			}
 			catch (Exception exception)
 			{
@@ -70,7 +83,6 @@ namespace coursework
 			this.Close();
 		}
 		#endregion
-
 
 		#region[Запрет ввода чисел и букв]
 		private void nameSubjectTextBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -90,7 +102,5 @@ namespace coursework
 			}
 		}
 		#endregion
-
-		
 	}
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Data.SQLite;
 using System.Drawing;
 using System.IO;
@@ -24,7 +25,8 @@ namespace coursework
 		{
 			try
 			{
-				ReloadTableStudents();
+				//ReloadTableStudents();
+				RefreshTable(GridListStudents);
 			}
 			catch
 			{
@@ -33,6 +35,39 @@ namespace coursework
 			}
 			conn.Disconnect();
 		}
+
+		private void ReadSingleRow(DataGridView dgw, IDataRecord record)
+		{
+			dgw.Rows.Add(record.GetInt32(0), record.GetString(1), record.GetString(2), record.GetString(3), record.GetString(4),
+				record.GetString(5).ToUpper(), record.GetDateTime(6));
+		}
+
+		private void RefreshTable(DataGridView dgw)
+		{
+			conn.Connect();
+
+			GridListStudents.Rows.Clear();
+
+			int counter = 0;
+			SQLiteCommand command = new SQLiteCommand($"select * from list_students", conn.connection);
+			SQLiteDataReader reader = command.ExecuteReader();
+			while (reader.Read())
+			{
+				ArrayImage = new byte[((byte[])reader["image"]).Length];
+				ArrayImage = (byte[])reader["image"];
+				ms = new MemoryStream(ArrayImage);
+				b = new Bitmap(ms);
+				photo = new Bitmap(b, 200, 250);
+
+				ReadSingleRow(dgw, reader);
+
+				GridListStudents.Rows[counter].Cells[7].Value = photo;
+				counter++;
+			}
+			reader.Close();
+			conn.Disconnect();
+		}
+
 		public void ReloadTableStudents()
 		{
 			conn.Connect();
@@ -49,7 +84,7 @@ namespace coursework
 				ArrayImage = (byte[])reader["image"];
 				ms = new MemoryStream(ArrayImage);
 				b = new Bitmap(ms);
-				photo = new Bitmap(b, 150, 100);
+				photo = new Bitmap(b, 200, 250);
 
 				GridListStudents.Rows.Add();
 				GridListStudents.Rows[counter].Cells[0].Value = Convert.ToInt32(reader["id"]);
@@ -78,7 +113,6 @@ namespace coursework
 			formAS.button_addImageForRecord.Text = "  Загрузить фото";
 			formAS.button_editRecord.Image = Image.FromFile(Path.Combine(Application.StartupPath ,@"icon\add-user.png"));
 			formAS.ShowDialog();
-			ReloadTableStudents();
 		}
 
 		private void button_editRecord_Click(object sender, EventArgs e)
@@ -93,7 +127,6 @@ namespace coursework
 			Bitmap photo = (Bitmap)GridListStudents.SelectedRows[0].Cells["image"].Value;
 			new FormAddStudent(id, name, surname, patronymic, gender ,classNumber, dateOfBirthDay, photo).ShowDialog();
 
-			ReloadTableStudents();
 		}
 
 		private void button_deleteRecord_Click(object sender, EventArgs e)
@@ -101,11 +134,12 @@ namespace coursework
 			if (MessageBox.Show("Вы прадва хотите удалить запись?", "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
 			{
 				conn.Connect();
+
 				string id = GridListStudents.SelectedRows[0].Cells["id"].Value.ToString();
 				SQLiteCommand delete = new SQLiteCommand("delete from list_students where id=" + id, conn.connection);
 				delete.ExecuteNonQuery();
-				MessageBox.Show("Запись удалена!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-				ReloadTableStudents();
+				MessageBox.Show("Запись удалена!", "", MessageBoxButtons.OK);
+
 				conn.Disconnect();
 			}
 		}
@@ -113,6 +147,60 @@ namespace coursework
 		private void button_exitFromFrom_Click(object sender, EventArgs e)
 		{
 			this.Close();
+		}
+		#endregion
+
+		#region[Search Data in table]
+
+		private void searchDateInTextBox_TextChanged(object sender, EventArgs e)
+		{
+			SearchData(GridListStudents);
+		}
+
+		private void SearchData(DataGridView dgw)
+		{
+			conn.Connect();
+
+			if (searchDateInTextBox.Text != "Поиск")
+			{
+				dgw.Rows.Clear();
+				int counter = 0;
+
+				string search = $"select * from list_students where [name] || ' ' || [surname] || ' ' || [patronymic] || ' ' || [class] like '%" + searchDateInTextBox.Text + "%' ";
+
+				SQLiteCommand command = new SQLiteCommand(search, conn.connection);
+				SQLiteDataReader reader = command.ExecuteReader();
+				while (reader.Read())
+				{
+					ArrayImage = new byte[((byte[])reader["image"]).Length];
+					ArrayImage = (byte[])reader["image"];
+					ms = new MemoryStream(ArrayImage);
+					b = new Bitmap(ms);
+					photo = new Bitmap(b, 200, 250);
+
+					ReadSingleRow(dgw, reader);
+
+					GridListStudents.Rows[counter].Cells[7].Value = photo;
+					counter++;
+				}
+				reader.Close();
+			}
+			else
+				return;
+
+			conn.Disconnect();
+		}
+
+		private void searchDateInTextBox_Click(object sender, EventArgs e)
+		{
+			if (searchDateInTextBox.Text == "Поиск")
+				searchDateInTextBox.Text = "";
+		}
+
+		private void searchDateInTextBox_Leave(object sender, EventArgs e)
+		{
+			if (searchDateInTextBox.Text == "")
+				searchDateInTextBox.Text = "Поиск";
 		}
 		#endregion
 	}

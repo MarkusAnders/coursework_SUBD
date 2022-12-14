@@ -38,5 +38,11 @@ namespace coursework
 			FormListStudents Lstudents = new FormListStudents();
 			Lstudents.ShowDialog();
 		}
+
+		private void обновитьТаблицуToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			FormAchievements formA = new FormAchievements();
+			formA.ShowDialog();
+		}
 	}
 }

@@ -3,7 +3,6 @@ using System.Data;
 using System.Data.SQLite;
 using System.Drawing;
 using System.IO;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace coursework
@@ -12,6 +11,14 @@ namespace coursework
 	{
 		readonly DatabaseConnect conn = new DatabaseConnect();
 		readonly int id = -1;
+
+		string checkingForChangesNameStudent = string.Empty;
+		string checkingForChangesSurnameStudent = string.Empty;
+		string checkingForChangesPatronymicStudent = string.Empty;
+		string checkingForChangesGenderStudent = string.Empty;
+		string checkingForChangesClassStudent = string.Empty;
+		string checkingForChangesDataOfBirthDayStudent = string.Empty;
+		Image checkingForChangesPhotoStudent;
 
 		public FormAddStudent()
 		{
@@ -29,6 +36,16 @@ namespace coursework
 			classOfTextBox.Text = classNumber;
 			dateOfBirthDay.Text = dateOfBirth;
 			picturePhotoStudent.Image = photo;
+
+			// Проверка изменение данных. Если не изменились, то мы не вызываем запрос update.
+			checkingForChangesNameStudent = name;
+			checkingForChangesSurnameStudent = surname;
+			checkingForChangesPatronymicStudent = patronymic;
+			checkingForChangesGenderStudent = gender;
+			checkingForChangesClassStudent = classNumber;
+			checkingForChangesDataOfBirthDayStudent = dateOfBirth;
+			checkingForChangesPhotoStudent = photo;
+
 		}
 
 		#region[Add photo for student]
@@ -67,7 +84,7 @@ namespace coursework
 				var photo = ms.ToArray();
 				try
 				{
-					SQLiteCommand command;
+					SQLiteCommand command = new SQLiteCommand();
 
 					if (id == -1) // Добавление нового ученика
 					{
@@ -81,32 +98,42 @@ namespace coursework
 						command.Parameters.Add("classNumber", DbType.String).Value = classNumber;
 						command.Parameters.Add("dataOfBirthDay", DbType.Date).Value = dataOfBirthDay;
 						command.Parameters.Add("image", DbType.Binary, 8000).Value = photo;
+						command.ExecuteNonQuery();
 
-						MessageBox.Show("Запись добавлена!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+						MessageBox.Show("Запись добавлена!", "", MessageBoxButtons.OK);
 					}
 					else // Редактирование информации ученика
 					{
-						if (MessageBox.Show("Вы прадва хотите изменить запись?", "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+						if (checkingForChangesNameStudent == nameOfTextBox.Text && checkingForChangesSurnameStudent == surnameOfTextBox.Text &&
+							checkingForChangesPatronymicStudent == patronymicOfTextBox.Text && checkingForChangesGenderStudent == genderComboBox.Text &&
+							checkingForChangesClassStudent == classOfTextBox.Text && checkingForChangesDataOfBirthDayStudent == Convert.ToString(dateOfBirthDay.Value) &&
+							checkingForChangesPhotoStudent == picturePhotoStudent.Image) // Проверка изменение данных. Если не изменились, то мы не вызываем запрос update.
 						{
-							command = new SQLiteCommand(
-							"update list_students " +
-							"set name = @name, surname = @surname, patronymic = @patronymic, gender = @gender, class = @classNumber, dataOfBirthDay = @dataOfBirthDay, image = @image " +
-							"where id = @id", conn.connection);
-							command.Parameters.Add("name", DbType.String).Value = name;
-							command.Parameters.Add("surname", DbType.String).Value = surname;
-							command.Parameters.Add("patronymic", DbType.String).Value = patronymic;
-							command.Parameters.Add("gender", DbType.String).Value = gender;
-							command.Parameters.Add("classNumber", DbType.String).Value = classNumber;
-							command.Parameters.Add("dataOfBirthDay", DbType.Date).Value = dataOfBirthDay;
-							command.Parameters.Add("image", DbType.Binary, 8000).Value = photo;
-							command.Parameters.Add("id", DbType.Int32).Value = id;
-
-							MessageBox.Show("Данные были изменены!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+							MessageBox.Show("Данные не измеились!", "", MessageBoxButtons.OK);
+							
 						}
-						return;
-					}
+						else // Одно из данных изменилось. Вызываем запрос update.
+						{
+							if (MessageBox.Show("Внести изменения в запись?", "Внимание!", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+							{
+								command = new SQLiteCommand(
+								"update list_students " +
+								"set name = @name, surname = @surname, patronymic = @patronymic, gender = @gender, class = @classNumber, dataOfBirthDay = @dataOfBirthDay, image = @image " +
+								"where id = @id", conn.connection);
+								command.Parameters.Add("name", DbType.String).Value = name;
+								command.Parameters.Add("surname", DbType.String).Value = surname;
+								command.Parameters.Add("patronymic", DbType.String).Value = patronymic;
+								command.Parameters.Add("gender", DbType.String).Value = gender;
+								command.Parameters.Add("classNumber", DbType.String).Value = classNumber;
+								command.Parameters.Add("dataOfBirthDay", DbType.Date).Value = dataOfBirthDay;
+								command.Parameters.Add("image", DbType.Binary, 8000).Value = photo;
+								command.Parameters.Add("id", DbType.Int32).Value = id;
 
-					command.ExecuteNonQuery();
+								MessageBox.Show("Данные были изменены!", "", MessageBoxButtons.OK);
+							}
+							command.ExecuteNonQuery();
+						}
+					}
 				}
 				catch (Exception exception)
 				{
