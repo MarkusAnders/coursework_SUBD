@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Data.SqlClient;
 using System.Data.SQLite;
 using System.Drawing;
 using System.IO;
@@ -11,6 +12,7 @@ namespace coursework
 	{
 		readonly DatabaseConnect conn = new DatabaseConnect();
 		readonly int id = -1;
+		string checkGender = string.Empty;
 
 		string checkingForChangesNameStudent = string.Empty;
 		string checkingForChangesSurnameStudent = string.Empty;
@@ -25,14 +27,26 @@ namespace coursework
 			InitializeComponent();
 		}
 
-		public FormAddStudent(int id, string name, string surname, string patronymic, string gender, string classNumber, string dateOfBirth, Bitmap photo) : base()
+		public FormAddStudent(int id, string surname, string name, string patronymic, string gender, string classNumber, string dateOfBirth, Bitmap photo) : base()
 		{
 			InitializeComponent();
 			this.id = id;
 			nameOfTextBox.Text = name;
 			surnameOfTextBox.Text = surname;
 			patronymicOfTextBox.Text = patronymic;
-			genderComboBox.Text = gender;
+			checkGender = gender;
+
+			if (gender == "Мужской")
+			{
+				radioButtonMale.Checked = true;
+				radioButtonFemale.Checked = false;
+			}
+			else if(gender == "Женский")
+			{
+				radioButtonMale.Checked = false;
+				radioButtonFemale.Checked = true;
+			}
+
 			classOfTextBox.Text = classNumber;
 			dateOfBirthDay.Text = dateOfBirth;
 			picturePhotoStudent.Image = photo;
@@ -45,7 +59,6 @@ namespace coursework
 			checkingForChangesClassStudent = classNumber;
 			checkingForChangesDataOfBirthDayStudent = dateOfBirth;
 			checkingForChangesPhotoStudent = photo;
-
 		}
 
 		#region[Add photo for student]
@@ -68,13 +81,12 @@ namespace coursework
 			string name = nameOfTextBox.Text;
 			string surname = surnameOfTextBox.Text;
 			string patronymic = patronymicOfTextBox.Text;
-			string gender = genderComboBox.Text;
 			string classNumber = classOfTextBox.Text;
 			DateTime dataOfBirthDay = Convert.ToDateTime(dateOfBirthDay.Value);
 			MemoryStream ms = new MemoryStream();
 
 			if (nameOfTextBox.Text == null || surnameOfTextBox.Text == null || patronymicOfTextBox.Text == null
-				|| genderComboBox.Text == null ||classOfTextBox.Text == null || dateOfBirthDay.Text == null || picturePhotoStudent.Image == null)
+				|| classOfTextBox.Text == null || dateOfBirthDay.Text == null || picturePhotoStudent.Image == null)
 			{
 				MessageBox.Show("Не все данные заполнены!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
@@ -84,53 +96,76 @@ namespace coursework
 				var photo = ms.ToArray();
 				try
 				{
-					SQLiteCommand command = new SQLiteCommand();
+					SqlCommand command = new SqlCommand();
 
 					if (id == -1) // Добавление нового ученика
 					{
-						command = new SQLiteCommand(
-							"insert into list_students (name, surname, patronymic, gender, class, dataOfBirthDay, image) " +
+						command = new SqlCommand(
+							"insert into students (surname, firstname, patronymic, gender, class, dataOfBirthDay, image) " +
 							"values (@name, @surname, @patronymic, @gender, @classNumber, @dataOfBirthDay, @image)", conn.connection);
-						command.Parameters.Add("name", DbType.String).Value = name;
-						command.Parameters.Add("surname", DbType.String).Value = surname;
-						command.Parameters.Add("patronymic", DbType.String).Value = patronymic;
-						command.Parameters.Add("gender", DbType.String).Value = gender;
-						command.Parameters.Add("classNumber", DbType.String).Value = classNumber;
-						command.Parameters.Add("dataOfBirthDay", DbType.Date).Value = dataOfBirthDay;
-						command.Parameters.Add("image", DbType.Binary, 8000).Value = photo;
+						command.Parameters.Add("name", SqlDbType.NVarChar).Value = name;
+						command.Parameters.Add("surname", SqlDbType.NVarChar).Value = surname;
+						command.Parameters.Add("patronymic", SqlDbType.NVarChar).Value = patronymic;
+						if (radioButtonMale.Checked == true && radioButtonFemale.Checked == false)
+						{
+							command.Parameters.Add("@gender", SqlDbType.VarChar).Value = "Мужской";
+						}
+						else if (radioButtonMale.Checked == false && radioButtonFemale.Checked == true) 
+						{
+							command.Parameters.Add("@gender", SqlDbType.VarChar).Value = "Женский";
+						}
+						
+						command.Parameters.Add("classNumber", SqlDbType.NVarChar).Value = classNumber;
+						command.Parameters.Add("dataOfBirthDay", SqlDbType.Date).Value = dataOfBirthDay;
+						command.Parameters.Add("image", SqlDbType.Image).Value = photo;
 						command.ExecuteNonQuery();
 
 						MessageBox.Show("Запись добавлена!", "", MessageBoxButtons.OK);
+
+						this.Close();
 					}
 					else // Редактирование информации ученика
 					{
 						if (checkingForChangesNameStudent == nameOfTextBox.Text && checkingForChangesSurnameStudent == surnameOfTextBox.Text &&
-							checkingForChangesPatronymicStudent == patronymicOfTextBox.Text && checkingForChangesGenderStudent == genderComboBox.Text &&
-							checkingForChangesClassStudent == classOfTextBox.Text && checkingForChangesDataOfBirthDayStudent == Convert.ToString(dateOfBirthDay.Value) &&
-							checkingForChangesPhotoStudent == picturePhotoStudent.Image) // Проверка изменение данных. Если не изменились, то мы не вызываем запрос update.
+							checkingForChangesPatronymicStudent == patronymicOfTextBox.Text && checkingForChangesClassStudent == classOfTextBox.Text && checkingForChangesDataOfBirthDayStudent == Convert.ToString(dateOfBirthDay.Value) &&
+							checkingForChangesPhotoStudent == picturePhotoStudent.Image &&
+							checkGender == "Мужской" && radioButtonMale.Checked == true && radioButtonFemale.Checked == false ||
+							checkGender == "Женский" && radioButtonMale.Checked == false && radioButtonFemale.Checked == true) // Проверка изменение данных. Если не изменились, то мы не вызываем запрос update.
 						{
-							MessageBox.Show("Данные не измеились!", "", MessageBoxButtons.OK);
-							
+							MessageBox.Show("Данные не изменились!", "", MessageBoxButtons.OK);
 						}
 						else // Одно из данных изменилось. Вызываем запрос update.
 						{
 							if (MessageBox.Show("Внести изменения в запись?", "Внимание!", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
 							{
-								command = new SQLiteCommand(
-								"update list_students " +
-								"set name = @name, surname = @surname, patronymic = @patronymic, gender = @gender, class = @classNumber, dataOfBirthDay = @dataOfBirthDay, image = @image " +
+								command = new SqlCommand(
+								"update students " +
+								"set firstname = @name, surname = @surname, patronymic = @patronymic, gender = @gender, class = @classNumber, dataOfBirthDay = @dataOfBirthDay, image = @image " +
 								"where id = @id", conn.connection);
-								command.Parameters.Add("name", DbType.String).Value = name;
-								command.Parameters.Add("surname", DbType.String).Value = surname;
-								command.Parameters.Add("patronymic", DbType.String).Value = patronymic;
-								command.Parameters.Add("gender", DbType.String).Value = gender;
-								command.Parameters.Add("classNumber", DbType.String).Value = classNumber;
-								command.Parameters.Add("dataOfBirthDay", DbType.Date).Value = dataOfBirthDay;
-								command.Parameters.Add("image", DbType.Binary, 8000).Value = photo;
-								command.Parameters.Add("id", DbType.Int32).Value = id;
+								command.Parameters.Add("name", SqlDbType.NVarChar).Value = name;
+								command.Parameters.Add("surname", SqlDbType.NVarChar).Value = surname;
+								command.Parameters.Add("patronymic", SqlDbType.NVarChar).Value = patronymic;
+								if (checkGender == "Мужской" && radioButtonMale.Checked == false && radioButtonFemale.Checked == true)
+								{
+									command.Parameters.Add("gender", SqlDbType.VarChar).Value = "Женский";
+								}
+								else if(checkGender == "Женский" && radioButtonMale.Checked == true && radioButtonFemale.Checked == false)
+								{
+									command.Parameters.Add("gender", SqlDbType.VarChar).Value = "Мужской";
+								}
+								else
+								{
+									command.Parameters.Add("gender", SqlDbType.VarChar).Value = checkGender;
+								}
+								command.Parameters.Add("classNumber", SqlDbType.NVarChar).Value = classNumber;
+								command.Parameters.Add("dataOfBirthDay", SqlDbType.Date).Value = dataOfBirthDay;
+								command.Parameters.Add("image", SqlDbType.Image, 8000).Value = photo;
+								command.Parameters.Add("id", SqlDbType.Int).Value = id;
 								command.ExecuteNonQuery();
 
 								MessageBox.Show("Данные были изменены!", "", MessageBoxButtons.OK);
+
+								this.Close();
 							}
 						}
 					}
@@ -139,7 +174,6 @@ namespace coursework
 				{
 					MessageBox.Show(exception.Message, "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				}
-				this.Close();
 				conn.Disconnect();
 			}
 		}
@@ -173,6 +207,5 @@ namespace coursework
 		}
 
 		#endregion
-
 	}
 }

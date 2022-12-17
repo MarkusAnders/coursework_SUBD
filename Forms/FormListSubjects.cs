@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Data.SqlClient;
 using System.Data.SQLite;
 using System.Drawing;
 using System.IO;
@@ -9,9 +10,9 @@ namespace coursework
 {
 	public partial class FormListSubjects : Form
 	{
-        readonly DatabaseConnect conn = new DatabaseConnect();
-        
-        public FormListSubjects()
+		readonly DatabaseConnect conn = new DatabaseConnect();
+
+		public FormListSubjects()
 		{
 			InitializeComponent();
 		}
@@ -24,7 +25,6 @@ namespace coursework
 
 			try
 			{
-				//ReloadTableStudents();
 				RefreshTable(GridListSubjects);
 			}
 			catch
@@ -34,32 +34,9 @@ namespace coursework
 			}
 			conn.Disconnect();
 
-			for (int i = 0; i < GridListSubjects.Rows.Count; i++)
-			{
-				GridListSubjects.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(222, 222, 222);
-				i++;
-			}
+			GridListSubjects.ColumnHeadersDefaultCellStyle.Font = new Font("Microsoft Sans Serif", 14);
+			GridListSubjects.DefaultCellStyle.Font = new Font("Microsoft Sans Serif", 13);
 		}
-
-		//public void ReloadTableStudents()
-		//{
-		//	conn.Connect();
-		//	GridListSubjects.Rows.Clear();
-		//	int counter = 0;
-		//	SQLiteCommand cmd = new SQLiteCommand("select * from academic_subject", conn.connection);
-		//	SQLiteDataReader reader = null;
-		//	reader = cmd.ExecuteReader();
-
-		//	while (reader.Read())
-		//	{
-		//		GridListSubjects.Rows.Add();
-		//		GridListSubjects.Rows[counter].Cells[0].Value = Convert.ToInt32(reader["id"]);
-		//		GridListSubjects.Rows[counter].Cells[1].Value = Convert.ToString(reader["nameSubject"]);
-		//		GridListSubjects.Rows[counter].Cells[2].Value = Convert.ToString(reader["hours"]);
-		//		counter++;
-		//	}
-		//	conn.Disconnect();
-		//}
 
 		private void ReadSingleRow(DataGridView dgw, IDataRecord record)
 		{
@@ -71,11 +48,17 @@ namespace coursework
 			conn.Connect();
 			GridListSubjects.Rows.Clear();
 
-			SQLiteCommand command = new SQLiteCommand($"select * from academic_subject", conn.connection);
-			SQLiteDataReader reader = command.ExecuteReader();
+			SqlCommand command = new SqlCommand($"select * from academic_subject", conn.connection);
+			SqlDataReader reader = command.ExecuteReader();
 			while (reader.Read())
 			{
 				ReadSingleRow(dgw, reader);
+
+				for (int i = 0; i < GridListSubjects.Rows.Count; i++)
+				{
+					GridListSubjects.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(222, 222, 222);
+					i++;
+				}
 			}
 			reader.Close();
 			conn.Disconnect();
@@ -91,6 +74,8 @@ namespace coursework
 			formAES.button_editRecord.Text = "Добавить  ";
 			formAES.button_editRecord.Image = Image.FromFile(Path.Combine(Application.StartupPath, @"icon/add-subject.png"));
 			formAES.ShowDialog();
+			RefreshTable(GridListSubjects);
+
 		}
 
 		private void button_editRecord_Click_1(object sender, EventArgs e)
@@ -99,11 +84,8 @@ namespace coursework
 			string nameSubject = GridListSubjects.SelectedRows[0].Cells["Subjects"].Value.ToString();
 			int hourSubject = int.Parse(GridListSubjects.SelectedRows[0].Cells["Hours"].Value.ToString());
 			new FormAddEditSubject(id, nameSubject, hourSubject).ShowDialog();
-		}
-
-		private void button_reloadData_Click(object sender, EventArgs e)
-		{
 			RefreshTable(GridListSubjects);
+
 		}
 
 		private void button_deleteRecord_Click_1(object sender, EventArgs e)
@@ -113,10 +95,10 @@ namespace coursework
 				conn.Connect();
 
 				int id = int.Parse(GridListSubjects.SelectedRows[0].Cells["id"].Value.ToString());
-				SQLiteCommand delete = new SQLiteCommand("delete from academic_subject where id=" + id, conn.connection);
+				SqlCommand delete = new SqlCommand("delete from academic_subject where id=" + id, conn.connection);
 				delete.ExecuteNonQuery();
 				MessageBox.Show("Запись удалена!", "", MessageBoxButtons.OK);
-
+				RefreshTable(GridListSubjects);
 				conn.Disconnect();
 			}
 		}
@@ -142,15 +124,22 @@ namespace coursework
 			{
 				dgw.Rows.Clear();
 
-				string search = $"select * from academic_subject where [nameSubject] || ' ' || [hours]  like '%" + searchDateInTextBox.Text + "%'";
+				string search = $"select * from academic_subject where concat (subject, hours) like '%" + searchDateInTextBox.Text + "%'";
+																	
 
-				SQLiteCommand command = new SQLiteCommand(search, conn.connection);
+				SqlCommand command = new SqlCommand(search, conn.connection);
 
-				SQLiteDataReader reader = command.ExecuteReader();
+				SqlDataReader reader = command.ExecuteReader();
 
 				while (reader.Read())
 				{
 					ReadSingleRow(dgw, reader);
+
+					for (int i = 0; i < GridListSubjects.Rows.Count; i++)
+					{
+						GridListSubjects.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(222, 222, 222);
+						i++;
+					}
 				}
 				reader.Close();
 			}

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Data.SqlClient;
 using System.Data.SQLite;
 using System.Windows.Forms;
 
@@ -35,17 +36,19 @@ namespace coursework
 			conn.Connect();
 			try
 			{
-				SQLiteCommand command = new SQLiteCommand();
+				SqlCommand command = new SqlCommand();
 
 				if (id == -1) // Добавление нового ученика
 				{
-					command = new SQLiteCommand(
-						"insert into academic_subject (nameSubject, hours) values (@nameSubject, @hourSubject)", conn.connection);
-					command.Parameters.Add("nameSubject", DbType.String).Value = nameSubjectTextBox.Text;
-					command.Parameters.Add("hourSubject", DbType.Int32).Value = hourSubjectOfTextBox.Text;
+					command = new SqlCommand(
+						"insert into academic_subject (subject, hours) values (@subject, @hours)", conn.connection);
+					command.Parameters.Add("@subject", SqlDbType.VarChar).Value = nameSubjectTextBox.Text;
+					command.Parameters.Add("@hours", SqlDbType.Int).Value = hourSubjectOfTextBox.Text;
 					command.ExecuteNonQuery();
 
 					MessageBox.Show("Запись добавлена!", "", MessageBoxButtons.OK);
+
+					this.Close();
 				}
 				else // Редактирование информации ученика
 				{
@@ -57,14 +60,16 @@ namespace coursework
 					{
 						if (MessageBox.Show("Вы прадва хотите изменить запись?", "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
 						{
-							command = new SQLiteCommand(
-							"update academic_subject set nameSubject = @nameSubject, hours = @hourSubject where id = @id", conn.connection);
-							command.Parameters.Add("id", DbType.Int32).Value = id;
-							command.Parameters.Add("nameSubject", DbType.String).Value = nameSubjectTextBox.Text;
-							command.Parameters.Add("hourSubject", DbType.Int32).Value = hourSubjectOfTextBox.Text;
+							command = new SqlCommand(
+							"update academic_subject set subject = @subject, hours = @hours where id = @id", conn.connection);
+							command.Parameters.Add("id", SqlDbType.Int).Value = id;
+							command.Parameters.Add("subject", SqlDbType.VarChar).Value = nameSubjectTextBox.Text;
+							command.Parameters.Add("hours", SqlDbType.Int).Value = hourSubjectOfTextBox.Text;
 							command.ExecuteNonQuery();
 
 							MessageBox.Show("Данные были изменены!", "", MessageBoxButtons.OK);
+
+							this.Close();
 						}
 					}
 				}
@@ -73,8 +78,6 @@ namespace coursework
 			{
 				MessageBox.Show(exception.Message, "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
-
-			this.Close();
 			conn.Disconnect();
 		}
 

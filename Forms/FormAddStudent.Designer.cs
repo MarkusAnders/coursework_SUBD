@@ -48,7 +48,6 @@ namespace coursework
 			this.button_addImageForRecord = new System.Windows.Forms.Button();
 			this.panel4 = new System.Windows.Forms.Panel();
 			this.label1 = new System.Windows.Forms.Label();
-			this.genderComboBox = new System.Windows.Forms.ComboBox();
 			this.picturePhotoStudent = new System.Windows.Forms.PictureBox();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.panel5 = new System.Windows.Forms.Panel();
@@ -56,6 +55,8 @@ namespace coursework
 			this.panel7 = new System.Windows.Forms.Panel();
 			this.panel8 = new System.Windows.Forms.Panel();
 			this.panel9 = new System.Windows.Forms.Panel();
+			this.radioButtonMale = new System.Windows.Forms.RadioButton();
+			this.radioButtonFemale = new System.Windows.Forms.RadioButton();
 			this.panel3.SuspendLayout();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.picturePhotoStudent)).BeginInit();
@@ -209,7 +210,7 @@ namespace coursework
 			this.panel1.Margin = new System.Windows.Forms.Padding(0);
 			this.panel1.Name = "panel1";
 			this.panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-			this.panel1.Size = new System.Drawing.Size(209, 379);
+			this.panel1.Size = new System.Drawing.Size(209, 372);
 			this.panel1.TabIndex = 30;
 			// 
 			// button_exitFromFrom
@@ -302,22 +303,6 @@ namespace coursework
 			this.label1.TabIndex = 32;
 			this.label1.Text = "Пол";
 			// 
-			// genderComboBox
-			// 
-			this.genderComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-			this.genderComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.genderComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.genderComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-			this.genderComboBox.FormattingEnabled = true;
-			this.genderComboBox.Items.AddRange(new object[] {
-            "Мужской",
-            "Женский"});
-			this.genderComboBox.Location = new System.Drawing.Point(203, 8);
-			this.genderComboBox.MaxLength = 7;
-			this.genderComboBox.Name = "genderComboBox";
-			this.genderComboBox.Size = new System.Drawing.Size(213, 28);
-			this.genderComboBox.TabIndex = 33;
-			// 
 			// picturePhotoStudent
 			// 
 			this.picturePhotoStudent.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -335,7 +320,7 @@ namespace coursework
 			this.panel2.Controls.Add(this.label2);
 			this.panel2.Location = new System.Drawing.Point(12, 64);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(421, 44);
+			this.panel2.Size = new System.Drawing.Size(433, 44);
 			this.panel2.TabIndex = 35;
 			// 
 			// panel5
@@ -345,7 +330,7 @@ namespace coursework
 			this.panel5.Controls.Add(this.label3);
 			this.panel5.Location = new System.Drawing.Point(12, 114);
 			this.panel5.Name = "panel5";
-			this.panel5.Size = new System.Drawing.Size(421, 44);
+			this.panel5.Size = new System.Drawing.Size(433, 44);
 			this.panel5.TabIndex = 36;
 			// 
 			// panel6
@@ -355,17 +340,18 @@ namespace coursework
 			this.panel6.Controls.Add(this.label4);
 			this.panel6.Location = new System.Drawing.Point(12, 164);
 			this.panel6.Name = "panel6";
-			this.panel6.Size = new System.Drawing.Size(421, 44);
+			this.panel6.Size = new System.Drawing.Size(433, 44);
 			this.panel6.TabIndex = 36;
 			// 
 			// panel7
 			// 
 			this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.panel7.Controls.Add(this.genderComboBox);
+			this.panel7.Controls.Add(this.radioButtonFemale);
+			this.panel7.Controls.Add(this.radioButtonMale);
 			this.panel7.Controls.Add(this.label1);
 			this.panel7.Location = new System.Drawing.Point(12, 214);
 			this.panel7.Name = "panel7";
-			this.panel7.Size = new System.Drawing.Size(421, 44);
+			this.panel7.Size = new System.Drawing.Size(433, 44);
 			this.panel7.TabIndex = 36;
 			// 
 			// panel8
@@ -375,7 +361,7 @@ namespace coursework
 			this.panel8.Controls.Add(this.label5);
 			this.panel8.Location = new System.Drawing.Point(12, 264);
 			this.panel8.Name = "panel8";
-			this.panel8.Size = new System.Drawing.Size(421, 44);
+			this.panel8.Size = new System.Drawing.Size(433, 44);
 			this.panel8.TabIndex = 36;
 			// 
 			// panel9
@@ -385,15 +371,39 @@ namespace coursework
 			this.panel9.Controls.Add(this.label6);
 			this.panel9.Location = new System.Drawing.Point(12, 314);
 			this.panel9.Name = "panel9";
-			this.panel9.Size = new System.Drawing.Size(421, 44);
+			this.panel9.Size = new System.Drawing.Size(433, 44);
 			this.panel9.TabIndex = 36;
+			// 
+			// radioButtonMale
+			// 
+			this.radioButtonMale.AutoSize = true;
+			this.radioButtonMale.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+			this.radioButtonMale.Location = new System.Drawing.Point(203, 9);
+			this.radioButtonMale.Name = "radioButtonMale";
+			this.radioButtonMale.Size = new System.Drawing.Size(92, 24);
+			this.radioButtonMale.TabIndex = 33;
+			this.radioButtonMale.TabStop = true;
+			this.radioButtonMale.Text = "Мужской";
+			this.radioButtonMale.UseVisualStyleBackColor = true;
+			// 
+			// radioButtonFemale
+			// 
+			this.radioButtonFemale.AutoSize = true;
+			this.radioButtonFemale.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+			this.radioButtonFemale.Location = new System.Drawing.Point(324, 9);
+			this.radioButtonFemale.Name = "radioButtonFemale";
+			this.radioButtonFemale.Size = new System.Drawing.Size(92, 24);
+			this.radioButtonFemale.TabIndex = 34;
+			this.radioButtonFemale.TabStop = true;
+			this.radioButtonFemale.Text = "Женский";
+			this.radioButtonFemale.UseVisualStyleBackColor = true;
 			// 
 			// FormAddStudent
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.Gainsboro;
-			this.ClientSize = new System.Drawing.Size(963, 379);
+			this.ClientSize = new System.Drawing.Size(963, 372);
 			this.Controls.Add(this.panel9);
 			this.Controls.Add(this.panel8);
 			this.Controls.Add(this.panel7);
@@ -404,7 +414,7 @@ namespace coursework
 			this.Controls.Add(this.panel3);
 			this.Controls.Add(this.panel1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-			this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.Margin = new System.Windows.Forms.Padding(2);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "FormAddStudent";
@@ -451,12 +461,13 @@ namespace coursework
 		private System.Windows.Forms.Label label1;
 		public System.Windows.Forms.Button button_addImageForRecord;
 		private System.Windows.Forms.PictureBox picturePhotoStudent;
-		public System.Windows.Forms.ComboBox genderComboBox;
 		private System.Windows.Forms.Panel panel2;
 		private System.Windows.Forms.Panel panel5;
 		private System.Windows.Forms.Panel panel6;
 		private System.Windows.Forms.Panel panel7;
 		private System.Windows.Forms.Panel panel8;
 		private System.Windows.Forms.Panel panel9;
+		private System.Windows.Forms.RadioButton radioButtonFemale;
+		private System.Windows.Forms.RadioButton radioButtonMale;
 	}
 }

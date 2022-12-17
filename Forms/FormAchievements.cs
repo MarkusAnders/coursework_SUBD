@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+using System.Data.SqlClient;
 using System.Data.SQLite;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace coursework
@@ -22,6 +16,8 @@ namespace coursework
 
 		private void FormAchievements_Load(object sender, EventArgs e)
 		{
+			// TODO: данная строка кода позволяет загрузить данные в таблицу "subd_schoolDataSet.lstudents". При необходимости она может быть перемещена или удалена.
+			this.lstudentsTableAdapter.Fill(this.subd_schoolDataSet.lstudents);
 			conn.Connect();
 			ReloadTableStudents();
 			conn.Disconnect();
@@ -32,8 +28,8 @@ namespace coursework
 			conn.Connect();
 			dataGridView1.Rows.Clear();
 			int counter = 0;
-			SQLiteCommand cmd = new SQLiteCommand("select * from achievements_students", conn.connection);
-			SQLiteDataReader reader = null;
+			SqlCommand cmd = new SqlCommand("select * from achievements_students", conn.connection);
+			SqlDataReader reader = null;
 			reader = cmd.ExecuteReader();
 
 			while (reader.Read())

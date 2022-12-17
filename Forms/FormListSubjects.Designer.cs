@@ -29,8 +29,8 @@ namespace coursework
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormListSubjects));
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.searchDateInTextBox = new System.Windows.Forms.TextBox();
@@ -44,7 +44,6 @@ namespace coursework
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.button_closeForm = new System.Windows.Forms.Button();
 			this.button_deleteRecord = new System.Windows.Forms.Button();
-			this.button_reloadData = new System.Windows.Forms.Button();
 			this.button_editRecord = new System.Windows.Forms.Button();
 			this.button_addRecord = new System.Windows.Forms.Button();
 			this.panel3.SuspendLayout();
@@ -114,32 +113,31 @@ namespace coursework
 			this.GridListSubjects.AllowUserToAddRows = false;
 			this.GridListSubjects.AllowUserToDeleteRows = false;
 			this.GridListSubjects.AllowUserToResizeColumns = false;
-			this.GridListSubjects.AllowUserToResizeRows = false;
 			this.GridListSubjects.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.GridListSubjects.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
 			this.GridListSubjects.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.GridListSubjects.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-			dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-			dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
-			dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
-			dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.GridListSubjects.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-			this.GridListSubjects.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+			dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
+			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.GridListSubjects.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+			this.GridListSubjects.ColumnHeadersHeight = 29;
 			this.GridListSubjects.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
             this.Subjects,
             this.Hours});
-			dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-			dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-			dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-			dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
-			dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-			dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-			this.GridListSubjects.DefaultCellStyle = dataGridViewCellStyle6;
+			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+			dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
+			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+			this.GridListSubjects.DefaultCellStyle = dataGridViewCellStyle2;
 			this.GridListSubjects.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.GridListSubjects.GridColor = System.Drawing.Color.Gainsboro;
 			this.GridListSubjects.Location = new System.Drawing.Point(0, 50);
@@ -189,7 +187,6 @@ namespace coursework
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panel1.Controls.Add(this.button_closeForm);
 			this.panel1.Controls.Add(this.button_deleteRecord);
-			this.panel1.Controls.Add(this.button_reloadData);
 			this.panel1.Controls.Add(this.button_editRecord);
 			this.panel1.Controls.Add(this.button_addRecord);
 			this.panel1.Controls.Add(this.panel4);
@@ -214,7 +211,7 @@ namespace coursework
 			this.button_closeForm.ForeColor = System.Drawing.Color.Gainsboro;
 			this.button_closeForm.Image = ((System.Drawing.Image)(resources.GetObject("button_closeForm.Image")));
 			this.button_closeForm.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.button_closeForm.Location = new System.Drawing.Point(0, 249);
+			this.button_closeForm.Location = new System.Drawing.Point(0, 199);
 			this.button_closeForm.Name = "button_closeForm";
 			this.button_closeForm.Padding = new System.Windows.Forms.Padding(0, 0, 15, 0);
 			this.button_closeForm.Size = new System.Drawing.Size(189, 50);
@@ -238,7 +235,7 @@ namespace coursework
 			this.button_deleteRecord.ForeColor = System.Drawing.Color.Gainsboro;
 			this.button_deleteRecord.Image = ((System.Drawing.Image)(resources.GetObject("button_deleteRecord.Image")));
 			this.button_deleteRecord.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.button_deleteRecord.Location = new System.Drawing.Point(0, 199);
+			this.button_deleteRecord.Location = new System.Drawing.Point(0, 149);
 			this.button_deleteRecord.Name = "button_deleteRecord";
 			this.button_deleteRecord.Padding = new System.Windows.Forms.Padding(0, 0, 15, 0);
 			this.button_deleteRecord.Size = new System.Drawing.Size(189, 50);
@@ -248,30 +245,6 @@ namespace coursework
 			this.button_deleteRecord.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
 			this.button_deleteRecord.UseVisualStyleBackColor = false;
 			this.button_deleteRecord.Click += new System.EventHandler(this.button_deleteRecord_Click_1);
-			// 
-			// button_reloadData
-			// 
-			this.button_reloadData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
-			this.button_reloadData.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-			this.button_reloadData.Dock = System.Windows.Forms.DockStyle.Top;
-			this.button_reloadData.FlatAppearance.BorderSize = 0;
-			this.button_reloadData.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(140)))), ((int)(((byte)(243)))));
-			this.button_reloadData.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
-			this.button_reloadData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.button_reloadData.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-			this.button_reloadData.ForeColor = System.Drawing.Color.Gainsboro;
-			this.button_reloadData.Image = ((System.Drawing.Image)(resources.GetObject("button_reloadData.Image")));
-			this.button_reloadData.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.button_reloadData.Location = new System.Drawing.Point(0, 149);
-			this.button_reloadData.Name = "button_reloadData";
-			this.button_reloadData.Padding = new System.Windows.Forms.Padding(0, 0, 15, 0);
-			this.button_reloadData.Size = new System.Drawing.Size(189, 50);
-			this.button_reloadData.TabIndex = 14;
-			this.button_reloadData.Text = "Обновить  ";
-			this.button_reloadData.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.button_reloadData.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-			this.button_reloadData.UseVisualStyleBackColor = false;
-			this.button_reloadData.Click += new System.EventHandler(this.button_reloadData_Click);
 			// 
 			// button_editRecord
 			// 
@@ -358,7 +331,6 @@ namespace coursework
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.Button button_closeForm;
 		private System.Windows.Forms.Button button_deleteRecord;
-		private System.Windows.Forms.Button button_reloadData;
 		private System.Windows.Forms.Button button_editRecord;
 		private System.Windows.Forms.Button button_addRecord;
 	}

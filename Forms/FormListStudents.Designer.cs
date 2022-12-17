@@ -33,18 +33,9 @@ namespace coursework
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormListStudents));
 			this.GridListStudents = new System.Windows.Forms.DataGridView();
-			this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.surname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.patronymic = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.gender = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.classNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.dataOfBirthDay = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.image = new System.Windows.Forms.DataGridViewImageColumn();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.button_closeForm = new System.Windows.Forms.Button();
 			this.button_deleteRecord = new System.Windows.Forms.Button();
-			this.button_reloadData = new System.Windows.Forms.Button();
 			this.button_editRecord = new System.Windows.Forms.Button();
 			this.button_addRecord = new System.Windows.Forms.Button();
 			this.panel4 = new System.Windows.Forms.Panel();
@@ -52,6 +43,14 @@ namespace coursework
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.searchDateInTextBox = new System.Windows.Forms.TextBox();
+			this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.surname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.patronymic = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.gender = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.classNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.dataOfBirthDay = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.image = new System.Windows.Forms.DataGridViewImageColumn();
 			((System.ComponentModel.ISupportInitialize)(this.GridListStudents)).BeginInit();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
@@ -78,8 +77,8 @@ namespace coursework
 			this.GridListStudents.ColumnHeadersHeight = 29;
 			this.GridListStudents.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
-            this.name,
             this.surname,
+            this.name,
             this.patronymic,
             this.gender,
             this.classNumber,
@@ -106,85 +105,12 @@ namespace coursework
 			this.GridListStudents.Size = new System.Drawing.Size(887, 532);
 			this.GridListStudents.TabIndex = 0;
 			// 
-			// id
-			// 
-			this.id.FillWeight = 3.555F;
-			this.id.HeaderText = "id";
-			this.id.MinimumWidth = 6;
-			this.id.Name = "id";
-			this.id.ReadOnly = true;
-			this.id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-			// 
-			// name
-			// 
-			this.name.FillWeight = 9.443324F;
-			this.name.HeaderText = "Имя";
-			this.name.MinimumWidth = 6;
-			this.name.Name = "name";
-			this.name.ReadOnly = true;
-			// 
-			// surname
-			// 
-			this.surname.FillWeight = 10.80575F;
-			this.surname.HeaderText = "Фамилия";
-			this.surname.MinimumWidth = 6;
-			this.surname.Name = "surname";
-			this.surname.ReadOnly = true;
-			// 
-			// patronymic
-			// 
-			this.patronymic.FillWeight = 11.63696F;
-			this.patronymic.HeaderText = "Отчество";
-			this.patronymic.MinimumWidth = 6;
-			this.patronymic.Name = "patronymic";
-			this.patronymic.ReadOnly = true;
-			// 
-			// gender
-			// 
-			this.gender.HeaderText = "Пол";
-			this.gender.MinimumWidth = 6;
-			this.gender.Name = "gender";
-			this.gender.ReadOnly = true;
-			this.gender.Visible = false;
-			// 
-			// classNumber
-			// 
-			this.classNumber.FillWeight = 7.480901F;
-			this.classNumber.HeaderText = "Класс";
-			this.classNumber.MinimumWidth = 6;
-			this.classNumber.Name = "classNumber";
-			this.classNumber.ReadOnly = true;
-			this.classNumber.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-			// 
-			// dataOfBirthDay
-			// 
-			this.dataOfBirthDay.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-			this.dataOfBirthDay.HeaderText = "дата";
-			this.dataOfBirthDay.MinimumWidth = 6;
-			this.dataOfBirthDay.Name = "dataOfBirthDay";
-			this.dataOfBirthDay.ReadOnly = true;
-			this.dataOfBirthDay.Visible = false;
-			this.dataOfBirthDay.Width = 125;
-			// 
-			// image
-			// 
-			this.image.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-			this.image.HeaderText = "фото";
-			this.image.MinimumWidth = 6;
-			this.image.Name = "image";
-			this.image.ReadOnly = true;
-			this.image.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			this.image.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-			this.image.Visible = false;
-			this.image.Width = 125;
-			// 
 			// panel1
 			// 
 			this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panel1.Controls.Add(this.button_closeForm);
 			this.panel1.Controls.Add(this.button_deleteRecord);
-			this.panel1.Controls.Add(this.button_reloadData);
 			this.panel1.Controls.Add(this.button_editRecord);
 			this.panel1.Controls.Add(this.button_addRecord);
 			this.panel1.Controls.Add(this.panel4);
@@ -209,7 +135,7 @@ namespace coursework
 			this.button_closeForm.ForeColor = System.Drawing.Color.Gainsboro;
 			this.button_closeForm.Image = ((System.Drawing.Image)(resources.GetObject("button_closeForm.Image")));
 			this.button_closeForm.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.button_closeForm.Location = new System.Drawing.Point(0, 249);
+			this.button_closeForm.Location = new System.Drawing.Point(0, 199);
 			this.button_closeForm.Name = "button_closeForm";
 			this.button_closeForm.Padding = new System.Windows.Forms.Padding(0, 0, 15, 0);
 			this.button_closeForm.Size = new System.Drawing.Size(189, 50);
@@ -233,7 +159,7 @@ namespace coursework
 			this.button_deleteRecord.ForeColor = System.Drawing.Color.Gainsboro;
 			this.button_deleteRecord.Image = ((System.Drawing.Image)(resources.GetObject("button_deleteRecord.Image")));
 			this.button_deleteRecord.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.button_deleteRecord.Location = new System.Drawing.Point(0, 199);
+			this.button_deleteRecord.Location = new System.Drawing.Point(0, 149);
 			this.button_deleteRecord.Name = "button_deleteRecord";
 			this.button_deleteRecord.Padding = new System.Windows.Forms.Padding(0, 0, 15, 0);
 			this.button_deleteRecord.Size = new System.Drawing.Size(189, 50);
@@ -243,30 +169,6 @@ namespace coursework
 			this.button_deleteRecord.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
 			this.button_deleteRecord.UseVisualStyleBackColor = false;
 			this.button_deleteRecord.Click += new System.EventHandler(this.button_deleteRecord_Click);
-			// 
-			// button_reloadData
-			// 
-			this.button_reloadData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
-			this.button_reloadData.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-			this.button_reloadData.Dock = System.Windows.Forms.DockStyle.Top;
-			this.button_reloadData.FlatAppearance.BorderSize = 0;
-			this.button_reloadData.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(140)))), ((int)(((byte)(243)))));
-			this.button_reloadData.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
-			this.button_reloadData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.button_reloadData.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-			this.button_reloadData.ForeColor = System.Drawing.Color.Gainsboro;
-			this.button_reloadData.Image = ((System.Drawing.Image)(resources.GetObject("button_reloadData.Image")));
-			this.button_reloadData.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.button_reloadData.Location = new System.Drawing.Point(0, 149);
-			this.button_reloadData.Name = "button_reloadData";
-			this.button_reloadData.Padding = new System.Windows.Forms.Padding(0, 0, 15, 0);
-			this.button_reloadData.Size = new System.Drawing.Size(189, 50);
-			this.button_reloadData.TabIndex = 9;
-			this.button_reloadData.Text = "Обновить  ";
-			this.button_reloadData.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.button_reloadData.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-			this.button_reloadData.UseVisualStyleBackColor = false;
-			this.button_reloadData.Click += new System.EventHandler(this.button_reloadData_Click);
 			// 
 			// button_editRecord
 			// 
@@ -380,6 +282,78 @@ namespace coursework
 			this.searchDateInTextBox.TextChanged += new System.EventHandler(this.searchDateInTextBox_TextChanged);
 			this.searchDateInTextBox.Leave += new System.EventHandler(this.searchDateInTextBox_Leave);
 			// 
+			// id
+			// 
+			this.id.FillWeight = 3.555F;
+			this.id.HeaderText = "id";
+			this.id.MinimumWidth = 6;
+			this.id.Name = "id";
+			this.id.ReadOnly = true;
+			this.id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+			// 
+			// surname
+			// 
+			this.surname.FillWeight = 10.80575F;
+			this.surname.HeaderText = "Фамилия";
+			this.surname.MinimumWidth = 6;
+			this.surname.Name = "surname";
+			this.surname.ReadOnly = true;
+			// 
+			// name
+			// 
+			this.name.FillWeight = 9.443324F;
+			this.name.HeaderText = "Имя";
+			this.name.MinimumWidth = 6;
+			this.name.Name = "name";
+			this.name.ReadOnly = true;
+			// 
+			// patronymic
+			// 
+			this.patronymic.FillWeight = 11.63696F;
+			this.patronymic.HeaderText = "Отчество";
+			this.patronymic.MinimumWidth = 6;
+			this.patronymic.Name = "patronymic";
+			this.patronymic.ReadOnly = true;
+			// 
+			// gender
+			// 
+			this.gender.HeaderText = "Пол";
+			this.gender.MinimumWidth = 6;
+			this.gender.Name = "gender";
+			this.gender.ReadOnly = true;
+			this.gender.Visible = false;
+			// 
+			// classNumber
+			// 
+			this.classNumber.FillWeight = 7.480901F;
+			this.classNumber.HeaderText = "Класс";
+			this.classNumber.MinimumWidth = 6;
+			this.classNumber.Name = "classNumber";
+			this.classNumber.ReadOnly = true;
+			this.classNumber.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+			// 
+			// dataOfBirthDay
+			// 
+			this.dataOfBirthDay.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+			this.dataOfBirthDay.HeaderText = "дата";
+			this.dataOfBirthDay.MinimumWidth = 6;
+			this.dataOfBirthDay.Name = "dataOfBirthDay";
+			this.dataOfBirthDay.ReadOnly = true;
+			this.dataOfBirthDay.Visible = false;
+			this.dataOfBirthDay.Width = 125;
+			// 
+			// image
+			// 
+			this.image.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+			this.image.HeaderText = "фото";
+			this.image.MinimumWidth = 6;
+			this.image.Name = "image";
+			this.image.ReadOnly = true;
+			this.image.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.image.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+			this.image.Visible = false;
+			this.image.Width = 125;
+			// 
 			// FormListStudents
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -412,19 +386,18 @@ namespace coursework
 		private System.Windows.Forms.Panel panel3;
 		private System.Windows.Forms.Panel panel4;
 		private System.Windows.Forms.Button button_deleteRecord;
-		private System.Windows.Forms.Button button_reloadData;
 		private System.Windows.Forms.Button button_editRecord;
 		private System.Windows.Forms.Button button_addRecord;
 		public System.Windows.Forms.Label label1;
+		private System.Windows.Forms.TextBox searchDateInTextBox;
+		private System.Windows.Forms.Button button_closeForm;
 		private System.Windows.Forms.DataGridViewTextBoxColumn id;
-		private System.Windows.Forms.DataGridViewTextBoxColumn name;
 		private System.Windows.Forms.DataGridViewTextBoxColumn surname;
+		private System.Windows.Forms.DataGridViewTextBoxColumn name;
 		private System.Windows.Forms.DataGridViewTextBoxColumn patronymic;
 		private System.Windows.Forms.DataGridViewTextBoxColumn gender;
 		private System.Windows.Forms.DataGridViewTextBoxColumn classNumber;
 		private System.Windows.Forms.DataGridViewTextBoxColumn dataOfBirthDay;
 		private System.Windows.Forms.DataGridViewImageColumn image;
-		private System.Windows.Forms.TextBox searchDateInTextBox;
-		private System.Windows.Forms.Button button_closeForm;
 	}
 }

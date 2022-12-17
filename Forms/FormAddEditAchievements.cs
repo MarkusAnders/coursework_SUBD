@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Data.SQLite;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace coursework
@@ -35,29 +30,29 @@ namespace coursework
 			conn.Connect();
 			try
 			{
-				SQLiteCommand command = new SQLiteCommand();
+				SqlCommand command = new SqlCommand();
 
 				if (id == -1) // Добавление нового ученика
 				{
-					command = new SQLiteCommand("insert into achievements_students (classOfReward, typeOfReward, subjectOfReward) " +
-						"values (@classOfReward, @typeOfReward, @subjectOfReward)", conn.connection);
-					command.Parameters.Add("classOfReward", DbType.String).Value = textBox1.Text;
-					command.Parameters.Add("typeOfReward", DbType.String).Value = textBox2.Text;
-					command.Parameters.Add("subjectOfReward", DbType.String).Value = textBox3.Text;
+					command = new SqlCommand("insert into achievements_students (classOfReward, typeOfReward, subjectOfReward) " +
+											"values (@classOfReward, @typeOfReward, @subjectOfReward)", conn.connection);
+					//command.Parameters.Add("classOfReward", DbType.String).Value = textBox1.Text;
+					//command.Parameters.Add("typeOfReward", DbType.String).Value = textBox2.Text;
+					//command.Parameters.Add("subjectOfReward", DbType.String).Value = textBox3.Text;
 					command.ExecuteNonQuery();
 					MessageBox.Show("Запись добавлена!", "", MessageBoxButtons.OK);
 				}
 				else // Редактирование информации ученика
 				{
-					command = new SQLiteCommand(
+					command = new SqlCommand(
 						$"update achievements_students set classOfReward = 'test', typeOfReward = 'test', subjectOfReward = 'test' where id = 5", conn.connection);
-						//$"update achievements_students set classOfReward = @сlassOfReward, typeOfReward = '{textBox2.Text}', subjectOfReward = '{textBox3.Text}' where id = '{id}'", conn.connection);
-					
-					command.Parameters.Add("сlassOfReward", DbType.String).Value = textBox1.Text;
-					command.Parameters.Add("typeOfReward", DbType.String).Value = textBox2.Text;
-					command.Parameters.Add("subjectOfReward", DbType.Int32).Value = textBox3.Text;
-					command.Parameters.Add("id", DbType.Int32).Value = id;
-					command.ExecuteNonQuery();
+					//$"update achievements_students set classOfReward = @сlassOfReward, typeOfReward = '{textBox2.Text}', subjectOfReward = '{textBox3.Text}' where id = '{id}'", conn.connection);
+
+					//command.Parameters.Add("сlassOfReward", DbType.String).Value = textBox1.Text;
+					//command.Parameters.Add("typeOfReward", DbType.String).Value = textBox2.Text;
+					//command.Parameters.Add("subjectOfReward", DbType.Int32).Value = textBox3.Text;
+					//command.Parameters.Add("id", DbType.Int32).Value = id;
+					//command.ExecuteNonQuery();
 				}
 			}
 			catch (Exception exception)
