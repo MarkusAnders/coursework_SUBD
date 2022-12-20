@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Data.SQLite;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -19,24 +18,13 @@ namespace coursework
 		public FormListStudents()
 		{
 			InitializeComponent();
+			LoadTheme();
 		}
-
-		#region[Загрузка таблицы]
-		private void ListStudents_Load(object sender, EventArgs e)
+		private void FormListStudents_Load(object sender, EventArgs e)
 		{
-			try
-			{
-				RefreshTable(GridListStudents);
-			}
-			catch(Exception EX)
-			{
-				MessageBox.Show(EX.Message);
-				MessageBox.Show("Ошибка подключения к таблице", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				this.Close();
-			}
-			conn.Disconnect();
+			LoadTable();
 		}
-
+		#region[Загрузка таблицы]
 		private void ReadSingleRow(DataGridView dgw, IDataRecord record)
 		{
 			dgw.Rows.Add(record.GetInt32(0), record.GetString(1), record.GetString(2), record.GetString(3), record.GetString(4),
@@ -76,6 +64,19 @@ namespace coursework
 			conn.Disconnect();
 		}
 
+		private void LoadTable()
+		{
+			try
+			{
+				RefreshTable(GridListStudents);
+			}
+			catch (Exception EX)
+			{
+				MessageBox.Show(EX.Message);
+				MessageBox.Show("Ошибка подключения к таблице", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				this.Close();
+			}
+		}
 		//public void ReloadTableStudents()
 		//{
 		//	conn.Connect();
@@ -108,61 +109,66 @@ namespace coursework
 		//	ms.Close();
 		//	conn.Disconnect();
 		//}
-
 		#endregion
 
 		#region[Button add, edit, delete information and close]
-
 		private void button_addRecord_Click(object sender, EventArgs e)
 		{
 			FormAddStudent formAS = new FormAddStudent();
-			formAS.label7.Text = "Добавление нового ученика";
+			formAS.labelTitle.Text = "Добавление нового ученика";
 			formAS.button_editRecord.Text = "Добавить  ";
 			formAS.button_addImageForRecord.Text = "Загрузить фото  ";
-			formAS.button_editRecord.Image = Image.FromFile(Path.Combine(Application.StartupPath ,@"icon\add-user.png"));
+			formAS.button_editRecord.Image = Image.FromFile(Path.Combine(Application.StartupPath, @"icon\add-user.png"));
 			formAS.ShowDialog();
 			RefreshTable(GridListStudents);
 		}
 
 		private void button_editRecord_Click(object sender, EventArgs e)
 		{
-			int id = int.Parse(GridListStudents.SelectedRows[0].Cells["id"].Value.ToString());
-			string surname = GridListStudents.SelectedRows[0].Cells["surname"].Value.ToString();
-			string name = GridListStudents.SelectedRows[0].Cells["name"].Value.ToString();
-			string patronymic = GridListStudents.SelectedRows[0].Cells["patronymic"].Value.ToString();
-			string gender = GridListStudents.SelectedRows[0].Cells["gender"].Value.ToString();
-			string classNumber = GridListStudents.SelectedRows[0].Cells["classNumber"].Value.ToString();
-			string dateOfBirthDay = GridListStudents.SelectedRows[0].Cells["dataOfBirthDay"].Value.ToString();
-			Bitmap photo = (Bitmap)GridListStudents.SelectedRows[0].Cells["image"].Value;
-			new FormAddStudent(id, name, surname, patronymic, gender, classNumber, dateOfBirthDay, photo).ShowDialog();
-			RefreshTable(GridListStudents);
+			if (GridListStudents.RowCount > 0)
+			{
+				int id = int.Parse(GridListStudents.SelectedRows[0].Cells["id"].Value.ToString());
+				string surname = GridListStudents.SelectedRows[0].Cells["surname"].Value.ToString();
+				string name = GridListStudents.SelectedRows[0].Cells["firstname"].Value.ToString();
+				string patronymic = GridListStudents.SelectedRows[0].Cells["patronymic"].Value.ToString();
+				string gender = GridListStudents.SelectedRows[0].Cells["gender"].Value.ToString();
+				string classNumber = GridListStudents.SelectedRows[0].Cells["classNumber"].Value.ToString();
+				string dateOfBirthDay = GridListStudents.SelectedRows[0].Cells["dataOfBirthDay"].Value.ToString();
+				Bitmap photo = (Bitmap)GridListStudents.SelectedRows[0].Cells["image"].Value;
+				new FormAddStudent(id, surname, name, patronymic, gender, classNumber, dateOfBirthDay, photo).ShowDialog();
+				RefreshTable(GridListStudents);
+			}
+			else
+			{
+				MessageBox.Show("Нет информации о студентах!", "Отсутствуют записи", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			}
 		}
 
 		private void button_deleteRecord_Click(object sender, EventArgs e)
 		{
-			if (MessageBox.Show("Вы прадва хотите удалить запись?", "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+			if (GridListStudents.RowCount > 0)
 			{
-				conn.Connect();
+				if (MessageBox.Show("Вы прадва хотите удалить запись?", "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+				{
+					conn.Connect();
 
-				string id = GridListStudents.SelectedRows[0].Cells["id"].Value.ToString();
-				SqlCommand delete = new SqlCommand("delete from students where id=" + id, conn.connection);
-				delete.ExecuteNonQuery();
-				MessageBox.Show("Запись удалена!", "", MessageBoxButtons.OK);
-				RefreshTable(GridListStudents);
-				conn.Disconnect();
+					string id = GridListStudents.SelectedRows[0].Cells["id"].Value.ToString();
+					SqlCommand delete = new SqlCommand("delete from students where id=" + id, conn.connection);
+					delete.ExecuteNonQuery();
+					MessageBox.Show("Запись удалена!", "", MessageBoxButtons.OK);
+					RefreshTable(GridListStudents);
+					conn.Disconnect();
+				}
+			}
+			else
+			{
+				MessageBox.Show("Нет информации о предметах!", "Отсутствуют записи", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 			}
 		}
-
-		private void button_closeForm_Click(object sender, EventArgs e)
-		{
-			this.Close();
-		}
-
 		#endregion
 
 		#region[Search Data in table]
-
-		private void searchDateInTextBox_TextChanged(object sender, EventArgs e)
+		private void searchDataTextBox_TextChanged(object sender, EventArgs e)
 		{
 			SearchData(GridListStudents);
 		}
@@ -171,12 +177,12 @@ namespace coursework
 		{
 			conn.Connect();
 
-			if (searchDateInTextBox.Text != "Поиск")
+			if (searchDataTextBox.Text != "Поиск")
 			{
 				dgw.Rows.Clear();
 				int counter = 0;
 
-				string search = $"select * from students where concat (id, surname, firstname, patronymic, class) like '%" + searchDateInTextBox.Text + "%'";
+				string search = $"select * from students where concat (id, surname, firstname, patronymic, class) like '%" + searchDataTextBox.Text + "%'";
 				SqlCommand command = new SqlCommand(search, conn.connection);
 				SqlDataReader reader = command.ExecuteReader();
 				while (reader.Read())
@@ -206,18 +212,24 @@ namespace coursework
 			conn.Disconnect();
 		}
 
-		private void searchDateInTextBox_Click(object sender, EventArgs e)
-		{
-			if (searchDateInTextBox.Text == "Поиск")
-				searchDateInTextBox.Text = "";
-		}
-
-		private void searchDateInTextBox_Leave(object sender, EventArgs e)
-		{
-			if (searchDateInTextBox.Text == "")
-				searchDateInTextBox.Text = "Поиск";
-		}
 		#endregion
 
+		#region[Цвет кнопок]
+		private void LoadTheme()
+		{
+			foreach (Control btns in this.Controls)
+			{
+				if (btns.GetType() == typeof(Button))
+				{
+					Button btn = (Button)btns;
+					btn.BackColor = ThemeColor.PrimaryColor;
+					btn.ForeColor = Color.White;
+					btn.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
+				}
+				labelSearch.ForeColor = ThemeColor.PrimaryColor;
+				GridListStudents.DefaultCellStyle.SelectionBackColor = ThemeColor.PrimaryColor;
+			}
+		}
+		#endregion
 	}
 }

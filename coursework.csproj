@@ -136,17 +136,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forms\FormAchievements.cs">
+    <Compile Include="Forms\FormCertification.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormAchievements.Designer.cs">
-      <DependentUpon>FormAchievements.cs</DependentUpon>
+    <Compile Include="Forms\FormCertification.Designer.cs">
+      <DependentUpon>FormCertification.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormAddEditAchievements.cs">
+    <Compile Include="Forms\FormAddEditCertification.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormAddEditAchievements.Designer.cs">
-      <DependentUpon>FormAddEditAchievements.cs</DependentUpon>
+    <Compile Include="Forms\FormAddEditCertification.Designer.cs">
+      <DependentUpon>FormAddEditCertification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormListSubjects.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormListSubjects.Designer.cs">
+      <DependentUpon>FormListSubjects.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormAddEditSubject.cs">
       <SubType>Form</SubType>
@@ -154,11 +160,11 @@
     <Compile Include="Forms\FormAddEditSubject.Designer.cs">
       <DependentUpon>FormAddEditSubject.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormAddStudent.cs">
+    <Compile Include="Forms\FormAddEditStudent.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormAddStudent.Designer.cs">
-      <DependentUpon>FormAddStudent.cs</DependentUpon>
+    <Compile Include="Forms\FormAddEditStudent.Designer.cs">
+      <DependentUpon>FormAddEditStudent.cs</DependentUpon>
     </Compile>
     <Compile Include="DatabaseConnect.cs" />
     <Compile Include="Forms\FormMain.cs">
@@ -166,12 +172,6 @@
     </Compile>
     <Compile Include="Forms\FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FormListSubjects.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormListSubjects.Designer.cs">
-      <DependentUpon>FormListSubjects.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormListStudents.cs">
       <SubType>Form</SubType>
@@ -181,28 +181,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="subd_schoolDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>subd_schoolDataSet.xsd</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="Forms\FormAchievements.resx">
-      <DependentUpon>FormAchievements.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormAddEditAchievements.resx">
-      <DependentUpon>FormAddEditAchievements.cs</DependentUpon>
+    <Compile Include="ThemeColor.cs" />
+    <EmbeddedResource Include="Forms\FormListSubjects.resx">
+      <DependentUpon>FormListSubjects.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormAddEditSubject.resx">
       <DependentUpon>FormAddEditSubject.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormAddStudent.resx">
-      <DependentUpon>FormAddStudent.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FormAddEditStudent.resx">
+      <DependentUpon>FormAddEditStudent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormListStudents.resx">
       <DependentUpon>FormListStudents.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormListSubjects.resx">
-      <DependentUpon>FormListSubjects.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
@@ -226,17 +216,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="subd_schoolDataSet.xsc">
-      <DependentUpon>subd_schoolDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="subd_schoolDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>subd_schoolDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="subd_schoolDataSet.xss">
-      <DependentUpon>subd_schoolDataSet.xsd</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

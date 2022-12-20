@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Data.SQLite;
+using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace coursework
@@ -16,6 +17,7 @@ namespace coursework
 		public FormAddEditSubject()
 		{
 			InitializeComponent();
+			//LoadTheme();
 		}
 
 		public FormAddEditSubject(int id, string nameSubject, int hourSubject) : base()
@@ -31,7 +33,7 @@ namespace coursework
 		}
 
 		#region[[Add new subject or edit info]
-		private void button_editRecord_Click(object sender, EventArgs e)
+		private void button_editRecord_Click_1(object sender, EventArgs e)
 		{
 			conn.Connect();
 			try
@@ -67,8 +69,6 @@ namespace coursework
 							command.Parameters.Add("hours", SqlDbType.Int).Value = hourSubjectOfTextBox.Text;
 							command.ExecuteNonQuery();
 
-							MessageBox.Show("Данные были изменены!", "", MessageBoxButtons.OK);
-
 							this.Close();
 						}
 					}
@@ -80,12 +80,28 @@ namespace coursework
 			}
 			conn.Disconnect();
 		}
-
-		private void button_exitFromFrom_Click(object sender, EventArgs e)
+		private void button_closeForm_Click(object sender, EventArgs e)
 		{
 			this.Close();
 		}
 		#endregion
+
+		//#region[Изменение цвета]
+		//private void LoadTheme()
+		//{
+		//	foreach (Control btns in this.Controls)
+		//	{
+		//		if (btns.GetType() == typeof(Button))
+		//		{
+		//			Button btn = (Button)btns;
+		//			btn.BackColor = ThemeColor.PrimaryColor;
+		//			btn.ForeColor = Color.White;
+		//			btn.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
+		//		}
+		//		labelTitle.ForeColor = ThemeColor.PrimaryColor;
+		//	}
+		//}
+		//#endregion
 
 		#region[Запрет ввода чисел и букв]
 		private void nameSubjectTextBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -103,6 +119,18 @@ namespace coursework
 			{
 				e.Handled = true;
 			}
+		}
+		#endregion
+
+		#region[Перетаскивание формы]
+		[DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+		private extern static void ReleaseCapture();
+		[DllImport("user32.DLL", EntryPoint = "SendMessage")]
+		private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
+		private void panelMainTitle_MouseDown(object sender, MouseEventArgs e)
+		{
+			ReleaseCapture();
+			SendMessage(this.Handle, 0x112, 0xf012, 0);
 		}
 		#endregion
 	}

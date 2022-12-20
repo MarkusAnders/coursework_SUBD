@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Data.SQLite;
 using System.Drawing;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace coursework
@@ -31,8 +31,8 @@ namespace coursework
 		{
 			InitializeComponent();
 			this.id = id;
-			nameOfTextBox.Text = name;
 			surnameOfTextBox.Text = surname;
+			nameOfTextBox.Text = name;
 			patronymicOfTextBox.Text = patronymic;
 			checkGender = gender;
 
@@ -77,9 +77,8 @@ namespace coursework
 		private void button_editRecord_Click(object sender, EventArgs e)
 		{
 			conn.Connect();
-
-			string name = nameOfTextBox.Text;
 			string surname = surnameOfTextBox.Text;
+			string name = nameOfTextBox.Text;
 			string patronymic = patronymicOfTextBox.Text;
 			string classNumber = classOfTextBox.Text;
 			DateTime dataOfBirthDay = Convert.ToDateTime(dateOfBirthDay.Value);
@@ -102,9 +101,9 @@ namespace coursework
 					{
 						command = new SqlCommand(
 							"insert into students (surname, firstname, patronymic, gender, class, dataOfBirthDay, image) " +
-							"values (@name, @surname, @patronymic, @gender, @classNumber, @dataOfBirthDay, @image)", conn.connection);
-						command.Parameters.Add("name", SqlDbType.NVarChar).Value = name;
+							"values (@surname, @firstname, @patronymic, @gender, @classNumber, @dataOfBirthDay, @image)", conn.connection);
 						command.Parameters.Add("surname", SqlDbType.NVarChar).Value = surname;
+						command.Parameters.Add("firstname", SqlDbType.NVarChar).Value = name;
 						command.Parameters.Add("patronymic", SqlDbType.NVarChar).Value = patronymic;
 						if (radioButtonMale.Checked == true && radioButtonFemale.Checked == false)
 						{
@@ -114,7 +113,6 @@ namespace coursework
 						{
 							command.Parameters.Add("@gender", SqlDbType.VarChar).Value = "Женский";
 						}
-						
 						command.Parameters.Add("classNumber", SqlDbType.NVarChar).Value = classNumber;
 						command.Parameters.Add("dataOfBirthDay", SqlDbType.Date).Value = dataOfBirthDay;
 						command.Parameters.Add("image", SqlDbType.Image).Value = photo;
@@ -140,10 +138,10 @@ namespace coursework
 							{
 								command = new SqlCommand(
 								"update students " +
-								"set firstname = @name, surname = @surname, patronymic = @patronymic, gender = @gender, class = @classNumber, dataOfBirthDay = @dataOfBirthDay, image = @image " +
+								"set  surname = @surname, firstname = @firstname, patronymic = @patronymic, gender = @gender, class = @classNumber, dataOfBirthDay = @dataOfBirthDay, image = @image " +
 								"where id = @id", conn.connection);
-								command.Parameters.Add("name", SqlDbType.NVarChar).Value = name;
 								command.Parameters.Add("surname", SqlDbType.NVarChar).Value = surname;
+								command.Parameters.Add("firstname", SqlDbType.NVarChar).Value = name;
 								command.Parameters.Add("patronymic", SqlDbType.NVarChar).Value = patronymic;
 								if (checkGender == "Мужской" && radioButtonMale.Checked == false && radioButtonFemale.Checked == true)
 								{
@@ -162,8 +160,6 @@ namespace coursework
 								command.Parameters.Add("image", SqlDbType.Image, 8000).Value = photo;
 								command.Parameters.Add("id", SqlDbType.Int).Value = id;
 								command.ExecuteNonQuery();
-
-								MessageBox.Show("Данные были изменены!", "", MessageBoxButtons.OK);
 
 								this.Close();
 							}
@@ -205,7 +201,18 @@ namespace coursework
 			else
 				e.Handled = true;
 		}
+		#endregion
 
+		#region[Перетаскивание формы]
+		[DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+		private extern static void ReleaseCapture();
+		[DllImport("user32.DLL", EntryPoint = "SendMessage")]
+		private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
+		private void panelMainTitle_MouseDown(object sender, MouseEventArgs e)
+		{
+			ReleaseCapture();
+			SendMessage(this.Handle, 0x112, 0xf012, 0);
+		}
 		#endregion
 	}
 }
