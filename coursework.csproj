@@ -136,6 +136,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\FormAddEditAchievements.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormAddEditAchievements.Designer.cs">
+      <DependentUpon>FormAddEditAchievements.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormAchievements.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormAchievements.Designer.cs">
+      <DependentUpon>FormAchievements.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormCertification.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -181,7 +193,21 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="subd_schoolDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>subd_schoolDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ThemeColor.cs" />
+    <EmbeddedResource Include="Forms\FormAchievements.resx">
+      <DependentUpon>FormAchievements.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormAddEditAchievements.resx">
+      <DependentUpon>FormAddEditAchievements.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormCertification.resx">
+      <DependentUpon>FormCertification.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormListSubjects.resx">
       <DependentUpon>FormListSubjects.cs</DependentUpon>
     </EmbeddedResource>
@@ -216,6 +242,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="subd_schoolDataSet.xsc">
+      <DependentUpon>subd_schoolDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="subd_schoolDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>subd_schoolDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="subd_schoolDataSet.xss">
+      <DependentUpon>subd_schoolDataSet.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

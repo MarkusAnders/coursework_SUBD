@@ -1,7 +1,7 @@
 ﻿
 namespace coursework
 {
-	partial class FormCertification
+	partial class FormAchievements
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -29,21 +29,61 @@ namespace coursework
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCertification));
+			this.components = new System.ComponentModel.Container();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAchievements));
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+			this.GridListAchievements = new System.Windows.Forms.DataGridView();
 			this.button_deleteRecord = new System.Windows.Forms.Button();
 			this.button_editRecord = new System.Windows.Forms.Button();
 			this.button_addRecord = new System.Windows.Forms.Button();
 			this.GridListStudents = new System.Windows.Forms.DataGridView();
 			this.searchDataTextBox = new System.Windows.Forms.TextBox();
 			this.labelSearch = new System.Windows.Forms.Label();
-			this.GridListCertification = new System.Windows.Forms.DataGridView();
+			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+			this.subd_schoolDataSet = new coursework.subd_schoolDataSet();
+			((System.ComponentModel.ISupportInitialize)(this.GridListAchievements)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.GridListStudents)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.GridListCertification)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.subd_schoolDataSet)).BeginInit();
 			this.SuspendLayout();
+			// 
+			// GridListAchievements
+			// 
+			this.GridListAchievements.AllowUserToAddRows = false;
+			this.GridListAchievements.AllowUserToDeleteRows = false;
+			this.GridListAchievements.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.GridListAchievements.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+			this.GridListAchievements.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+			this.GridListAchievements.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+			dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.GridListAchievements.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+			this.GridListAchievements.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+			dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+			this.GridListAchievements.DefaultCellStyle = dataGridViewCellStyle2;
+			this.GridListAchievements.Location = new System.Drawing.Point(12, 328);
+			this.GridListAchievements.Name = "GridListAchievements";
+			this.GridListAchievements.ReadOnly = true;
+			this.GridListAchievements.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+			this.GridListAchievements.RowHeadersVisible = false;
+			this.GridListAchievements.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+			this.GridListAchievements.Size = new System.Drawing.Size(917, 300);
+			this.GridListAchievements.TabIndex = 19;
 			// 
 			// button_deleteRecord
 			// 
@@ -57,7 +97,7 @@ namespace coursework
 			this.button_deleteRecord.Location = new System.Drawing.Point(954, 221);
 			this.button_deleteRecord.Name = "button_deleteRecord";
 			this.button_deleteRecord.Size = new System.Drawing.Size(215, 50);
-			this.button_deleteRecord.TabIndex = 11;
+			this.button_deleteRecord.TabIndex = 18;
 			this.button_deleteRecord.Text = "Удалить  ";
 			this.button_deleteRecord.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.button_deleteRecord.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
@@ -76,7 +116,7 @@ namespace coursework
 			this.button_editRecord.Location = new System.Drawing.Point(954, 156);
 			this.button_editRecord.Name = "button_editRecord";
 			this.button_editRecord.Size = new System.Drawing.Size(215, 50);
-			this.button_editRecord.TabIndex = 10;
+			this.button_editRecord.TabIndex = 17;
 			this.button_editRecord.Text = "Информация ";
 			this.button_editRecord.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.button_editRecord.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
@@ -95,7 +135,7 @@ namespace coursework
 			this.button_addRecord.Location = new System.Drawing.Point(954, 91);
 			this.button_addRecord.Name = "button_addRecord";
 			this.button_addRecord.Size = new System.Drawing.Size(215, 50);
-			this.button_addRecord.TabIndex = 9;
+			this.button_addRecord.TabIndex = 16;
 			this.button_addRecord.Text = "Добавить  ";
 			this.button_addRecord.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.button_addRecord.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
@@ -112,23 +152,23 @@ namespace coursework
 			this.GridListStudents.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.GridListStudents.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
 			this.GridListStudents.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-			dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.GridListStudents.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+			dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.GridListStudents.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
 			this.GridListStudents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-			dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-			this.GridListStudents.DefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+			dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+			dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+			dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+			this.GridListStudents.DefaultCellStyle = dataGridViewCellStyle4;
 			this.GridListStudents.Location = new System.Drawing.Point(12, 12);
 			this.GridListStudents.Name = "GridListStudents";
 			this.GridListStudents.ReadOnly = true;
@@ -136,7 +176,7 @@ namespace coursework
 			this.GridListStudents.RowHeadersVisible = false;
 			this.GridListStudents.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.GridListStudents.Size = new System.Drawing.Size(917, 300);
-			this.GridListStudents.TabIndex = 8;
+			this.GridListStudents.TabIndex = 15;
 			// 
 			// searchDataTextBox
 			// 
@@ -149,7 +189,7 @@ namespace coursework
 			this.searchDataTextBox.Multiline = true;
 			this.searchDataTextBox.Name = "searchDataTextBox";
 			this.searchDataTextBox.Size = new System.Drawing.Size(215, 27);
-			this.searchDataTextBox.TabIndex = 7;
+			this.searchDataTextBox.TabIndex = 14;
 			// 
 			// labelSearch
 			// 
@@ -160,51 +200,26 @@ namespace coursework
 			this.labelSearch.Location = new System.Drawing.Point(949, 12);
 			this.labelSearch.Name = "labelSearch";
 			this.labelSearch.Size = new System.Drawing.Size(78, 25);
-			this.labelSearch.TabIndex = 6;
+			this.labelSearch.TabIndex = 13;
 			this.labelSearch.Text = "Поиск";
 			// 
-			// GridListCertification
+			// bindingSource1
 			// 
-			this.GridListCertification.AllowUserToAddRows = false;
-			this.GridListCertification.AllowUserToDeleteRows = false;
-			this.GridListCertification.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.GridListCertification.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-			this.GridListCertification.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-			this.GridListCertification.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-			dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-			dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.GridListCertification.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
-			this.GridListCertification.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-			dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-			dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-			dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-			this.GridListCertification.DefaultCellStyle = dataGridViewCellStyle4;
-			this.GridListCertification.Location = new System.Drawing.Point(12, 328);
-			this.GridListCertification.Name = "GridListCertification";
-			this.GridListCertification.ReadOnly = true;
-			this.GridListCertification.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-			this.GridListCertification.RowHeadersVisible = false;
-			this.GridListCertification.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.GridListCertification.Size = new System.Drawing.Size(917, 300);
-			this.GridListCertification.TabIndex = 12;
+			this.bindingSource1.DataSource = this.subd_schoolDataSet;
+			this.bindingSource1.Position = 0;
 			// 
-			// FormCertification
+			// subd_schoolDataSet
+			// 
+			this.subd_schoolDataSet.DataSetName = "subd_schoolDataSet";
+			this.subd_schoolDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+			// 
+			// FormAchievements
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(33)))), ((int)(((byte)(74)))));
 			this.ClientSize = new System.Drawing.Size(1190, 640);
-			this.Controls.Add(this.GridListCertification);
+			this.Controls.Add(this.GridListAchievements);
 			this.Controls.Add(this.button_deleteRecord);
 			this.Controls.Add(this.button_editRecord);
 			this.Controls.Add(this.button_addRecord);
@@ -212,11 +227,13 @@ namespace coursework
 			this.Controls.Add(this.searchDataTextBox);
 			this.Controls.Add(this.labelSearch);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-			this.Name = "FormCertification";
+			this.Name = "FormAchievements";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "FormCertification";
+			this.Text = "FormAchievements";
+			((System.ComponentModel.ISupportInitialize)(this.GridListAchievements)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.GridListStudents)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.GridListCertification)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.subd_schoolDataSet)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -224,12 +241,14 @@ namespace coursework
 
 		#endregion
 
+		private System.Windows.Forms.DataGridView GridListAchievements;
 		private System.Windows.Forms.Button button_deleteRecord;
 		private System.Windows.Forms.Button button_editRecord;
 		private System.Windows.Forms.Button button_addRecord;
+		public System.Windows.Forms.DataGridView GridListStudents;
 		private System.Windows.Forms.TextBox searchDataTextBox;
 		private System.Windows.Forms.Label labelSearch;
-		private System.Windows.Forms.DataGridView GridListCertification;
-		public System.Windows.Forms.DataGridView GridListStudents;
+		private System.Windows.Forms.BindingSource bindingSource1;
+		private subd_schoolDataSet subd_schoolDataSet;
 	}
 }

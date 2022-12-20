@@ -133,7 +133,7 @@ namespace coursework
 		private void button_achievements_Click(object sender, EventArgs e)
 		{
 			ActivateButton(sender);
-			//OpenChildForm(new FormAchievements(), sender);
+			OpenChildForm(new FormAchievements(), sender);
 			labelTitle.Text = "ДОСТИЖЕНИЯ";
 		}
 
