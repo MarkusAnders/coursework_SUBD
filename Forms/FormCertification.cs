@@ -102,5 +102,14 @@ namespace coursework
 		}
 
 		#endregion
+
+		private void FormCertification_Load(object sender, EventArgs e)
+		{
+			// TODO: данная строка кода позволяет загрузить данные в таблицу "subd_schoolDataSet.certification". При необходимости она может быть перемещена или удалена.
+			this.certificationTableAdapter.Fill(this.subd_schoolDataSet.certification);
+			// TODO: данная строка кода позволяет загрузить данные в таблицу "subd_schoolDataSet.students". При необходимости она может быть перемещена или удалена.
+			this.studentsTableAdapter.Fill(this.subd_schoolDataSet.students);
+
+		}
 	}
 }
