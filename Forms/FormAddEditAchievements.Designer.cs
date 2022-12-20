@@ -29,12 +29,14 @@ namespace coursework
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAddEditAchievements));
 			this.panelMainTitle = new System.Windows.Forms.Panel();
 			this.labelTitle = new System.Windows.Forms.Label();
 			this.button_editRecord = new System.Windows.Forms.Button();
 			this.button_exitFromFrom = new System.Windows.Forms.Button();
 			this.panel6 = new System.Windows.Forms.Panel();
+			this.listSubjectsBox = new System.Windows.Forms.ComboBox();
 			this.label4 = new System.Windows.Forms.Label();
 			this.panel5 = new System.Windows.Forms.Panel();
 			this.classOfRewardOfTextBox = new System.Windows.Forms.TextBox();
@@ -42,11 +44,15 @@ namespace coursework
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.typeOfRewardOfTextBox = new System.Windows.Forms.TextBox();
 			this.label2 = new System.Windows.Forms.Label();
-			this.listSubjectsBox = new System.Windows.Forms.ComboBox();
+			this.subd_schoolDataSet = new coursework.subd_schoolDataSet();
+			this.academicsubjectBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.academic_subjectTableAdapter = new coursework.subd_schoolDataSetTableAdapters.academic_subjectTableAdapter();
 			this.panelMainTitle.SuspendLayout();
 			this.panel6.SuspendLayout();
 			this.panel5.SuspendLayout();
 			this.panel2.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.subd_schoolDataSet)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.academicsubjectBindingSource)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// panelMainTitle
@@ -127,6 +133,19 @@ namespace coursework
 			this.panel6.Size = new System.Drawing.Size(467, 44);
 			this.panel6.TabIndex = 13;
 			// 
+			// listSubjectsBox
+			// 
+			this.listSubjectsBox.DataSource = this.academicsubjectBindingSource;
+			this.listSubjectsBox.DisplayMember = "subject";
+			this.listSubjectsBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.listSubjectsBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+			this.listSubjectsBox.FormattingEnabled = true;
+			this.listSubjectsBox.Location = new System.Drawing.Point(226, 8);
+			this.listSubjectsBox.Name = "listSubjectsBox";
+			this.listSubjectsBox.Size = new System.Drawing.Size(231, 28);
+			this.listSubjectsBox.TabIndex = 9;
+			this.listSubjectsBox.ValueMember = "subject";
+			// 
 			// label4
 			// 
 			this.label4.AutoSize = true;
@@ -204,14 +223,19 @@ namespace coursework
 			this.label2.TabIndex = 0;
 			this.label2.Text = "Тип награды";
 			// 
-			// listSubjectsBox
+			// subd_schoolDataSet
 			// 
-			this.listSubjectsBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-			this.listSubjectsBox.FormattingEnabled = true;
-			this.listSubjectsBox.Location = new System.Drawing.Point(226, 8);
-			this.listSubjectsBox.Name = "listSubjectsBox";
-			this.listSubjectsBox.Size = new System.Drawing.Size(231, 26);
-			this.listSubjectsBox.TabIndex = 9;
+			this.subd_schoolDataSet.DataSetName = "subd_schoolDataSet";
+			this.subd_schoolDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+			// 
+			// academicsubjectBindingSource
+			// 
+			this.academicsubjectBindingSource.DataMember = "academic_subject";
+			this.academicsubjectBindingSource.DataSource = this.subd_schoolDataSet;
+			// 
+			// academic_subjectTableAdapter
+			// 
+			this.academic_subjectTableAdapter.ClearBeforeFill = true;
 			// 
 			// FormAddEditAchievements
 			// 
@@ -229,6 +253,7 @@ namespace coursework
 			this.Name = "FormAddEditAchievements";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "FormAddEditAchievements";
+			this.Load += new System.EventHandler(this.FormAddEditAchievements_Load);
 			this.panelMainTitle.ResumeLayout(false);
 			this.panelMainTitle.PerformLayout();
 			this.panel6.ResumeLayout(false);
@@ -237,6 +262,8 @@ namespace coursework
 			this.panel5.PerformLayout();
 			this.panel2.ResumeLayout(false);
 			this.panel2.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.subd_schoolDataSet)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.academicsubjectBindingSource)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -256,5 +283,8 @@ namespace coursework
 		private System.Windows.Forms.TextBox typeOfRewardOfTextBox;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.ComboBox listSubjectsBox;
+		private subd_schoolDataSet subd_schoolDataSet;
+		private System.Windows.Forms.BindingSource academicsubjectBindingSource;
+		private subd_schoolDataSetTableAdapters.academic_subjectTableAdapter academic_subjectTableAdapter;
 	}
 }

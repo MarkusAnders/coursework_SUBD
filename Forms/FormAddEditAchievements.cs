@@ -20,6 +20,12 @@ namespace coursework
 		{
 			InitializeComponent();
 		}
+		private void FormAddEditAchievements_Load(object sender, EventArgs e)
+		{
+			this.academic_subjectTableAdapter.Fill(this.subd_schoolDataSet.academic_subject);
+			listSubjectsBox.SelectedValue = checkingForChangesSubjectOfReward;
+		}
+
 		#region[Передача данных]
 		public FormAddEditAchievements(int id_Student) : base() // Для добавления
 		{

@@ -16,12 +16,18 @@ namespace coursework
 		}
 
 		#region[Загрузка  таблицы]
+		private void FormAchievements_Load(object sender, EventArgs e)
+		{
+			this.achievements_studentsTableAdapter.Fill(this.subd_schoolDataSet.achievements_students);
+			this.studentsTableAdapter.Fill(this.subd_schoolDataSet.students);
+		}
 		#endregion
 
 		#region[Обновление таблиц]
 		private void ReloadTable()
 		{
-
+			this.achievements_studentsTableAdapter.Fill(this.subd_schoolDataSet.achievements_students);
+			this.studentsTableAdapter.Fill(this.subd_schoolDataSet.students);
 		}
 		#endregion
 
@@ -42,7 +48,7 @@ namespace coursework
 			{
 				MessageBox.Show("Не возможно добавить запись!", "Отсутствуют записи учеников", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 			}
-			
+
 			ReloadTable();
 		}
 
@@ -109,6 +115,6 @@ namespace coursework
 				labelSearch.ForeColor = ThemeColor.PrimaryColor;
 			}
 		}
-		#endregion
+		#endregion	}
 	}
 }
