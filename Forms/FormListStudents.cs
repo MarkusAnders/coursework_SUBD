@@ -182,7 +182,7 @@ namespace coursework
 				dgw.Rows.Clear();
 				int counter = 0;
 
-				string search = $"select * from students where concat (id, surname, firstname, patronymic, class) like '%" + searchDataTextBox.Text + "%'";
+				string search = $"select * from students where concat (trimid, surname, firstname, patronymic, class) like '%" + searchDataTextBox.Text + "%'";
 				SqlCommand command = new SqlCommand(search, conn.connection);
 				SqlDataReader reader = command.ExecuteReader();
 				while (reader.Read())

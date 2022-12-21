@@ -35,12 +35,12 @@ namespace coursework
 			this.labelSearch = new System.Windows.Forms.Label();
 			this.searchDataTextBox = new System.Windows.Forms.TextBox();
 			this.GridListSubjects = new System.Windows.Forms.DataGridView();
-			this.button_addRecord = new System.Windows.Forms.Button();
-			this.button_editRecord = new System.Windows.Forms.Button();
-			this.button_deleteRecord = new System.Windows.Forms.Button();
 			this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.nameSubject = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.hoursSubject = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.button_addRecord = new System.Windows.Forms.Button();
+			this.button_editRecord = new System.Windows.Forms.Button();
+			this.button_deleteRecord = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.GridListSubjects)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -80,7 +80,7 @@ namespace coursework
 			this.GridListSubjects.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
 			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
 			dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+			dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
 			dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
 			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
 			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -93,7 +93,7 @@ namespace coursework
             this.hoursSubject});
 			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
 			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-			dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+			dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
 			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
 			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
 			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -107,6 +107,26 @@ namespace coursework
 			this.GridListSubjects.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.GridListSubjects.Size = new System.Drawing.Size(1166, 503);
 			this.GridListSubjects.TabIndex = 2;
+			// 
+			// id
+			// 
+			this.id.FillWeight = 25F;
+			this.id.HeaderText = "id";
+			this.id.Name = "id";
+			this.id.ReadOnly = true;
+			this.id.Visible = false;
+			// 
+			// nameSubject
+			// 
+			this.nameSubject.HeaderText = "Предмет";
+			this.nameSubject.Name = "nameSubject";
+			this.nameSubject.ReadOnly = true;
+			// 
+			// hoursSubject
+			// 
+			this.hoursSubject.HeaderText = "Кол-во часов";
+			this.hoursSubject.Name = "hoursSubject";
+			this.hoursSubject.ReadOnly = true;
 			// 
 			// button_addRecord
 			// 
@@ -164,26 +184,6 @@ namespace coursework
 			this.button_deleteRecord.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
 			this.button_deleteRecord.UseVisualStyleBackColor = true;
 			this.button_deleteRecord.Click += new System.EventHandler(this.button_deleteRecord_Click);
-			// 
-			// id
-			// 
-			this.id.FillWeight = 25F;
-			this.id.HeaderText = "id";
-			this.id.Name = "id";
-			this.id.ReadOnly = true;
-			this.id.Visible = false;
-			// 
-			// nameSubject
-			// 
-			this.nameSubject.HeaderText = "Предмет";
-			this.nameSubject.Name = "nameSubject";
-			this.nameSubject.ReadOnly = true;
-			// 
-			// hoursSubject
-			// 
-			this.hoursSubject.HeaderText = "Кол-во часов";
-			this.hoursSubject.Name = "hoursSubject";
-			this.hoursSubject.ReadOnly = true;
 			// 
 			// FormListSubjects
 			// 

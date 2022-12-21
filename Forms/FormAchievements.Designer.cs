@@ -36,6 +36,11 @@ namespace coursework
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.GridListAchievements = new System.Windows.Forms.DataGridView();
+			this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.classOfReward = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.typeOfReward = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.subjectOfReward = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.idStudent = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.fKachievementsstudentsstudentsBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.studentsBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
@@ -53,11 +58,6 @@ namespace coursework
 			this.labelSearch = new System.Windows.Forms.Label();
 			this.studentsTableAdapter = new coursework.subd_schoolDataSetTableAdapters.studentsTableAdapter();
 			this.achievements_studentsTableAdapter = new coursework.subd_schoolDataSetTableAdapters.achievements_studentsTableAdapter();
-			this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.classOfReward = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.typeOfReward = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.subjectOfReward = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.idStudent = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			((System.ComponentModel.ISupportInitialize)(this.GridListAchievements)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.fKachievementsstudentsstudentsBindingSource)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.studentsBindingSource)).BeginInit();
@@ -108,6 +108,43 @@ namespace coursework
 			this.GridListAchievements.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.GridListAchievements.Size = new System.Drawing.Size(917, 300);
 			this.GridListAchievements.TabIndex = 19;
+			// 
+			// id
+			// 
+			this.id.DataPropertyName = "id";
+			this.id.HeaderText = "id";
+			this.id.Name = "id";
+			this.id.ReadOnly = true;
+			this.id.Visible = false;
+			// 
+			// classOfReward
+			// 
+			this.classOfReward.DataPropertyName = "classOfReward";
+			this.classOfReward.HeaderText = "Класс награды";
+			this.classOfReward.Name = "classOfReward";
+			this.classOfReward.ReadOnly = true;
+			// 
+			// typeOfReward
+			// 
+			this.typeOfReward.DataPropertyName = "typeOfReward";
+			this.typeOfReward.HeaderText = "Тип награды";
+			this.typeOfReward.Name = "typeOfReward";
+			this.typeOfReward.ReadOnly = true;
+			// 
+			// subjectOfReward
+			// 
+			this.subjectOfReward.DataPropertyName = "subjectOfReward";
+			this.subjectOfReward.HeaderText = "Предмет награды";
+			this.subjectOfReward.Name = "subjectOfReward";
+			this.subjectOfReward.ReadOnly = true;
+			// 
+			// idStudent
+			// 
+			this.idStudent.DataPropertyName = "id_Student";
+			this.idStudent.HeaderText = "id_Student";
+			this.idStudent.Name = "idStudent";
+			this.idStudent.ReadOnly = true;
+			this.idStudent.Visible = false;
 			// 
 			// fKachievementsstudentsstudentsBindingSource
 			// 
@@ -199,7 +236,7 @@ namespace coursework
 			this.GridListStudents.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
 			dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
 			dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+			dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
 			dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
 			dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
 			dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -215,7 +252,7 @@ namespace coursework
 			this.GridListStudents.DataSource = this.studentsBindingSource;
 			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
 			dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-			dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+			dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
 			dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
 			dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
 			dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -298,43 +335,6 @@ namespace coursework
 			// achievements_studentsTableAdapter
 			// 
 			this.achievements_studentsTableAdapter.ClearBeforeFill = true;
-			// 
-			// id
-			// 
-			this.id.DataPropertyName = "id";
-			this.id.HeaderText = "id";
-			this.id.Name = "id";
-			this.id.ReadOnly = true;
-			this.id.Visible = false;
-			// 
-			// classOfReward
-			// 
-			this.classOfReward.DataPropertyName = "classOfReward";
-			this.classOfReward.HeaderText = "Класс награды";
-			this.classOfReward.Name = "classOfReward";
-			this.classOfReward.ReadOnly = true;
-			// 
-			// typeOfReward
-			// 
-			this.typeOfReward.DataPropertyName = "typeOfReward";
-			this.typeOfReward.HeaderText = "Тип награды";
-			this.typeOfReward.Name = "typeOfReward";
-			this.typeOfReward.ReadOnly = true;
-			// 
-			// subjectOfReward
-			// 
-			this.subjectOfReward.DataPropertyName = "subjectOfReward";
-			this.subjectOfReward.HeaderText = "Предмет награды";
-			this.subjectOfReward.Name = "subjectOfReward";
-			this.subjectOfReward.ReadOnly = true;
-			// 
-			// idStudent
-			// 
-			this.idStudent.DataPropertyName = "id_Student";
-			this.idStudent.HeaderText = "id_Student";
-			this.idStudent.Name = "idStudent";
-			this.idStudent.ReadOnly = true;
-			this.idStudent.Visible = false;
 			// 
 			// FormAchievements
 			// 

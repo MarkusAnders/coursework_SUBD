@@ -33,11 +33,6 @@ namespace coursework
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormListStudents));
 			this.GridListStudents = new System.Windows.Forms.DataGridView();
-			this.button_addRecord = new System.Windows.Forms.Button();
-			this.button_editRecord = new System.Windows.Forms.Button();
-			this.button_deleteRecord = new System.Windows.Forms.Button();
-			this.searchDataTextBox = new System.Windows.Forms.TextBox();
-			this.labelSearch = new System.Windows.Forms.Label();
 			this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.surname = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.firstname = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,6 +41,11 @@ namespace coursework
 			this.classNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataOfBirthDay = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.image = new System.Windows.Forms.DataGridViewImageColumn();
+			this.button_addRecord = new System.Windows.Forms.Button();
+			this.button_editRecord = new System.Windows.Forms.Button();
+			this.button_deleteRecord = new System.Windows.Forms.Button();
+			this.searchDataTextBox = new System.Windows.Forms.TextBox();
+			this.labelSearch = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.GridListStudents)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -61,7 +61,7 @@ namespace coursework
 			this.GridListStudents.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
 			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
 			dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+			dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
 			dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
 			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
 			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -79,7 +79,7 @@ namespace coursework
             this.image});
 			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
 			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-			dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+			dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
 			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
 			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
 			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -93,6 +93,60 @@ namespace coursework
 			this.GridListStudents.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.GridListStudents.Size = new System.Drawing.Size(1166, 503);
 			this.GridListStudents.TabIndex = 0;
+			// 
+			// id
+			// 
+			this.id.FillWeight = 25F;
+			this.id.HeaderText = "id";
+			this.id.Name = "id";
+			this.id.ReadOnly = true;
+			this.id.Visible = false;
+			// 
+			// surname
+			// 
+			this.surname.HeaderText = "Фамилия";
+			this.surname.Name = "surname";
+			this.surname.ReadOnly = true;
+			// 
+			// firstname
+			// 
+			this.firstname.HeaderText = "Имя";
+			this.firstname.Name = "firstname";
+			this.firstname.ReadOnly = true;
+			// 
+			// patronymic
+			// 
+			this.patronymic.HeaderText = "Отчество";
+			this.patronymic.Name = "patronymic";
+			this.patronymic.ReadOnly = true;
+			// 
+			// gender
+			// 
+			this.gender.HeaderText = "Пол";
+			this.gender.Name = "gender";
+			this.gender.ReadOnly = true;
+			this.gender.Visible = false;
+			// 
+			// classNumber
+			// 
+			this.classNumber.FillWeight = 60F;
+			this.classNumber.HeaderText = "Класс";
+			this.classNumber.Name = "classNumber";
+			this.classNumber.ReadOnly = true;
+			// 
+			// dataOfBirthDay
+			// 
+			this.dataOfBirthDay.HeaderText = "Дата рождения";
+			this.dataOfBirthDay.Name = "dataOfBirthDay";
+			this.dataOfBirthDay.ReadOnly = true;
+			this.dataOfBirthDay.Visible = false;
+			// 
+			// image
+			// 
+			this.image.HeaderText = "Фото";
+			this.image.Name = "image";
+			this.image.ReadOnly = true;
+			this.image.Visible = false;
 			// 
 			// button_addRecord
 			// 
@@ -176,60 +230,6 @@ namespace coursework
 			this.labelSearch.Size = new System.Drawing.Size(79, 26);
 			this.labelSearch.TabIndex = 5;
 			this.labelSearch.Text = "Поиск";
-			// 
-			// id
-			// 
-			this.id.FillWeight = 25F;
-			this.id.HeaderText = "id";
-			this.id.Name = "id";
-			this.id.ReadOnly = true;
-			this.id.Visible = false;
-			// 
-			// surname
-			// 
-			this.surname.HeaderText = "Фамилия";
-			this.surname.Name = "surname";
-			this.surname.ReadOnly = true;
-			// 
-			// firstname
-			// 
-			this.firstname.HeaderText = "Имя";
-			this.firstname.Name = "firstname";
-			this.firstname.ReadOnly = true;
-			// 
-			// patronymic
-			// 
-			this.patronymic.HeaderText = "Отчество";
-			this.patronymic.Name = "patronymic";
-			this.patronymic.ReadOnly = true;
-			// 
-			// gender
-			// 
-			this.gender.HeaderText = "Пол";
-			this.gender.Name = "gender";
-			this.gender.ReadOnly = true;
-			this.gender.Visible = false;
-			// 
-			// classNumber
-			// 
-			this.classNumber.FillWeight = 60F;
-			this.classNumber.HeaderText = "Класс";
-			this.classNumber.Name = "classNumber";
-			this.classNumber.ReadOnly = true;
-			// 
-			// dataOfBirthDay
-			// 
-			this.dataOfBirthDay.HeaderText = "Дата рождения";
-			this.dataOfBirthDay.Name = "dataOfBirthDay";
-			this.dataOfBirthDay.ReadOnly = true;
-			this.dataOfBirthDay.Visible = false;
-			// 
-			// image
-			// 
-			this.image.HeaderText = "Фото";
-			this.image.Name = "image";
-			this.image.ReadOnly = true;
-			this.image.Visible = false;
 			// 
 			// FormListStudents
 			// 
