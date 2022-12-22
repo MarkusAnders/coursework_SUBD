@@ -22,7 +22,7 @@ namespace coursework
 		}
 		private void FormAddEditAchievements_Load(object sender, EventArgs e)
 		{
-			this.academic_subjectTableAdapter.Fill(this.subd_schoolDataSet.academic_subject);
+			this.academic_subjectTableAdapter1.Fill(this.subd_schoolDataSet1.academic_subject);
 			listSubjectsBox.SelectedValue = checkingForChangesSubjectOfReward;
 		}
 

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
@@ -13,13 +15,16 @@ namespace coursework
 		{
 			InitializeComponent();
 			LoadTheme();
+			CountRecord(GridListSudentCountAchievements);
 		}
 
 		#region[Загрузка  таблицы]
 		private void FormAchievements_Load(object sender, EventArgs e)
 		{
 			this.achievements_studentsTableAdapter.Fill(this.subd_schoolDataSet.achievements_students);
-			this.studentsTableAdapter.Fill(this.subd_schoolDataSet.students);
+			this.studentsTableAdapter.Fill(this.subd_schoolDataSet.students) ;
+			this.GridListStudents.Sort(this.GridListStudents.Columns["surnameDataGridViewTextBoxColumn"], ListSortDirection.Ascending);
+			//ColorGridTable();
 		}
 		#endregion
 
@@ -50,6 +55,7 @@ namespace coursework
 			}
 
 			ReloadTable();
+			CountRecord(GridListSudentCountAchievements);
 		}
 
 		private void button_editRecord_Click(object sender, EventArgs e)
@@ -68,6 +74,7 @@ namespace coursework
 				MessageBox.Show("Нет информации о достижениях!", "Отсутствуют достижения", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 			}
 			ReloadTable();
+			CountRecord(GridListSudentCountAchievements);
 		}
 
 		private void button_deleteRecord_Click(object sender, EventArgs e)
@@ -84,6 +91,7 @@ namespace coursework
 					MessageBox.Show("Запись удалена!", "", MessageBoxButtons.OK);
 
 					ReloadTable();
+					CountRecord(GridListSudentCountAchievements);
 
 					conn.Disconnect();
 				}
@@ -96,6 +104,32 @@ namespace coursework
 		#endregion
 
 		#region[Поиск данных]
+		private void searchDataTextBox_TextChanged(object sender, EventArgs e)
+		{
+			
+		}
+
+		private void SearchData(DataGridView dgw)
+		{
+			conn.Connect();
+
+			//string search = $"select * from students where concat (id, surname, firstname, patronymic, class) like '%" + searchDataTextBox.Text + "%'";
+			//SqlCommand command = new SqlCommand(search, conn.connection);
+			//SqlDataReader reader = command.ExecuteReader();
+
+			//while (reader.Read())
+			//{
+			//	ReadSingleRow(dgw, reader);
+			//	for (int i = 0; i < GridListSudentCountAchievements.Rows.Count; i++)
+			//	{
+			//		GridListSudentCountAchievements.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(222, 222, 222);
+			//		i++;
+			//	}
+			//}
+			//reader.Close();
+
+			conn.Disconnect();
+		}
 		#endregion
 
 		#region[Цвета кнопок]
@@ -112,9 +146,84 @@ namespace coursework
 				}
 				GridListStudents.DefaultCellStyle.SelectionBackColor = ThemeColor.PrimaryColor;
 				GridListAchievements.DefaultCellStyle.SelectionBackColor = ThemeColor.PrimaryColor;
+				GridListSudentCountAchievements.DefaultCellStyle.SelectionBackColor = ThemeColor.PrimaryColor;
 				labelSearch.ForeColor = ThemeColor.PrimaryColor;
 			}
 		}
 		#endregion	}
+
+		#region[Вывод кол-во достиежний и выключение кнопок]
+		private void ReadSingleRow(DataGridView dgw, IDataRecord record)
+		{
+			dgw.Rows.Add(record.GetString(0), record.GetString(1), record.GetString(2), record.GetString(3), record.GetInt32(4).ToString());
+		}
+
+		private void CountRecord(DataGridView dgw)
+		{
+			dgw.Rows.Clear();
+
+			conn.Connect();
+			SqlCommand counter = new SqlCommand($"select STUDENTS.[surname], STUDENTS.[firstname], STUDENTS.[patronymic], STUDENTS.[class], " +
+				$"count([subd_school].[dbo].[achievements_students].[id_Student]) as Reward FROM STUDENTS " +
+				$"JOIN[subd_school].[dbo].[achievements_students] on[subd_school].[dbo].[achievements_students].[id_Student] = STUDENTS.Id " +
+				$"GROUP BY STUDENTS.[surname], STUDENTS.[firstname], STUDENTS.[patronymic], STUDENTS.[class]", conn.connection);
+			SqlDataReader reader = counter.ExecuteReader();
+
+			while (reader.Read())
+			{
+				ReadSingleRow(dgw, reader);
+				//ColorGridTable();
+				for (int i = 0; i < GridListSudentCountAchievements.Rows.Count; i++)
+				{
+					GridListSudentCountAchievements.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(222, 222, 222);
+					i++;
+				}
+			}
+			reader.Close();
+
+			conn.Disconnect();
+		}
+
+		private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (Convert.ToBoolean(tabControl.SelectedTab.Controls.Count.Equals(1)) == true)
+			{
+				button_addRecord.Enabled = false;
+				button_editRecord.Enabled = false;
+				button_deleteRecord.Enabled = false;
+			}
+			else
+			{
+				button_addRecord.Enabled = true;
+				button_editRecord.Enabled = true;
+				button_deleteRecord.Enabled = true;
+			}
+		}
+		#endregion
+
+		#region[Перекрас строк таблиц]
+		//private void ColorGridTable()
+		//{
+		//	for (int i = 0; i < GridListStudents.Rows.Count; i++)
+		//	{
+		//		GridListStudents.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(222, 222, 222);
+		//		i++;
+		//	}
+
+		//	for (int i = 0; i < GridListAchievements.Rows.Count; i++)
+		//	{
+		//		GridListAchievements.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(222, 222, 222);
+		//		i++;
+		//	}
+
+		//	for (int i = 0; i < GridListSudentCountAchievements.Rows.Count; i++)
+		//	{
+		//		GridListSudentCountAchievements.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(222, 222, 222);
+		//		i++;
+		//	}
+		//}
+		#endregion
+
+		
 	}
 }

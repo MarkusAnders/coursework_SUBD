@@ -33,7 +33,7 @@ namespace coursework
 			conn.Connect();
 			GridListSubjects.Rows.Clear();
 
-			SqlCommand command = new SqlCommand($"select * from academic_subject", conn.connection);
+			SqlCommand command = new SqlCommand($"select * from academic_subject ORDER By subject", conn.connection);
 			SqlDataReader reader = command.ExecuteReader();
 			while (reader.Read())
 			{

@@ -39,7 +39,7 @@ namespace coursework
 			GridListStudents.Rows.Clear();
 
 			int counter = 0;
-			SqlCommand command = new SqlCommand($"select * from students", conn.connection);
+			SqlCommand command = new SqlCommand($"select * from students ORDER BY surname", conn.connection);
 			SqlDataReader reader = command.ExecuteReader();
 			while (reader.Read())
 			{
@@ -177,37 +177,30 @@ namespace coursework
 		{
 			conn.Connect();
 
-			if (searchDataTextBox.Text != "Поиск")
+			string search = $"select * from students where concat (id, surname, firstname, patronymic, class) like '%" + searchDataTextBox.Text + "%'";
+			SqlCommand command = new SqlCommand(search, conn.connection);
+			SqlDataReader reader = command.ExecuteReader();
+			int counter = 0;
+			while (reader.Read())
 			{
-				dgw.Rows.Clear();
-				int counter = 0;
+				ArrayImage = new byte[((byte[])reader["image"]).Length];
+				ArrayImage = (byte[])reader["image"];
+				ms = new MemoryStream(ArrayImage);
+				b = new Bitmap(ms);
+				photo = new Bitmap(b, 255, 295);
 
-				string search = $"select * from students where concat (trimid, surname, firstname, patronymic, class) like '%" + searchDataTextBox.Text + "%'";
-				SqlCommand command = new SqlCommand(search, conn.connection);
-				SqlDataReader reader = command.ExecuteReader();
-				while (reader.Read())
+				ReadSingleRow(dgw, reader);
+
+				GridListStudents.Rows[counter].Cells[7].Value = photo;
+				counter++;
+
+				for (int i = 0; i < GridListStudents.Rows.Count; i++)
 				{
-					ArrayImage = new byte[((byte[])reader["image"]).Length];
-					ArrayImage = (byte[])reader["image"];
-					ms = new MemoryStream(ArrayImage);
-					b = new Bitmap(ms);
-					photo = new Bitmap(b, 255, 295);
-
-					ReadSingleRow(dgw, reader);
-
-					GridListStudents.Rows[counter].Cells[7].Value = photo;
-					counter++;
-
-					for (int i = 0; i < GridListStudents.Rows.Count; i++)
-					{
-						GridListStudents.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(222, 222, 222);
-						i++;
-					}
+					GridListStudents.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(222, 222, 222);
+					i++;
 				}
-				reader.Close();
 			}
-			else
-				return;
+			reader.Close();
 
 			conn.Disconnect();
 		}

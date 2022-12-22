@@ -39,17 +39,20 @@ namespace coursework
 			this.button_editRecord = new System.Windows.Forms.Button();
 			this.button_addRecord = new System.Windows.Forms.Button();
 			this.GridListStudents = new System.Windows.Forms.DataGridView();
+			this.searchDataTextBox = new System.Windows.Forms.TextBox();
+			this.labelSearch = new System.Windows.Forms.Label();
+			this.GridListCertification = new System.Windows.Forms.DataGridView();
+			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+			this.subd_schoolDataSet = new coursework.subd_schoolDataSet();
+			this.studentsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.studentsTableAdapter = new coursework.subd_schoolDataSetTableAdapters.studentsTableAdapter();
+			this.fKcertificationstudentsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.certificationTableAdapter = new coursework.subd_schoolDataSetTableAdapters.certificationTableAdapter();
 			this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.surnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.firstnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.patronymicDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.classDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.studentsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-			this.subd_schoolDataSet = new coursework.subd_schoolDataSet();
-			this.searchDataTextBox = new System.Windows.Forms.TextBox();
-			this.labelSearch = new System.Windows.Forms.Label();
-			this.GridListCertification = new System.Windows.Forms.DataGridView();
 			this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.subject = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.firstQuarter = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,15 +60,12 @@ namespace coursework
 			this.thirdQuarter = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.fourthQuarter = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.annual = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.idstudentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.fKcertificationstudentsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-			this.studentsTableAdapter = new coursework.subd_schoolDataSetTableAdapters.studentsTableAdapter();
-			this.certificationTableAdapter = new coursework.subd_schoolDataSetTableAdapters.certificationTableAdapter();
+			this.idstudent = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			((System.ComponentModel.ISupportInitialize)(this.GridListStudents)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.studentsBindingSource)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.GridListCertification)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.subd_schoolDataSet)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.GridListCertification)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.studentsBindingSource)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.fKcertificationstudentsBindingSource)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -77,9 +77,10 @@ namespace coursework
 			this.button_deleteRecord.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.button_deleteRecord.ForeColor = System.Drawing.Color.Gainsboro;
 			this.button_deleteRecord.Image = ((System.Drawing.Image)(resources.GetObject("button_deleteRecord.Image")));
-			this.button_deleteRecord.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.button_deleteRecord.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.button_deleteRecord.Location = new System.Drawing.Point(954, 221);
 			this.button_deleteRecord.Name = "button_deleteRecord";
+			this.button_deleteRecord.Padding = new System.Windows.Forms.Padding(0, 0, 25, 0);
 			this.button_deleteRecord.Size = new System.Drawing.Size(215, 50);
 			this.button_deleteRecord.TabIndex = 11;
 			this.button_deleteRecord.Text = "Удалить  ";
@@ -96,9 +97,10 @@ namespace coursework
 			this.button_editRecord.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.button_editRecord.ForeColor = System.Drawing.Color.Gainsboro;
 			this.button_editRecord.Image = ((System.Drawing.Image)(resources.GetObject("button_editRecord.Image")));
-			this.button_editRecord.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.button_editRecord.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.button_editRecord.Location = new System.Drawing.Point(954, 156);
 			this.button_editRecord.Name = "button_editRecord";
+			this.button_editRecord.Padding = new System.Windows.Forms.Padding(0, 0, 25, 0);
 			this.button_editRecord.Size = new System.Drawing.Size(215, 50);
 			this.button_editRecord.TabIndex = 10;
 			this.button_editRecord.Text = "Информация ";
@@ -115,9 +117,10 @@ namespace coursework
 			this.button_addRecord.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.button_addRecord.ForeColor = System.Drawing.Color.Gainsboro;
 			this.button_addRecord.Image = ((System.Drawing.Image)(resources.GetObject("button_addRecord.Image")));
-			this.button_addRecord.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.button_addRecord.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.button_addRecord.Location = new System.Drawing.Point(954, 91);
 			this.button_addRecord.Name = "button_addRecord";
+			this.button_addRecord.Padding = new System.Windows.Forms.Padding(0, 0, 25, 0);
 			this.button_addRecord.Size = new System.Drawing.Size(215, 50);
 			this.button_addRecord.TabIndex = 9;
 			this.button_addRecord.Text = "Добавить  ";
@@ -169,57 +172,6 @@ namespace coursework
 			this.GridListStudents.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.GridListStudents.Size = new System.Drawing.Size(917, 300);
 			this.GridListStudents.TabIndex = 8;
-			// 
-			// idDataGridViewTextBoxColumn
-			// 
-			this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
-			this.idDataGridViewTextBoxColumn.HeaderText = "id";
-			this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-			this.idDataGridViewTextBoxColumn.ReadOnly = true;
-			this.idDataGridViewTextBoxColumn.Visible = false;
-			// 
-			// surnameDataGridViewTextBoxColumn
-			// 
-			this.surnameDataGridViewTextBoxColumn.DataPropertyName = "surname";
-			this.surnameDataGridViewTextBoxColumn.HeaderText = "Фамилия";
-			this.surnameDataGridViewTextBoxColumn.Name = "surnameDataGridViewTextBoxColumn";
-			this.surnameDataGridViewTextBoxColumn.ReadOnly = true;
-			// 
-			// firstnameDataGridViewTextBoxColumn
-			// 
-			this.firstnameDataGridViewTextBoxColumn.DataPropertyName = "firstname";
-			this.firstnameDataGridViewTextBoxColumn.HeaderText = "Имя";
-			this.firstnameDataGridViewTextBoxColumn.Name = "firstnameDataGridViewTextBoxColumn";
-			this.firstnameDataGridViewTextBoxColumn.ReadOnly = true;
-			// 
-			// patronymicDataGridViewTextBoxColumn
-			// 
-			this.patronymicDataGridViewTextBoxColumn.DataPropertyName = "patronymic";
-			this.patronymicDataGridViewTextBoxColumn.HeaderText = "Отчество";
-			this.patronymicDataGridViewTextBoxColumn.Name = "patronymicDataGridViewTextBoxColumn";
-			this.patronymicDataGridViewTextBoxColumn.ReadOnly = true;
-			// 
-			// classDataGridViewTextBoxColumn
-			// 
-			this.classDataGridViewTextBoxColumn.DataPropertyName = "class";
-			this.classDataGridViewTextBoxColumn.HeaderText = "Класс";
-			this.classDataGridViewTextBoxColumn.Name = "classDataGridViewTextBoxColumn";
-			this.classDataGridViewTextBoxColumn.ReadOnly = true;
-			// 
-			// studentsBindingSource
-			// 
-			this.studentsBindingSource.DataMember = "students";
-			this.studentsBindingSource.DataSource = this.bindingSource1;
-			// 
-			// bindingSource1
-			// 
-			this.bindingSource1.DataSource = this.subd_schoolDataSet;
-			this.bindingSource1.Position = 0;
-			// 
-			// subd_schoolDataSet
-			// 
-			this.subd_schoolDataSet.DataSetName = "subd_schoolDataSet";
-			this.subd_schoolDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
 			// 
 			// searchDataTextBox
 			// 
@@ -273,7 +225,7 @@ namespace coursework
             this.thirdQuarter,
             this.fourthQuarter,
             this.annual,
-            this.idstudentDataGridViewTextBoxColumn});
+            this.idstudent});
 			this.GridListCertification.DataSource = this.fKcertificationstudentsBindingSource;
 			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
 			dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
@@ -292,6 +244,70 @@ namespace coursework
 			this.GridListCertification.Size = new System.Drawing.Size(917, 300);
 			this.GridListCertification.TabIndex = 12;
 			// 
+			// bindingSource1
+			// 
+			this.bindingSource1.DataSource = this.subd_schoolDataSet;
+			this.bindingSource1.Position = 0;
+			// 
+			// subd_schoolDataSet
+			// 
+			this.subd_schoolDataSet.DataSetName = "subd_schoolDataSet";
+			this.subd_schoolDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+			// 
+			// studentsBindingSource
+			// 
+			this.studentsBindingSource.DataMember = "students";
+			this.studentsBindingSource.DataSource = this.bindingSource1;
+			// 
+			// studentsTableAdapter
+			// 
+			this.studentsTableAdapter.ClearBeforeFill = true;
+			// 
+			// fKcertificationstudentsBindingSource
+			// 
+			this.fKcertificationstudentsBindingSource.DataMember = "FK_certification_students";
+			this.fKcertificationstudentsBindingSource.DataSource = this.studentsBindingSource;
+			// 
+			// certificationTableAdapter
+			// 
+			this.certificationTableAdapter.ClearBeforeFill = true;
+			// 
+			// idDataGridViewTextBoxColumn
+			// 
+			this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
+			this.idDataGridViewTextBoxColumn.HeaderText = "id";
+			this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+			this.idDataGridViewTextBoxColumn.ReadOnly = true;
+			this.idDataGridViewTextBoxColumn.Visible = false;
+			// 
+			// surnameDataGridViewTextBoxColumn
+			// 
+			this.surnameDataGridViewTextBoxColumn.DataPropertyName = "surname";
+			this.surnameDataGridViewTextBoxColumn.HeaderText = "Фамилия";
+			this.surnameDataGridViewTextBoxColumn.Name = "surnameDataGridViewTextBoxColumn";
+			this.surnameDataGridViewTextBoxColumn.ReadOnly = true;
+			// 
+			// firstnameDataGridViewTextBoxColumn
+			// 
+			this.firstnameDataGridViewTextBoxColumn.DataPropertyName = "firstname";
+			this.firstnameDataGridViewTextBoxColumn.HeaderText = "Имя";
+			this.firstnameDataGridViewTextBoxColumn.Name = "firstnameDataGridViewTextBoxColumn";
+			this.firstnameDataGridViewTextBoxColumn.ReadOnly = true;
+			// 
+			// patronymicDataGridViewTextBoxColumn
+			// 
+			this.patronymicDataGridViewTextBoxColumn.DataPropertyName = "patronymic";
+			this.patronymicDataGridViewTextBoxColumn.HeaderText = "Отчество";
+			this.patronymicDataGridViewTextBoxColumn.Name = "patronymicDataGridViewTextBoxColumn";
+			this.patronymicDataGridViewTextBoxColumn.ReadOnly = true;
+			// 
+			// classDataGridViewTextBoxColumn
+			// 
+			this.classDataGridViewTextBoxColumn.DataPropertyName = "class";
+			this.classDataGridViewTextBoxColumn.HeaderText = "Класс";
+			this.classDataGridViewTextBoxColumn.Name = "classDataGridViewTextBoxColumn";
+			this.classDataGridViewTextBoxColumn.ReadOnly = true;
+			// 
 			// id
 			// 
 			this.id.DataPropertyName = "id";
@@ -303,7 +319,6 @@ namespace coursework
 			// subject
 			// 
 			this.subject.DataPropertyName = "subject";
-			this.subject.FillWeight = 120F;
 			this.subject.HeaderText = "Предмет";
 			this.subject.Name = "subject";
 			this.subject.ReadOnly = true;
@@ -343,26 +358,13 @@ namespace coursework
 			this.annual.Name = "annual";
 			this.annual.ReadOnly = true;
 			// 
-			// idstudentDataGridViewTextBoxColumn
+			// idstudent
 			// 
-			this.idstudentDataGridViewTextBoxColumn.DataPropertyName = "id_student";
-			this.idstudentDataGridViewTextBoxColumn.HeaderText = "id_student";
-			this.idstudentDataGridViewTextBoxColumn.Name = "idstudentDataGridViewTextBoxColumn";
-			this.idstudentDataGridViewTextBoxColumn.ReadOnly = true;
-			this.idstudentDataGridViewTextBoxColumn.Visible = false;
-			// 
-			// fKcertificationstudentsBindingSource
-			// 
-			this.fKcertificationstudentsBindingSource.DataMember = "FK_certification_students";
-			this.fKcertificationstudentsBindingSource.DataSource = this.studentsBindingSource;
-			// 
-			// studentsTableAdapter
-			// 
-			this.studentsTableAdapter.ClearBeforeFill = true;
-			// 
-			// certificationTableAdapter
-			// 
-			this.certificationTableAdapter.ClearBeforeFill = true;
+			this.idstudent.DataPropertyName = "id_student";
+			this.idstudent.HeaderText = "id_student";
+			this.idstudent.Name = "idstudent";
+			this.idstudent.ReadOnly = true;
+			this.idstudent.Visible = false;
 			// 
 			// FormCertification
 			// 
@@ -383,10 +385,10 @@ namespace coursework
 			this.Text = "FormCertification";
 			this.Load += new System.EventHandler(this.FormCertification_Load);
 			((System.ComponentModel.ISupportInitialize)(this.GridListStudents)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.studentsBindingSource)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.GridListCertification)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.subd_schoolDataSet)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.GridListCertification)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.studentsBindingSource)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.fKcertificationstudentsBindingSource)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
@@ -420,6 +422,6 @@ namespace coursework
 		private System.Windows.Forms.DataGridViewTextBoxColumn thirdQuarter;
 		private System.Windows.Forms.DataGridViewTextBoxColumn fourthQuarter;
 		private System.Windows.Forms.DataGridViewTextBoxColumn annual;
-		private System.Windows.Forms.DataGridViewTextBoxColumn idstudentDataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn idstudent;
 	}
 }

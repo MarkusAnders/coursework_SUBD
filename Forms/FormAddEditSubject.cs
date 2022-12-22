@@ -17,7 +17,6 @@ namespace coursework
 		public FormAddEditSubject()
 		{
 			InitializeComponent();
-			//LoadTheme();
 		}
 
 		public FormAddEditSubject(int id, string nameSubject, int hourSubject) : base()
@@ -36,47 +35,54 @@ namespace coursework
 		private void button_editRecord_Click_1(object sender, EventArgs e)
 		{
 			conn.Connect();
-			try
+			if (nameSubjectTextBox.Text == string.Empty || hourSubjectOfTextBox.Text == string.Empty)
 			{
-				SqlCommand command = new SqlCommand();
-
-				if (id == -1) // Добавление нового ученика
+				MessageBox.Show("Не все поля заполнены","Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			}
+			else
+			{
+				try
 				{
-					command = new SqlCommand(
-						"insert into academic_subject (subject, hours) values (@subject, @hours)", conn.connection);
-					command.Parameters.Add("@subject", SqlDbType.VarChar).Value = nameSubjectTextBox.Text;
-					command.Parameters.Add("@hours", SqlDbType.Int).Value = hourSubjectOfTextBox.Text;
-					command.ExecuteNonQuery();
+					SqlCommand command = new SqlCommand();
 
-					MessageBox.Show("Запись добавлена!", "", MessageBoxButtons.OK);
-
-					this.Close();
-				}
-				else // Редактирование информации ученика
-				{
-					if (checkingForChangesNameSubject == nameSubjectTextBox.Text && checkingForChangesHoursSubject == hourSubjectOfTextBox.Text)
+					if (id == -1) // Добавление нового ученика
 					{
-						MessageBox.Show("Данные не изменились!", "", MessageBoxButtons.OK);
+						command = new SqlCommand(
+							"insert into academic_subject (subject, hours) values (@subject, @hours)", conn.connection);
+						command.Parameters.Add("@subject", SqlDbType.VarChar).Value = nameSubjectTextBox.Text;
+						command.Parameters.Add("@hours", SqlDbType.Int).Value = hourSubjectOfTextBox.Text;
+						command.ExecuteNonQuery();
+
+						MessageBox.Show("Запись добавлена!", "", MessageBoxButtons.OK);
+
+						this.Close();
 					}
-					else
+					else // Редактирование информации ученика
 					{
-						if (MessageBox.Show("Вы прадва хотите изменить запись?", "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+						if (checkingForChangesNameSubject == nameSubjectTextBox.Text && checkingForChangesHoursSubject == hourSubjectOfTextBox.Text)
 						{
-							command = new SqlCommand(
-							"update academic_subject set subject = @subject, hours = @hours where id = @id", conn.connection);
-							command.Parameters.Add("id", SqlDbType.Int).Value = id;
-							command.Parameters.Add("subject", SqlDbType.VarChar).Value = nameSubjectTextBox.Text;
-							command.Parameters.Add("hours", SqlDbType.Int).Value = hourSubjectOfTextBox.Text;
-							command.ExecuteNonQuery();
+							MessageBox.Show("Данные не изменились!", "", MessageBoxButtons.OK);
+						}
+						else
+						{
+							if (MessageBox.Show("Вы прадва хотите изменить запись?", "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+							{
+								command = new SqlCommand(
+								"update academic_subject set subject = @subject, hours = @hours where id = @id", conn.connection);
+								command.Parameters.Add("id", SqlDbType.Int).Value = id;
+								command.Parameters.Add("subject", SqlDbType.VarChar).Value = nameSubjectTextBox.Text;
+								command.Parameters.Add("hours", SqlDbType.Int).Value = hourSubjectOfTextBox.Text;
+								command.ExecuteNonQuery();
 
-							this.Close();
+								this.Close();
+							}
 						}
 					}
 				}
-			}
-			catch (Exception exception)
-			{
-				MessageBox.Show(exception.Message, "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				catch (Exception exception)
+				{
+					MessageBox.Show(exception.Message, "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
 			}
 			conn.Disconnect();
 		}
@@ -85,23 +91,6 @@ namespace coursework
 			this.Close();
 		}
 		#endregion
-
-		//#region[Изменение цвета]
-		//private void LoadTheme()
-		//{
-		//	foreach (Control btns in this.Controls)
-		//	{
-		//		if (btns.GetType() == typeof(Button))
-		//		{
-		//			Button btn = (Button)btns;
-		//			btn.BackColor = ThemeColor.PrimaryColor;
-		//			btn.ForeColor = Color.White;
-		//			btn.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
-		//		}
-		//		labelTitle.ForeColor = ThemeColor.PrimaryColor;
-		//	}
-		//}
-		//#endregion
 
 		#region[Запрет ввода чисел и букв]
 		private void nameSubjectTextBox_KeyPress(object sender, KeyPressEventArgs e)

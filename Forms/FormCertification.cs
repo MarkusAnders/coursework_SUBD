@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
@@ -17,13 +18,20 @@ namespace coursework
 		}
 
 		#region[Загрузка таблицы]
+		private void FormCertification_Load(object sender, EventArgs e)
+		{
+			this.certificationTableAdapter.Fill(this.subd_schoolDataSet.certification);
+			this.studentsTableAdapter.Fill(this.subd_schoolDataSet.students);
+			this.GridListStudents.Sort(this.GridListStudents.Columns["surnameDataGridViewTextBoxColumn"], ListSortDirection.Ascending);
 
+		}
 		#endregion
 
 		#region[Обновление таблиц]
 		private void ReloadTable()
 		{
-
+			this.certificationTableAdapter.Fill(this.subd_schoolDataSet.certification);
+			this.studentsTableAdapter.Fill(this.subd_schoolDataSet.students);
 		}
 		#endregion
 
@@ -103,13 +111,6 @@ namespace coursework
 
 		#endregion
 
-		private void FormCertification_Load(object sender, EventArgs e)
-		{
-			// TODO: данная строка кода позволяет загрузить данные в таблицу "subd_schoolDataSet.certification". При необходимости она может быть перемещена или удалена.
-			this.certificationTableAdapter.Fill(this.subd_schoolDataSet.certification);
-			// TODO: данная строка кода позволяет загрузить данные в таблицу "subd_schoolDataSet.students". При необходимости она может быть перемещена или удалена.
-			this.studentsTableAdapter.Fill(this.subd_schoolDataSet.students);
-
-		}
+		
 	}
 }

@@ -296,7 +296,7 @@ namespace coursework {
             this.Relations.Add(this.relationFK_achievements_students_students);
             this.relationFK_certification_students = new global::System.Data.DataRelation("FK_certification_students", new global::System.Data.DataColumn[] {
                         this.tablestudents.idColumn}, new global::System.Data.DataColumn[] {
-                        this.tablecertification.idColumn}, false);
+                        this.tablecertification.id_studentColumn}, false);
             this.Relations.Add(this.relationFK_certification_students);
         }
         
@@ -1169,7 +1169,7 @@ namespace coursework {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public certificationRow AddcertificationRow(string subject, int firstQuarter, int secondQuarter, int thirdQuarter, int fourthQuarter, int annual, int id_student) {
+            public certificationRow AddcertificationRow(string subject, int firstQuarter, int secondQuarter, int thirdQuarter, int fourthQuarter, int annual, studentsRow parentstudentsRowByFK_certification_students) {
                 certificationRow rowcertificationRow = ((certificationRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1179,7 +1179,10 @@ namespace coursework {
                         thirdQuarter,
                         fourthQuarter,
                         annual,
-                        id_student};
+                        null};
+                if ((parentstudentsRowByFK_certification_students != null)) {
+                    columnValuesArray[7] = parentstudentsRowByFK_certification_students[0];
+                }
                 rowcertificationRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowcertificationRow);
                 return rowcertificationRow;
@@ -1248,7 +1251,6 @@ namespace coursework {
                 this.columnid.Unique = true;
                 this.columnsubject.AllowDBNull = false;
                 this.columnsubject.MaxLength = 30;
-                this.columnid_student.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1999,7 +2001,12 @@ namespace coursework {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public int id_student {
                 get {
-                    return ((int)(this[this.tablecertification.id_studentColumn]));
+                    try {
+                        return ((int)(this[this.tablecertification.id_studentColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'id_student\' в таблице \'certification\' равно DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tablecertification.id_studentColumn] = value;
@@ -2075,6 +2082,18 @@ namespace coursework {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetannualNull() {
                 this[this.tablecertification.annualColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Isid_studentNull() {
+                return this.IsNull(this.tablecertification.id_studentColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setid_studentNull() {
+                this[this.tablecertification.id_studentColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -3187,7 +3206,7 @@ SELECT id, classOfReward, typeOfReward, subjectOfReward, id_Student FROM achieve
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[certification] WHERE (([id] = @Original_id) AND ([subject] = @Original_subject) AND ((@IsNull_firstQuarter = 1 AND [firstQuarter] IS NULL) OR ([firstQuarter] = @Original_firstQuarter)) AND ((@IsNull_secondQuarter = 1 AND [secondQuarter] IS NULL) OR ([secondQuarter] = @Original_secondQuarter)) AND ((@IsNull_thirdQuarter = 1 AND [thirdQuarter] IS NULL) OR ([thirdQuarter] = @Original_thirdQuarter)) AND ((@IsNull_fourthQuarter = 1 AND [fourthQuarter] IS NULL) OR ([fourthQuarter] = @Original_fourthQuarter)) AND ((@IsNull_annual = 1 AND [annual] IS NULL) OR ([annual] = @Original_annual)) AND ([id_student] = @Original_id_student))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[certification] WHERE (([id] = @Original_id) AND ([subject] = @Original_subject) AND ((@IsNull_firstQuarter = 1 AND [firstQuarter] IS NULL) OR ([firstQuarter] = @Original_firstQuarter)) AND ((@IsNull_secondQuarter = 1 AND [secondQuarter] IS NULL) OR ([secondQuarter] = @Original_secondQuarter)) AND ((@IsNull_thirdQuarter = 1 AND [thirdQuarter] IS NULL) OR ([thirdQuarter] = @Original_thirdQuarter)) AND ((@IsNull_fourthQuarter = 1 AND [fourthQuarter] IS NULL) OR ([fourthQuarter] = @Original_fourthQuarter)) AND ((@IsNull_annual = 1 AND [annual] IS NULL) OR ([annual] = @Original_annual)) AND ((@IsNull_id_student = 1 AND [id_student] IS NULL) OR ([id_student] = @Original_id_student)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_subject", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "subject", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -3201,6 +3220,7 @@ SELECT id, classOfReward, typeOfReward, subjectOfReward, id_Student FROM achieve
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_fourthQuarter", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "fourthQuarter", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_annual", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "annual", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_annual", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "annual", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_id_student", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_student", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id_student", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_student", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
@@ -3216,7 +3236,7 @@ SELECT id, subject, firstQuarter, secondQuarter, thirdQuarter, fourthQuarter, an
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id_student", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_student", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[certification] SET [subject] = @subject, [firstQuarter] = @firstQuarter, [secondQuarter] = @secondQuarter, [thirdQuarter] = @thirdQuarter, [fourthQuarter] = @fourthQuarter, [annual] = @annual, [id_student] = @id_student WHERE (([id] = @Original_id) AND ([subject] = @Original_subject) AND ((@IsNull_firstQuarter = 1 AND [firstQuarter] IS NULL) OR ([firstQuarter] = @Original_firstQuarter)) AND ((@IsNull_secondQuarter = 1 AND [secondQuarter] IS NULL) OR ([secondQuarter] = @Original_secondQuarter)) AND ((@IsNull_thirdQuarter = 1 AND [thirdQuarter] IS NULL) OR ([thirdQuarter] = @Original_thirdQuarter)) AND ((@IsNull_fourthQuarter = 1 AND [fourthQuarter] IS NULL) OR ([fourthQuarter] = @Original_fourthQuarter)) AND ((@IsNull_annual = 1 AND [annual] IS NULL) OR ([annual] = @Original_annual)) AND ([id_student] = @Original_id_student));
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[certification] SET [subject] = @subject, [firstQuarter] = @firstQuarter, [secondQuarter] = @secondQuarter, [thirdQuarter] = @thirdQuarter, [fourthQuarter] = @fourthQuarter, [annual] = @annual, [id_student] = @id_student WHERE (([id] = @Original_id) AND ([subject] = @Original_subject) AND ((@IsNull_firstQuarter = 1 AND [firstQuarter] IS NULL) OR ([firstQuarter] = @Original_firstQuarter)) AND ((@IsNull_secondQuarter = 1 AND [secondQuarter] IS NULL) OR ([secondQuarter] = @Original_secondQuarter)) AND ((@IsNull_thirdQuarter = 1 AND [thirdQuarter] IS NULL) OR ([thirdQuarter] = @Original_thirdQuarter)) AND ((@IsNull_fourthQuarter = 1 AND [fourthQuarter] IS NULL) OR ([fourthQuarter] = @Original_fourthQuarter)) AND ((@IsNull_annual = 1 AND [annual] IS NULL) OR ([annual] = @Original_annual)) AND ((@IsNull_id_student = 1 AND [id_student] IS NULL) OR ([id_student] = @Original_id_student)));
 SELECT id, subject, firstQuarter, secondQuarter, thirdQuarter, fourthQuarter, annual, id_student FROM certification WHERE (id = @id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@subject", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "subject", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -3238,6 +3258,7 @@ SELECT id, subject, firstQuarter, secondQuarter, thirdQuarter, fourthQuarter, an
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_fourthQuarter", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "fourthQuarter", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_annual", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "annual", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_annual", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "annual", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_id_student", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_student", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id_student", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_student", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
@@ -3317,7 +3338,7 @@ SELECT id, subject, firstQuarter, secondQuarter, thirdQuarter, fourthQuarter, an
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_id, string Original_subject, global::System.Nullable<int> Original_firstQuarter, global::System.Nullable<int> Original_secondQuarter, global::System.Nullable<int> Original_thirdQuarter, global::System.Nullable<int> Original_fourthQuarter, global::System.Nullable<int> Original_annual, int Original_id_student) {
+        public virtual int Delete(int Original_id, string Original_subject, global::System.Nullable<int> Original_firstQuarter, global::System.Nullable<int> Original_secondQuarter, global::System.Nullable<int> Original_thirdQuarter, global::System.Nullable<int> Original_fourthQuarter, global::System.Nullable<int> Original_annual, global::System.Nullable<int> Original_id_student) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_id));
             if ((Original_subject == null)) {
                 throw new global::System.ArgumentNullException("Original_subject");
@@ -3365,7 +3386,14 @@ SELECT id, subject, firstQuarter, secondQuarter, thirdQuarter, fourthQuarter, an
                 this.Adapter.DeleteCommand.Parameters[10].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
-            this.Adapter.DeleteCommand.Parameters[12].Value = ((int)(Original_id_student));
+            if ((Original_id_student.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[12].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[13].Value = ((int)(Original_id_student.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[12].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3386,7 +3414,7 @@ SELECT id, subject, firstQuarter, secondQuarter, thirdQuarter, fourthQuarter, an
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string subject, global::System.Nullable<int> firstQuarter, global::System.Nullable<int> secondQuarter, global::System.Nullable<int> thirdQuarter, global::System.Nullable<int> fourthQuarter, global::System.Nullable<int> annual, int id_student) {
+        public virtual int Insert(string subject, global::System.Nullable<int> firstQuarter, global::System.Nullable<int> secondQuarter, global::System.Nullable<int> thirdQuarter, global::System.Nullable<int> fourthQuarter, global::System.Nullable<int> annual, global::System.Nullable<int> id_student) {
             if ((subject == null)) {
                 throw new global::System.ArgumentNullException("subject");
             }
@@ -3423,7 +3451,12 @@ SELECT id, subject, firstQuarter, secondQuarter, thirdQuarter, fourthQuarter, an
             else {
                 this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
-            this.Adapter.InsertCommand.Parameters[6].Value = ((int)(id_student));
+            if ((id_student.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[6].Value = ((int)(id_student.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3451,7 +3484,7 @@ SELECT id, subject, firstQuarter, secondQuarter, thirdQuarter, fourthQuarter, an
                     global::System.Nullable<int> thirdQuarter, 
                     global::System.Nullable<int> fourthQuarter, 
                     global::System.Nullable<int> annual, 
-                    int id_student, 
+                    global::System.Nullable<int> id_student, 
                     int Original_id, 
                     string Original_subject, 
                     global::System.Nullable<int> Original_firstQuarter, 
@@ -3459,7 +3492,7 @@ SELECT id, subject, firstQuarter, secondQuarter, thirdQuarter, fourthQuarter, an
                     global::System.Nullable<int> Original_thirdQuarter, 
                     global::System.Nullable<int> Original_fourthQuarter, 
                     global::System.Nullable<int> Original_annual, 
-                    int Original_id_student, 
+                    global::System.Nullable<int> Original_id_student, 
                     int id) {
             if ((subject == null)) {
                 throw new global::System.ArgumentNullException("subject");
@@ -3497,7 +3530,12 @@ SELECT id, subject, firstQuarter, secondQuarter, thirdQuarter, fourthQuarter, an
             else {
                 this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(id_student));
+            if ((id_student.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(id_student.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
             this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_id));
             if ((Original_subject == null)) {
                 throw new global::System.ArgumentNullException("Original_subject");
@@ -3545,8 +3583,15 @@ SELECT id, subject, firstQuarter, secondQuarter, thirdQuarter, fourthQuarter, an
                 this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[19].Value = ((int)(Original_id_student));
-            this.Adapter.UpdateCommand.Parameters[20].Value = ((int)(id));
+            if ((Original_id_student.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((int)(Original_id_student.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[20].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[21].Value = ((int)(id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3567,7 +3612,7 @@ SELECT id, subject, firstQuarter, secondQuarter, thirdQuarter, fourthQuarter, an
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string subject, global::System.Nullable<int> firstQuarter, global::System.Nullable<int> secondQuarter, global::System.Nullable<int> thirdQuarter, global::System.Nullable<int> fourthQuarter, global::System.Nullable<int> annual, int id_student, int Original_id, string Original_subject, global::System.Nullable<int> Original_firstQuarter, global::System.Nullable<int> Original_secondQuarter, global::System.Nullable<int> Original_thirdQuarter, global::System.Nullable<int> Original_fourthQuarter, global::System.Nullable<int> Original_annual, int Original_id_student) {
+        public virtual int Update(string subject, global::System.Nullable<int> firstQuarter, global::System.Nullable<int> secondQuarter, global::System.Nullable<int> thirdQuarter, global::System.Nullable<int> fourthQuarter, global::System.Nullable<int> annual, global::System.Nullable<int> id_student, int Original_id, string Original_subject, global::System.Nullable<int> Original_firstQuarter, global::System.Nullable<int> Original_secondQuarter, global::System.Nullable<int> Original_thirdQuarter, global::System.Nullable<int> Original_fourthQuarter, global::System.Nullable<int> Original_annual, global::System.Nullable<int> Original_id_student) {
             return this.Update(subject, firstQuarter, secondQuarter, thirdQuarter, fourthQuarter, annual, id_student, Original_id, Original_subject, Original_firstQuarter, Original_secondQuarter, Original_thirdQuarter, Original_fourthQuarter, Original_annual, Original_id_student, Original_id);
         }
     }

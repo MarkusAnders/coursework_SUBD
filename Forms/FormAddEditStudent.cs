@@ -77,17 +77,12 @@ namespace coursework
 		private void button_editRecord_Click(object sender, EventArgs e)
 		{
 			conn.Connect();
-			string surname = surnameOfTextBox.Text;
-			string name = nameOfTextBox.Text;
-			string patronymic = patronymicOfTextBox.Text;
-			string classNumber = classOfTextBox.Text;
-			DateTime dataOfBirthDay = Convert.ToDateTime(dateOfBirthDay.Value);
 			MemoryStream ms = new MemoryStream();
 
 			if (nameOfTextBox.Text == null || surnameOfTextBox.Text == null || patronymicOfTextBox.Text == null
 				|| classOfTextBox.Text == null || dateOfBirthDay.Text == null || picturePhotoStudent.Image == null)
 			{
-				MessageBox.Show("Не все данные заполнены!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show("Не все поля заполнены!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 			else
 			{
@@ -102,9 +97,9 @@ namespace coursework
 						command = new SqlCommand(
 							"insert into students (surname, firstname, patronymic, gender, class, dataOfBirthDay, image) " +
 							"values (@surname, @firstname, @patronymic, @gender, @classNumber, @dataOfBirthDay, @image)", conn.connection);
-						command.Parameters.Add("surname", SqlDbType.NVarChar).Value = surname;
-						command.Parameters.Add("firstname", SqlDbType.NVarChar).Value = name;
-						command.Parameters.Add("patronymic", SqlDbType.NVarChar).Value = patronymic;
+						command.Parameters.Add("surname", SqlDbType.NVarChar).Value = surnameOfTextBox.Text;
+						command.Parameters.Add("firstname", SqlDbType.NVarChar).Value = nameOfTextBox.Text;
+						command.Parameters.Add("patronymic", SqlDbType.NVarChar).Value = patronymicOfTextBox.Text;
 						if (radioButtonMale.Checked == true && radioButtonFemale.Checked == false)
 						{
 							command.Parameters.Add("@gender", SqlDbType.VarChar).Value = "Мужской";
@@ -113,8 +108,8 @@ namespace coursework
 						{
 							command.Parameters.Add("@gender", SqlDbType.VarChar).Value = "Женский";
 						}
-						command.Parameters.Add("classNumber", SqlDbType.NVarChar).Value = classNumber;
-						command.Parameters.Add("dataOfBirthDay", SqlDbType.Date).Value = dataOfBirthDay;
+						command.Parameters.Add("classNumber", SqlDbType.NVarChar).Value = classOfTextBox.Text;
+						command.Parameters.Add("dataOfBirthDay", SqlDbType.Date).Value = Convert.ToDateTime(dateOfBirthDay.Value);
 						command.Parameters.Add("image", SqlDbType.Image).Value = photo;
 						command.ExecuteNonQuery();
 
@@ -140,9 +135,9 @@ namespace coursework
 								"update students " +
 								"set  surname = @surname, firstname = @firstname, patronymic = @patronymic, gender = @gender, class = @classNumber, dataOfBirthDay = @dataOfBirthDay, image = @image " +
 								"where id = @id", conn.connection);
-								command.Parameters.Add("surname", SqlDbType.NVarChar).Value = surname;
-								command.Parameters.Add("firstname", SqlDbType.NVarChar).Value = name;
-								command.Parameters.Add("patronymic", SqlDbType.NVarChar).Value = patronymic;
+								command.Parameters.Add("surname", SqlDbType.NVarChar).Value = surnameOfTextBox.Text;
+								command.Parameters.Add("firstname", SqlDbType.NVarChar).Value = nameOfTextBox.Text;
+								command.Parameters.Add("patronymic", SqlDbType.NVarChar).Value = patronymicOfTextBox.Text;
 								if (checkGender == "Мужской" && radioButtonMale.Checked == false && radioButtonFemale.Checked == true)
 								{
 									command.Parameters.Add("gender", SqlDbType.VarChar).Value = "Женский";
@@ -155,8 +150,8 @@ namespace coursework
 								{
 									command.Parameters.Add("gender", SqlDbType.VarChar).Value = checkGender;
 								}
-								command.Parameters.Add("classNumber", SqlDbType.NVarChar).Value = classNumber;
-								command.Parameters.Add("dataOfBirthDay", SqlDbType.Date).Value = dataOfBirthDay;
+								command.Parameters.Add("classNumber", SqlDbType.NVarChar).Value = classOfTextBox.Text;
+								command.Parameters.Add("dataOfBirthDay", SqlDbType.Date).Value = Convert.ToDateTime(dateOfBirthDay.Value);
 								command.Parameters.Add("image", SqlDbType.Image, 8000).Value = photo;
 								command.Parameters.Add("id", SqlDbType.Int).Value = id;
 								command.ExecuteNonQuery();
