@@ -32,6 +32,11 @@ namespace coursework
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAchievements));
 			this.GridListAchievements = new System.Windows.Forms.DataGridView();
+			this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.classOfReward = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.typeOfReward = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.subjectOfReward = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.idStudent = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.fKachievementsstudentsstudentsBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.studentsBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
@@ -40,6 +45,11 @@ namespace coursework
 			this.button_editRecord = new System.Windows.Forms.Button();
 			this.button_addRecord = new System.Windows.Forms.Button();
 			this.GridListStudents = new System.Windows.Forms.DataGridView();
+			this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.surnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.firstnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.patronymicDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.classDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.searchDataTextBox = new System.Windows.Forms.TextBox();
 			this.labelSearch = new System.Windows.Forms.Label();
 			this.tabControl = new System.Windows.Forms.TabControl();
@@ -53,16 +63,7 @@ namespace coursework
 			this.countAchievements = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.studentsTableAdapter = new coursework.subd_schoolDataSetTableAdapters.studentsTableAdapter();
 			this.achievements_studentsTableAdapter = new coursework.subd_schoolDataSetTableAdapters.achievements_studentsTableAdapter();
-			this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.surnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.firstnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.patronymicDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.classDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.classOfReward = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.typeOfReward = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.subjectOfReward = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.idStudent = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.label1 = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.GridListAchievements)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.fKachievementsstudentsstudentsBindingSource)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.studentsBindingSource)).BeginInit();
@@ -101,6 +102,43 @@ namespace coursework
 			this.GridListAchievements.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.GridListAchievements.Size = new System.Drawing.Size(936, 283);
 			this.GridListAchievements.TabIndex = 19;
+			// 
+			// id
+			// 
+			this.id.DataPropertyName = "id";
+			this.id.HeaderText = "id";
+			this.id.Name = "id";
+			this.id.ReadOnly = true;
+			this.id.Visible = false;
+			// 
+			// classOfReward
+			// 
+			this.classOfReward.DataPropertyName = "classOfReward";
+			this.classOfReward.HeaderText = "Класс награды";
+			this.classOfReward.Name = "classOfReward";
+			this.classOfReward.ReadOnly = true;
+			// 
+			// typeOfReward
+			// 
+			this.typeOfReward.DataPropertyName = "typeOfReward";
+			this.typeOfReward.HeaderText = "Тип награды";
+			this.typeOfReward.Name = "typeOfReward";
+			this.typeOfReward.ReadOnly = true;
+			// 
+			// subjectOfReward
+			// 
+			this.subjectOfReward.DataPropertyName = "subjectOfReward";
+			this.subjectOfReward.HeaderText = "Объект награды";
+			this.subjectOfReward.Name = "subjectOfReward";
+			this.subjectOfReward.ReadOnly = true;
+			// 
+			// idStudent
+			// 
+			this.idStudent.DataPropertyName = "id_Student";
+			this.idStudent.HeaderText = "id_Student";
+			this.idStudent.Name = "idStudent";
+			this.idStudent.ReadOnly = true;
+			this.idStudent.Visible = false;
 			// 
 			// fKachievementsstudentsstudentsBindingSource
 			// 
@@ -210,6 +248,43 @@ namespace coursework
 			this.GridListStudents.Size = new System.Drawing.Size(936, 283);
 			this.GridListStudents.TabIndex = 15;
 			// 
+			// idDataGridViewTextBoxColumn
+			// 
+			this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
+			this.idDataGridViewTextBoxColumn.HeaderText = "id";
+			this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+			this.idDataGridViewTextBoxColumn.ReadOnly = true;
+			this.idDataGridViewTextBoxColumn.Visible = false;
+			// 
+			// surnameDataGridViewTextBoxColumn
+			// 
+			this.surnameDataGridViewTextBoxColumn.DataPropertyName = "surname";
+			this.surnameDataGridViewTextBoxColumn.HeaderText = "Фамилия";
+			this.surnameDataGridViewTextBoxColumn.Name = "surnameDataGridViewTextBoxColumn";
+			this.surnameDataGridViewTextBoxColumn.ReadOnly = true;
+			// 
+			// firstnameDataGridViewTextBoxColumn
+			// 
+			this.firstnameDataGridViewTextBoxColumn.DataPropertyName = "firstname";
+			this.firstnameDataGridViewTextBoxColumn.HeaderText = "Имя";
+			this.firstnameDataGridViewTextBoxColumn.Name = "firstnameDataGridViewTextBoxColumn";
+			this.firstnameDataGridViewTextBoxColumn.ReadOnly = true;
+			// 
+			// patronymicDataGridViewTextBoxColumn
+			// 
+			this.patronymicDataGridViewTextBoxColumn.DataPropertyName = "patronymic";
+			this.patronymicDataGridViewTextBoxColumn.HeaderText = "Отчество";
+			this.patronymicDataGridViewTextBoxColumn.Name = "patronymicDataGridViewTextBoxColumn";
+			this.patronymicDataGridViewTextBoxColumn.ReadOnly = true;
+			// 
+			// classDataGridViewTextBoxColumn
+			// 
+			this.classDataGridViewTextBoxColumn.DataPropertyName = "class";
+			this.classDataGridViewTextBoxColumn.FillWeight = 60F;
+			this.classDataGridViewTextBoxColumn.HeaderText = "Класс";
+			this.classDataGridViewTextBoxColumn.Name = "classDataGridViewTextBoxColumn";
+			this.classDataGridViewTextBoxColumn.ReadOnly = true;
+			// 
 			// searchDataTextBox
 			// 
 			this.searchDataTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -232,9 +307,9 @@ namespace coursework
 			this.labelSearch.ForeColor = System.Drawing.Color.Gainsboro;
 			this.labelSearch.Location = new System.Drawing.Point(974, 34);
 			this.labelSearch.Name = "labelSearch";
-			this.labelSearch.Size = new System.Drawing.Size(78, 25);
+			this.labelSearch.Size = new System.Drawing.Size(85, 25);
 			this.labelSearch.TabIndex = 13;
-			this.labelSearch.Text = "Поиск";
+			this.labelSearch.Text = "Поиск:";
 			// 
 			// tabControl
 			// 
@@ -342,79 +417,17 @@ namespace coursework
 			// 
 			this.achievements_studentsTableAdapter.ClearBeforeFill = true;
 			// 
-			// idDataGridViewTextBoxColumn
+			// label1
 			// 
-			this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
-			this.idDataGridViewTextBoxColumn.HeaderText = "id";
-			this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-			this.idDataGridViewTextBoxColumn.ReadOnly = true;
-			this.idDataGridViewTextBoxColumn.Visible = false;
-			// 
-			// surnameDataGridViewTextBoxColumn
-			// 
-			this.surnameDataGridViewTextBoxColumn.DataPropertyName = "surname";
-			this.surnameDataGridViewTextBoxColumn.HeaderText = "Фамилия";
-			this.surnameDataGridViewTextBoxColumn.Name = "surnameDataGridViewTextBoxColumn";
-			this.surnameDataGridViewTextBoxColumn.ReadOnly = true;
-			// 
-			// firstnameDataGridViewTextBoxColumn
-			// 
-			this.firstnameDataGridViewTextBoxColumn.DataPropertyName = "firstname";
-			this.firstnameDataGridViewTextBoxColumn.HeaderText = "Имя";
-			this.firstnameDataGridViewTextBoxColumn.Name = "firstnameDataGridViewTextBoxColumn";
-			this.firstnameDataGridViewTextBoxColumn.ReadOnly = true;
-			// 
-			// patronymicDataGridViewTextBoxColumn
-			// 
-			this.patronymicDataGridViewTextBoxColumn.DataPropertyName = "patronymic";
-			this.patronymicDataGridViewTextBoxColumn.HeaderText = "Отчество";
-			this.patronymicDataGridViewTextBoxColumn.Name = "patronymicDataGridViewTextBoxColumn";
-			this.patronymicDataGridViewTextBoxColumn.ReadOnly = true;
-			// 
-			// classDataGridViewTextBoxColumn
-			// 
-			this.classDataGridViewTextBoxColumn.DataPropertyName = "class";
-			this.classDataGridViewTextBoxColumn.FillWeight = 60F;
-			this.classDataGridViewTextBoxColumn.HeaderText = "Класс";
-			this.classDataGridViewTextBoxColumn.Name = "classDataGridViewTextBoxColumn";
-			this.classDataGridViewTextBoxColumn.ReadOnly = true;
-			// 
-			// id
-			// 
-			this.id.DataPropertyName = "id";
-			this.id.HeaderText = "id";
-			this.id.Name = "id";
-			this.id.ReadOnly = true;
-			this.id.Visible = false;
-			// 
-			// classOfReward
-			// 
-			this.classOfReward.DataPropertyName = "classOfReward";
-			this.classOfReward.HeaderText = "Класс награды";
-			this.classOfReward.Name = "classOfReward";
-			this.classOfReward.ReadOnly = true;
-			// 
-			// typeOfReward
-			// 
-			this.typeOfReward.DataPropertyName = "typeOfReward";
-			this.typeOfReward.HeaderText = "Тип награды";
-			this.typeOfReward.Name = "typeOfReward";
-			this.typeOfReward.ReadOnly = true;
-			// 
-			// subjectOfReward
-			// 
-			this.subjectOfReward.DataPropertyName = "subjectOfReward";
-			this.subjectOfReward.HeaderText = "Объект награды";
-			this.subjectOfReward.Name = "subjectOfReward";
-			this.subjectOfReward.ReadOnly = true;
-			// 
-			// idStudent
-			// 
-			this.idStudent.DataPropertyName = "id_Student";
-			this.idStudent.HeaderText = "id_Student";
-			this.idStudent.Name = "idStudent";
-			this.idStudent.ReadOnly = true;
-			this.idStudent.Visible = false;
+			this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.label1.AutoSize = true;
+			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+			this.label1.ForeColor = System.Drawing.Color.Gainsboro;
+			this.label1.Location = new System.Drawing.Point(1055, 41);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(98, 17);
+			this.label1.TabIndex = 21;
+			this.label1.Text = "по фамилии";
 			// 
 			// FormAchievements
 			// 
@@ -422,6 +435,7 @@ namespace coursework
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(33)))), ((int)(((byte)(74)))));
 			this.ClientSize = new System.Drawing.Size(1190, 640);
+			this.Controls.Add(this.label1);
 			this.Controls.Add(this.tabControl);
 			this.Controls.Add(this.button_deleteRecord);
 			this.Controls.Add(this.button_editRecord);
@@ -482,5 +496,6 @@ namespace coursework
 		private System.Windows.Forms.DataGridViewTextBoxColumn firstnameDataGridViewTextBoxColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn patronymicDataGridViewTextBoxColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn classDataGridViewTextBoxColumn;
+		private System.Windows.Forms.Label label1;
 	}
 }
