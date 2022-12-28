@@ -44,9 +44,13 @@ namespace coursework
 			this.button_closeChildForm = new System.Windows.Forms.Button();
 			this.labelTitle = new System.Windows.Forms.Label();
 			this.panelChildForm = new System.Windows.Forms.Panel();
+			this.pictureBox1 = new System.Windows.Forms.PictureBox();
+			this.label2 = new System.Windows.Forms.Label();
 			this.panelMenu.SuspendLayout();
 			this.panelLogo.SuspendLayout();
 			this.panelTitle.SuspendLayout();
+			this.panelChildForm.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// panelMenu
@@ -164,7 +168,7 @@ namespace coursework
 			this.label1.AutoSize = true;
 			this.label1.Font = new System.Drawing.Font("Segoe UI Symbol", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label1.ForeColor = System.Drawing.Color.LightGray;
-			this.label1.Location = new System.Drawing.Point(78, 29);
+			this.label1.Location = new System.Drawing.Point(69, 29);
 			this.label1.Name = "label1";
 			this.label1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
 			this.label1.Size = new System.Drawing.Size(102, 20);
@@ -192,7 +196,7 @@ namespace coursework
 			this.button_minimize.FlatAppearance.BorderSize = 0;
 			this.button_minimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.button_minimize.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.button_minimize.ForeColor = System.Drawing.Color.White;
+			this.button_minimize.ForeColor = System.Drawing.Color.Transparent;
 			this.button_minimize.Location = new System.Drawing.Point(1073, 0);
 			this.button_minimize.Name = "button_minimize";
 			this.button_minimize.Size = new System.Drawing.Size(35, 35);
@@ -259,11 +263,39 @@ namespace coursework
 			// panelChildForm
 			// 
 			this.panelChildForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(33)))), ((int)(((byte)(74)))));
+			this.panelChildForm.Controls.Add(this.label2);
+			this.panelChildForm.Controls.Add(this.pictureBox1);
 			this.panelChildForm.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panelChildForm.Location = new System.Drawing.Point(250, 70);
 			this.panelChildForm.Name = "panelChildForm";
 			this.panelChildForm.Size = new System.Drawing.Size(1190, 640);
 			this.panelChildForm.TabIndex = 2;
+			// 
+			// pictureBox1
+			// 
+			this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+			this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+			this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+			this.pictureBox1.InitialImage = null;
+			this.pictureBox1.Location = new System.Drawing.Point(225, 167);
+			this.pictureBox1.Name = "pictureBox1";
+			this.pictureBox1.Size = new System.Drawing.Size(238, 279);
+			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+			this.pictureBox1.TabIndex = 0;
+			this.pictureBox1.TabStop = false;
+			// 
+			// label2
+			// 
+			this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
+			this.label2.AutoSize = true;
+			this.label2.Font = new System.Drawing.Font("Showcard Gothic", 39.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label2.ForeColor = System.Drawing.Color.LightGray;
+			this.label2.Location = new System.Drawing.Point(487, 255);
+			this.label2.Name = "label2";
+			this.label2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+			this.label2.Size = new System.Drawing.Size(326, 66);
+			this.label2.TabIndex = 2;
+			this.label2.Text = "AIS school";
 			// 
 			// FormMain
 			// 
@@ -286,6 +318,9 @@ namespace coursework
 			this.panelLogo.PerformLayout();
 			this.panelTitle.ResumeLayout(false);
 			this.panelTitle.PerformLayout();
+			this.panelChildForm.ResumeLayout(false);
+			this.panelChildForm.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -306,6 +341,8 @@ namespace coursework
 		private System.Windows.Forms.Button button_minimize;
 		private System.Windows.Forms.Button button_maximize;
 		private System.Windows.Forms.Button button_exit;
+		private System.Windows.Forms.PictureBox pictureBox1;
+		private System.Windows.Forms.Label label2;
 	}
 }
 
