@@ -205,6 +205,9 @@
     <EmbeddedResource Include="Forms\FormAddEditAchievements.resx">
       <DependentUpon>FormAddEditAchievements.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormAddEditCertification.resx">
+      <DependentUpon>FormAddEditCertification.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormCertification.resx">
       <DependentUpon>FormCertification.cs</DependentUpon>
     </EmbeddedResource>

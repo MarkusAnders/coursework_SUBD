@@ -4,6 +4,8 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace coursework
@@ -11,6 +13,9 @@ namespace coursework
 	public partial class FormAchievements : Form
 	{
 		readonly DatabaseConnect conn = new DatabaseConnect();
+		private Thread dt;
+		private Thread dataTable;
+
 		public FormAchievements()
 		{
 			InitializeComponent();
@@ -19,12 +24,12 @@ namespace coursework
 		}
 
 		#region[Загрузка  таблицы]
-		private void FormAchievements_Load(object sender, EventArgs e)
+		private  void FormAchievements_Load(object sender, EventArgs e)
 		{
 			this.achievements_studentsTableAdapter.Fill(this.subd_schoolDataSet.achievements_students);
-			this.studentsTableAdapter.Fill(this.subd_schoolDataSet.students) ;
+			this.studentsTableAdapter.Fill(this.subd_schoolDataSet.students);
 			this.GridListStudents.Sort(this.GridListStudents.Columns["surnameDataGridViewTextBoxColumn"], ListSortDirection.Ascending);
-			//ColorGridTable();
+			this.GridListAchievements.Sort(this.GridListAchievements.Columns["classOfReward"], ListSortDirection.Ascending);
 		}
 		#endregion
 
@@ -39,11 +44,6 @@ namespace coursework
 		#region[Кнопки добавления, редактирования и удаления]
 		private void button_addRecord_Click(object sender, EventArgs e)
 		{
-			FormAddEditAchievements formAEA = new FormAddEditAchievements();
-			formAEA.labelTitle.Text = "Добавление достижения";
-			formAEA.button_editRecord.Text = "Добавить  ";
-			formAEA.button_editRecord.Image = Image.FromFile(Path.Combine(Application.StartupPath, @"icon\reward.png"));
-
 			if (GridListStudents.RowCount > 0)
 			{
 				int id_Student = int.Parse(GridListStudents.SelectedRows[0].Cells["idDataGridViewTextBoxColumn"].Value.ToString());
@@ -51,7 +51,7 @@ namespace coursework
 			}
 			else
 			{
-				MessageBox.Show("Не возможно добавить запись!", "Отсутствуют записи учеников", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				MessageBox.Show("Не возможно добавить запись!", "Отсутствуют список учеников", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 			}
 
 			ReloadTable();
@@ -103,59 +103,10 @@ namespace coursework
 		}
 		#endregion
 
-		#region[Поиск данных]
-		private void searchDataTextBox_TextChanged(object sender, EventArgs e)
-		{
-			
-		}
-
-		private void SearchData(DataGridView dgw)
-		{
-			conn.Connect();
-
-			//string search = $"select * from students where concat (id, surname, firstname, patronymic, class) like '%" + searchDataTextBox.Text + "%'";
-			//SqlCommand command = new SqlCommand(search, conn.connection);
-			//SqlDataReader reader = command.ExecuteReader();
-
-			//while (reader.Read())
-			//{
-			//	ReadSingleRow(dgw, reader);
-			//	for (int i = 0; i < GridListSudentCountAchievements.Rows.Count; i++)
-			//	{
-			//		GridListSudentCountAchievements.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(222, 222, 222);
-			//		i++;
-			//	}
-			//}
-			//reader.Close();
-
-			conn.Disconnect();
-		}
-		#endregion
-
-		#region[Цвета кнопок]
-		private void LoadTheme()
-		{
-			foreach (Control btns in this.Controls)
-			{
-				if (btns.GetType() == typeof(Button))
-				{
-					Button btn = (Button)btns;
-					btn.BackColor = ThemeColor.PrimaryColor;
-					btn.ForeColor = Color.White;
-					btn.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
-				}
-				GridListStudents.DefaultCellStyle.SelectionBackColor = ThemeColor.PrimaryColor;
-				GridListAchievements.DefaultCellStyle.SelectionBackColor = ThemeColor.PrimaryColor;
-				GridListSudentCountAchievements.DefaultCellStyle.SelectionBackColor = ThemeColor.PrimaryColor;
-				labelSearch.ForeColor = ThemeColor.PrimaryColor;
-			}
-		}
-		#endregion	}
-
 		#region[Вывод кол-во достиежний и выключение кнопок]
 		private void ReadSingleRow(DataGridView dgw, IDataRecord record)
 		{
-			dgw.Rows.Add(record.GetString(0), record.GetString(1), record.GetString(2), record.GetString(3), record.GetInt32(4).ToString());
+			dgw.Rows.Add(record.GetString(0), record.GetString(1), record.GetString(2), record.GetString(3), Convert.ToString(record.GetInt32(4)));
 		}
 
 		private void CountRecord(DataGridView dgw)
@@ -201,29 +152,83 @@ namespace coursework
 		}
 		#endregion
 
-		#region[Перекрас строк таблиц]
-		//private void ColorGridTable()
-		//{
-		//	for (int i = 0; i < GridListStudents.Rows.Count; i++)
-		//	{
-		//		GridListStudents.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(222, 222, 222);
-		//		i++;
-		//	}
+		#region[Поиск данных]
+		private void searchDataTextBox_TextChanged(object sender, EventArgs e)
+		{
+			conn.Connect();
+			SqlCommand command = new SqlCommand("pr_SearchDataOnStudents", conn.connection);
+			command.CommandType = CommandType.StoredProcedure;
+			command.Parameters.Add(new SqlParameter("@Surname", SqlDbType.VarChar, 30));
+			command.Parameters["@Surname"].Value = searchDataTextBox.Text;
 
-		//	for (int i = 0; i < GridListAchievements.Rows.Count; i++)
-		//	{
-		//		GridListAchievements.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(222, 222, 222);
-		//		i++;
-		//	}
+			try
+			{
+				DataTable table = new DataTable();
+				SqlDataAdapter adapter = new SqlDataAdapter(command);
+				adapter.Fill(table);
+				BindingSource bs = new BindingSource();
+				bs.DataSource = table;
+				GridListStudents.DataSource = bs;
+			}
+			catch (Exception)
+			{
+				throw;
+			}
 
-		//	for (int i = 0; i < GridListSudentCountAchievements.Rows.Count; i++)
-		//	{
-		//		GridListSudentCountAchievements.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(222, 222, 222);
-		//		i++;
-		//	}
-		//}
+			conn.Disconnect();
+
+			SearchData(GridListSudentCountAchievements);
+		}
+
+		private void SearchData(DataGridView dgw)
+		{
+			//conn.Connect();
+
+			//string search = $"select STUDENTS.[surname], STUDENTS.[firstname], STUDENTS.[patronymic], STUDENTS.[class], " +
+			//	$"count([subd_school].[dbo].[achievements_students].[id_Student]) as Reward FROM STUDENTS " +
+			//	$"JOIN[subd_school].[dbo].[achievements_students] on[subd_school].[dbo].[achievements_students].[id_Student] = STUDENTS.Id " +
+			//	$"WHERE concat(STUDENTS.[surname], STUDENTS.[firstname], STUDENTS.[patronymic], STUDENTS.[class]) like '%" + searchDataTextBox.Text + "%'" +
+			//	$"GROUP BY STUDENTS.[surname], STUDENTS.[firstname], STUDENTS.[patronymic], STUDENTS.[class]";
+			//SqlCommand command = new SqlCommand(search, conn.connection);
+			//SqlDataReader reader = command.ExecuteReader();
+
+			//while (reader.Read())
+			//{
+			//	GridListSudentCountAchievements.SelectedRows[0].Cells["surname"].Value.ToString();
+			//	GridListSudentCountAchievements.SelectedRows[0].Cells["firtsname"].Value.ToString();
+			//	GridListSudentCountAchievements.SelectedRows[0].Cells["patronymic"].Value.ToString();
+			//	GridListSudentCountAchievements.SelectedRows[0].Cells["classNumber"].Value.ToString();
+			//	GridListSudentCountAchievements.SelectedRows[0].Cells["countAchievements"].Value.ToString();
+			//	for (int i = 0; i < GridListSudentCountAchievements.Rows.Count; i++)
+			//	{
+			//		GridListSudentCountAchievements.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(222, 222, 222);
+			//		i++;
+			//	}
+			//}
+			//reader.Close();
+
+			//conn.Disconnect();
+		}
 		#endregion
 
-		
+		#region[Цвета кнопок]
+		private void LoadTheme()
+		{
+			foreach (Control btns in this.Controls)
+			{
+				if (btns.GetType() == typeof(Button))
+				{
+					Button btn = (Button)btns;
+					btn.BackColor = ThemeColor.PrimaryColor;
+					btn.ForeColor = Color.White;
+					btn.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
+				}
+				GridListStudents.DefaultCellStyle.SelectionBackColor = ThemeColor.PrimaryColor;
+				GridListAchievements.DefaultCellStyle.SelectionBackColor = ThemeColor.PrimaryColor;
+				GridListSudentCountAchievements.DefaultCellStyle.SelectionBackColor = ThemeColor.PrimaryColor;
+				labelSearch.ForeColor = ThemeColor.PrimaryColor;
+			}
+		}
+		#endregion	
 	}
 }

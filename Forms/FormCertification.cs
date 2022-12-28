@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
@@ -23,7 +24,7 @@ namespace coursework
 			this.certificationTableAdapter.Fill(this.subd_schoolDataSet.certification);
 			this.studentsTableAdapter.Fill(this.subd_schoolDataSet.students);
 			this.GridListStudents.Sort(this.GridListStudents.Columns["surnameDataGridViewTextBoxColumn"], ListSortDirection.Ascending);
-
+			this.GridListCertification.Sort(this.GridListCertification.Columns["subject"], ListSortDirection.Ascending);
 		}
 		#endregion
 
@@ -40,7 +41,8 @@ namespace coursework
 		{
 			if (GridListStudents.RowCount > 0)
 			{
-				
+				int id_Student = int.Parse(GridListStudents.SelectedRows[0].Cells["idDataGridViewTextBoxColumn"].Value.ToString());
+				new FormAddEditCertification(id_Student).ShowDialog();
 			}
 			else
 			{
@@ -54,7 +56,15 @@ namespace coursework
 		{
 			if (GridListCertification.RowCount > 0)
 			{
-				
+				int id = int.Parse(GridListCertification.SelectedRows[0].Cells["id"].Value.ToString());
+				string subject = GridListCertification.SelectedRows[0].Cells["subject"].Value.ToString();
+				int firstQuarter = int.Parse(GridListCertification.SelectedRows[0].Cells["firstQuarter"].Value.ToString());
+				int secondQuarter = int.Parse(GridListCertification.SelectedRows[0].Cells["secondQuarter"].Value.ToString());
+				int thirdQuarter = int.Parse(GridListCertification.SelectedRows[0].Cells["thirdQuarter"].Value.ToString());
+				int fourthQuarter = int.Parse(GridListCertification.SelectedRows[0].Cells["fourthQuarter"].Value.ToString());
+				int annual = int.Parse(GridListCertification.SelectedRows[0].Cells["annual"].Value.ToString());
+				int id_Student = int.Parse(GridListStudents.SelectedRows[0].Cells["idDataGridViewTextBoxColumn"].Value.ToString());
+				new FormAddEditCertification(id, subject, firstQuarter, secondQuarter, thirdQuarter, fourthQuarter, annual, id_Student).ShowDialog();
 			}
 			else
 			{
@@ -89,6 +99,29 @@ namespace coursework
 		#endregion
 
 		#region[Поиск данных]
+		private void searchDataTextBox_TextChanged(object sender, EventArgs e)
+		{
+			conn.Connect();
+			SqlCommand command = new SqlCommand("pr_SearchDataOnStudents", conn.connection);
+			command.CommandType = CommandType.StoredProcedure;
+			command.Parameters.Add(new SqlParameter("@Surname", SqlDbType.VarChar, 30));
+			command.Parameters["@Surname"].Value = searchDataTextBox.Text;
+
+			try
+			{
+				DataTable table = new DataTable();
+				SqlDataAdapter adapter = new SqlDataAdapter(command);
+				adapter.Fill(table);
+				BindingSource bs = new BindingSource();
+				bs.DataSource = table;
+				GridListStudents.DataSource = bs;
+			}
+			catch (Exception)
+			{
+				throw;
+			}
+			conn.Disconnect();
+		}
 		#endregion
 
 		#region[Цвета кнопок]

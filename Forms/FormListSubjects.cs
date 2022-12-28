@@ -38,12 +38,6 @@ namespace coursework
 			while (reader.Read())
 			{
 				ReadSingleRow(dgw, reader);
-
-				for (int i = 0; i < GridListSubjects.Rows.Count; i++)
-				{
-					GridListSubjects.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(222, 222, 222);
-					i++;
-				}
 			}
 			reader.Close();
 			conn.Disconnect();
@@ -93,9 +87,8 @@ namespace coursework
 				conn.Connect();
 
 				int id = int.Parse(GridListSubjects.SelectedRows[0].Cells["id"].Value.ToString());
-				SqlCommand delete = new SqlCommand("delete from academic_subject where id=" + id, conn.connection);
-				delete.ExecuteNonQuery();
-				MessageBox.Show("Запись удалена!", "", MessageBoxButtons.OK);
+				SqlCommand command = new SqlCommand("exec deleteRecord ' " + id + " '", conn.connection);
+				command.ExecuteNonQuery();
 				RefreshTable(GridListSubjects);
 				conn.Disconnect();
 			}
@@ -115,7 +108,7 @@ namespace coursework
 			{
 				dgw.Rows.Clear();
 
-				string search = $"select * from academic_subject where concat (subject, hours) like '%" + searchDataTextBox.Text + "%'";
+				string search = $"select * from academic_subject where concat (subject, ' ', hours, '   ') like '%" + searchDataTextBox.Text + "%' order by subject";
 
 
 				SqlCommand command = new SqlCommand(search, conn.connection);
@@ -125,12 +118,6 @@ namespace coursework
 				while (reader.Read())
 				{
 					ReadSingleRow(dgw, reader);
-
-					for (int i = 0; i < GridListSubjects.Rows.Count; i++)
-					{
-						GridListSubjects.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(222, 222, 222);
-						i++;
-					}
 				}
 				reader.Close();
 			}

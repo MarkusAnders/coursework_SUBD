@@ -24,6 +24,7 @@ namespace coursework
 		{
 			LoadTable();
 		}
+
 		#region[Загрузка таблицы]
 		private void ReadSingleRow(DataGridView dgw, IDataRecord record)
 		{
@@ -34,7 +35,6 @@ namespace coursework
 		private void RefreshTable(DataGridView dgw)
 		{
 			conn.Connect();
-
 
 			GridListStudents.Rows.Clear();
 
@@ -53,12 +53,6 @@ namespace coursework
 
 				GridListStudents.Rows[counter].Cells[7].Value = photo;
 				counter++;
-
-				for (int i = 0; i < GridListStudents.Rows.Count; i++)
-				{
-					GridListStudents.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(222, 222, 222);
-					i++;
-				}
 			}
 			reader.Close();
 			conn.Disconnect();
@@ -177,10 +171,11 @@ namespace coursework
 		{
 			conn.Connect();
 
-			string search = $"select * from students where concat (id, surname, firstname, patronymic, class) like '%" + searchDataTextBox.Text + "%'";
+			string search = $"select * from students where concat (surname, ' ', firstname, ' ', patronymic, ' ', class, '   ')  like '%" + searchDataTextBox.Text + "%' ORDER BY surname";
 			SqlCommand command = new SqlCommand(search, conn.connection);
 			SqlDataReader reader = command.ExecuteReader();
 			int counter = 0;
+			dgw.Rows.Clear();
 			while (reader.Read())
 			{
 				ArrayImage = new byte[((byte[])reader["image"]).Length];
@@ -193,12 +188,6 @@ namespace coursework
 
 				GridListStudents.Rows[counter].Cells[7].Value = photo;
 				counter++;
-
-				for (int i = 0; i < GridListStudents.Rows.Count; i++)
-				{
-					GridListStudents.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(222, 222, 222);
-					i++;
-				}
 			}
 			reader.Close();
 
