@@ -61,11 +61,12 @@ namespace coursework
 			if (GridListAchievements.RowCount > 0)
 			{
 				int id = int.Parse(GridListAchievements.SelectedRows[0].Cells["id"].Value.ToString());
+				string nameOfReward = GridListAchievements.SelectedRows[0].Cells["classOfReward"].Value.ToString();
 				string classOfReward = GridListAchievements.SelectedRows[0].Cells["classOfReward"].Value.ToString();
 				string typeOfReward = GridListAchievements.SelectedRows[0].Cells["typeOfReward"].Value.ToString();
 				string subjectOfReward = GridListAchievements.SelectedRows[0].Cells["subjectOfReward"].Value.ToString();
 				int id_Student = int.Parse(GridListStudents.SelectedRows[0].Cells["idDataGridViewTextBoxColumn"].Value.ToString());
-				new FormAddEditAchievements(id, classOfReward, typeOfReward, subjectOfReward, id_Student).ShowDialog();
+				new FormAddEditAchievements(id, nameOfReward, classOfReward, typeOfReward, subjectOfReward, id_Student).ShowDialog();
 			}
 			else
 			{

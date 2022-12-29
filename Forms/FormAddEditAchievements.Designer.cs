@@ -36,6 +36,8 @@ namespace coursework
 			this.button_exitFromFrom = new System.Windows.Forms.Button();
 			this.panel6 = new System.Windows.Forms.Panel();
 			this.listSubjectsBox = new System.Windows.Forms.ComboBox();
+			this.academicsubjectBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.subd_schoolDataSet = new coursework.subd_schoolDataSet();
 			this.label4 = new System.Windows.Forms.Label();
 			this.panel5 = new System.Windows.Forms.Panel();
 			this.classOfRewardOfTextBox = new System.Windows.Forms.TextBox();
@@ -44,15 +46,17 @@ namespace coursework
 			this.typeOfRewardOfTextBox = new System.Windows.Forms.TextBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.button_editRecord = new System.Windows.Forms.Button();
-			this.subd_schoolDataSet = new coursework.subd_schoolDataSet();
-			this.academicsubjectBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.academic_subjectTableAdapter = new coursework.subd_schoolDataSetTableAdapters.academic_subjectTableAdapter();
+			this.panel1 = new System.Windows.Forms.Panel();
+			this.nameOfRewardOfTextBox = new System.Windows.Forms.TextBox();
+			this.label1 = new System.Windows.Forms.Label();
 			this.panelMainTitle.SuspendLayout();
 			this.panel6.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.academicsubjectBindingSource)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.subd_schoolDataSet)).BeginInit();
 			this.panel5.SuspendLayout();
 			this.panel2.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.subd_schoolDataSet)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.academicsubjectBindingSource)).BeginInit();
+			this.panel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panelMainTitle
@@ -88,7 +92,7 @@ namespace coursework
 			this.button_exitFromFrom.ForeColor = System.Drawing.Color.Gainsboro;
 			this.button_exitFromFrom.Image = ((System.Drawing.Image)(resources.GetObject("button_exitFromFrom.Image")));
 			this.button_exitFromFrom.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.button_exitFromFrom.Location = new System.Drawing.Point(272, 229);
+			this.button_exitFromFrom.Location = new System.Drawing.Point(272, 272);
 			this.button_exitFromFrom.Name = "button_exitFromFrom";
 			this.button_exitFromFrom.Size = new System.Drawing.Size(207, 50);
 			this.button_exitFromFrom.TabIndex = 4;
@@ -103,7 +107,7 @@ namespace coursework
 			this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panel6.Controls.Add(this.listSubjectsBox);
 			this.panel6.Controls.Add(this.label4);
-			this.panel6.Location = new System.Drawing.Point(12, 166);
+			this.panel6.Location = new System.Drawing.Point(12, 213);
 			this.panel6.Name = "panel6";
 			this.panel6.Size = new System.Drawing.Size(467, 44);
 			this.panel6.TabIndex = 2;
@@ -121,6 +125,16 @@ namespace coursework
 			this.listSubjectsBox.TabIndex = 0;
 			this.listSubjectsBox.ValueMember = "subject";
 			// 
+			// academicsubjectBindingSource
+			// 
+			this.academicsubjectBindingSource.DataMember = "academic_subject";
+			this.academicsubjectBindingSource.DataSource = this.subd_schoolDataSet;
+			// 
+			// subd_schoolDataSet
+			// 
+			this.subd_schoolDataSet.DataSetName = "subd_schoolDataSet";
+			this.subd_schoolDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+			// 
 			// label4
 			// 
 			this.label4.AutoSize = true;
@@ -137,7 +151,7 @@ namespace coursework
 			this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panel5.Controls.Add(this.classOfRewardOfTextBox);
 			this.panel5.Controls.Add(this.label3);
-			this.panel5.Location = new System.Drawing.Point(12, 66);
+			this.panel5.Location = new System.Drawing.Point(12, 113);
 			this.panel5.Name = "panel5";
 			this.panel5.Size = new System.Drawing.Size(467, 44);
 			this.panel5.TabIndex = 0;
@@ -170,7 +184,7 @@ namespace coursework
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panel2.Controls.Add(this.typeOfRewardOfTextBox);
 			this.panel2.Controls.Add(this.label2);
-			this.panel2.Location = new System.Drawing.Point(12, 116);
+			this.panel2.Location = new System.Drawing.Point(12, 163);
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(467, 44);
 			this.panel2.TabIndex = 1;
@@ -185,7 +199,6 @@ namespace coursework
 			this.typeOfRewardOfTextBox.Name = "typeOfRewardOfTextBox";
 			this.typeOfRewardOfTextBox.Size = new System.Drawing.Size(231, 24);
 			this.typeOfRewardOfTextBox.TabIndex = 0;
-			this.typeOfRewardOfTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.classOfRewardOfTextBox_KeyPress);
 			// 
 			// label2
 			// 
@@ -207,7 +220,7 @@ namespace coursework
 			this.button_editRecord.ForeColor = System.Drawing.Color.Gainsboro;
 			this.button_editRecord.Image = ((System.Drawing.Image)(resources.GetObject("button_editRecord.Image")));
 			this.button_editRecord.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.button_editRecord.Location = new System.Drawing.Point(12, 229);
+			this.button_editRecord.Location = new System.Drawing.Point(12, 272);
 			this.button_editRecord.Name = "button_editRecord";
 			this.button_editRecord.Size = new System.Drawing.Size(207, 50);
 			this.button_editRecord.TabIndex = 3;
@@ -217,26 +230,50 @@ namespace coursework
 			this.button_editRecord.UseVisualStyleBackColor = true;
 			this.button_editRecord.Click += new System.EventHandler(this.button_editRecord_Click_1);
 			// 
-			// subd_schoolDataSet
-			// 
-			this.subd_schoolDataSet.DataSetName = "subd_schoolDataSet";
-			this.subd_schoolDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-			// 
-			// academicsubjectBindingSource
-			// 
-			this.academicsubjectBindingSource.DataMember = "academic_subject";
-			this.academicsubjectBindingSource.DataSource = this.subd_schoolDataSet;
-			// 
 			// academic_subjectTableAdapter
 			// 
 			this.academic_subjectTableAdapter.ClearBeforeFill = true;
+			// 
+			// panel1
+			// 
+			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.nameOfRewardOfTextBox);
+			this.panel1.Controls.Add(this.label1);
+			this.panel1.Location = new System.Drawing.Point(12, 63);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(467, 44);
+			this.panel1.TabIndex = 1;
+			// 
+			// nameOfRewardOfTextBox
+			// 
+			this.nameOfRewardOfTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.nameOfRewardOfTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+			this.nameOfRewardOfTextBox.Location = new System.Drawing.Point(226, 8);
+			this.nameOfRewardOfTextBox.MaxLength = 30;
+			this.nameOfRewardOfTextBox.Multiline = true;
+			this.nameOfRewardOfTextBox.Name = "nameOfRewardOfTextBox";
+			this.nameOfRewardOfTextBox.Size = new System.Drawing.Size(231, 24);
+			this.nameOfRewardOfTextBox.TabIndex = 0;
+			this.nameOfRewardOfTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.nameOfRewardOfTextBox_KeyPress);
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+			this.label1.ForeColor = System.Drawing.Color.Gainsboro;
+			this.label1.Location = new System.Drawing.Point(16, 8);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(178, 24);
+			this.label1.TabIndex = 0;
+			this.label1.Text = "Название награды";
 			// 
 			// FormAddEditAchievements
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(33)))), ((int)(((byte)(74)))));
-			this.ClientSize = new System.Drawing.Size(496, 297);
+			this.ClientSize = new System.Drawing.Size(496, 331);
+			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.button_editRecord);
 			this.Controls.Add(this.panel6);
 			this.Controls.Add(this.panel5);
@@ -252,12 +289,14 @@ namespace coursework
 			this.panelMainTitle.PerformLayout();
 			this.panel6.ResumeLayout(false);
 			this.panel6.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.academicsubjectBindingSource)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.subd_schoolDataSet)).EndInit();
 			this.panel5.ResumeLayout(false);
 			this.panel5.PerformLayout();
 			this.panel2.ResumeLayout(false);
 			this.panel2.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.subd_schoolDataSet)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.academicsubjectBindingSource)).EndInit();
+			this.panel1.ResumeLayout(false);
+			this.panel1.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -280,5 +319,8 @@ namespace coursework
 		private subd_schoolDataSet subd_schoolDataSet;
 		private System.Windows.Forms.BindingSource academicsubjectBindingSource;
 		private subd_schoolDataSetTableAdapters.academic_subjectTableAdapter academic_subjectTableAdapter;
+		private System.Windows.Forms.Panel panel1;
+		private System.Windows.Forms.TextBox nameOfRewardOfTextBox;
+		private System.Windows.Forms.Label label1;
 	}
 }

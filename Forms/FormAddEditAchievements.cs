@@ -14,6 +14,7 @@ namespace coursework
 		readonly DatabaseConnect conn = new DatabaseConnect();
 		readonly int id = -1;
 		int idStudent;
+		string checkingForChangesNameOfReward = string.Empty;
 		string checkingForChangesClassOfReward = string.Empty;
 		string checkingForChangesTypeOfReward = string.Empty;
 		string checkingForChangesSubjectOfReward = string.Empty;
@@ -24,7 +25,6 @@ namespace coursework
 		}
 		private void FormAddEditAchievements_Load(object sender, EventArgs e)
 		{
-			// TODO: данная строка кода позволяет загрузить данные в таблицу "subd_schoolDataSet.academic_subject". При необходимости она может быть перемещена или удалена.
 			this.academic_subjectTableAdapter.Fill(this.subd_schoolDataSet.academic_subject);
 			listSubjectsBox.SelectedValue = checkingForChangesSubjectOfReward;
 		}
@@ -39,14 +39,17 @@ namespace coursework
 			button_editRecord.Image = Image.FromFile(Path.Combine(Application.StartupPath, @"icon\reward.png"));
 		}
 
-		public FormAddEditAchievements(int id, string classOfReward, string typeOfReward, string subjectOfReward, int id_Student) : base() // Для редактирования 
+		public FormAddEditAchievements(int id, string nameOfReward, string classOfReward, string typeOfReward, string subjectOfReward, int id_Student) : base() // Для редактирования 
 		{
 			InitializeComponent();
 			this.id = id;
+
+			nameOfRewardOfTextBox.Text = nameOfReward;
 			classOfRewardOfTextBox.Text = classOfReward;
 			typeOfRewardOfTextBox.Text = typeOfReward;
 			idStudent = id_Student;
 
+			checkingForChangesNameOfReward = nameOfReward;
 			checkingForChangesClassOfReward = classOfReward;
 			checkingForChangesTypeOfReward = typeOfReward;
 			checkingForChangesSubjectOfReward = subjectOfReward;
@@ -68,8 +71,9 @@ namespace coursework
 					SqlCommand command = new SqlCommand();
 					if (id == -1) // Добавление нового ученика
 					{
-						command = new SqlCommand("insert into achievements_students (classOfReward, typeOfReward, subjectOfReward, id_Student) " +
-												"values (@classOfReward, @typeOfReward, @subjectOfReward, @id_Student)", conn.connection);
+						command = new SqlCommand("insert into achievements_students (nameOfReward, classOfReward, typeOfReward, subjectOfReward, id_Student) " +
+												"values (@nameOfReward, @classOfReward, @typeOfReward, @subjectOfReward, @id_Student)", conn.connection);
+						command.Parameters.Add("nameOfReward", SqlDbType.VarChar).Value = nameOfRewardOfTextBox.Text;
 						command.Parameters.Add("classOfReward", SqlDbType.VarChar).Value = classOfRewardOfTextBox.Text;
 						command.Parameters.Add("typeOfReward", SqlDbType.VarChar).Value = typeOfRewardOfTextBox.Text;
 						command.Parameters.Add("subjectOfReward", SqlDbType.VarChar).Value = listSubjectsBox.Text;
@@ -82,7 +86,7 @@ namespace coursework
 					}
 					else // Редактирование информации ученика
 					{
-						if (checkingForChangesClassOfReward == classOfRewardOfTextBox.Text && checkingForChangesTypeOfReward == typeOfRewardOfTextBox.Text &&
+						if (checkingForChangesNameOfReward == nameOfRewardOfTextBox.Text && checkingForChangesClassOfReward == classOfRewardOfTextBox.Text && checkingForChangesTypeOfReward == typeOfRewardOfTextBox.Text &&
 							listSubjectsBox.SelectedValue.ToString() == checkingForChangesSubjectOfReward)
 						{
 							MessageBox.Show("Данные не изменились!", "");
@@ -91,9 +95,8 @@ namespace coursework
 						{
 							if (MessageBox.Show("Вы прадва хотите изменить запись?", "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
 							{
-								command = new SqlCommand(
-							$"update achievements_students set classOfReward = @classOfReward, typeOfReward = @typeOfReward, subjectOfReward = @subjectOfReward where id = @id", conn.connection);
-
+								command = new SqlCommand( $"update achievements_students set  nameOfReward = @nameOfReward, classOfReward = @classOfReward, typeOfReward = @typeOfReward, subjectOfReward = @subjectOfReward where id = @id", conn.connection);
+								command.Parameters.Add("@nameOfReward", SqlDbType.VarChar).Value = nameOfRewardOfTextBox.Text;
 								command.Parameters.Add("@classOfReward", SqlDbType.VarChar).Value = classOfRewardOfTextBox.Text;
 								command.Parameters.Add("@typeOfReward", SqlDbType.VarChar).Value = typeOfRewardOfTextBox.Text;
 								command.Parameters.Add("@subjectOfReward", SqlDbType.VarChar).Value = listSubjectsBox.Text;
@@ -136,6 +139,13 @@ namespace coursework
 
 		#region[Запрет ввода символов и цифр]
 		private void classOfRewardOfTextBox_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			if (!Char.IsDigit(e.KeyChar)) return;
+			else
+				e.Handled = true;
+		}
+
+		private void nameOfRewardOfTextBox_KeyPress(object sender, KeyPressEventArgs e)
 		{
 			if (!Char.IsDigit(e.KeyChar)) return;
 			else
