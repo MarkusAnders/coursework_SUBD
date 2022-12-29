@@ -89,7 +89,9 @@ namespace coursework
 				int id = int.Parse(GridListSubjects.SelectedRows[0].Cells["id"].Value.ToString());
 				SqlCommand command = new SqlCommand("exec deleteRecord ' " + id + " '", conn.connection);
 				command.ExecuteNonQuery();
+				MessageBox.Show("Запись удалена!", "", MessageBoxButtons.OK);
 				RefreshTable(GridListSubjects);
+
 				conn.Disconnect();
 			}
 		}

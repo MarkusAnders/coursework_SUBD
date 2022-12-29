@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace coursework
@@ -107,6 +108,19 @@ namespace coursework
 			if (!Char.IsDigit(ch) && ch != 8)
 			{
 				e.Handled = true;
+			}
+		}
+
+		private void hourSubjectOfTextBox_TextChanged(object sender, EventArgs e)
+		{
+			if (hourSubjectOfTextBox.Text != "")
+			{
+				int checkHour = Convert.ToInt32(Regex.Match(hourSubjectOfTextBox.Text, @"\d+").Value);
+				if (checkHour == 0)
+				{
+					MessageBox.Show("Кол-во часов не может быть равно нулю", "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+					hourSubjectOfTextBox.Text = string.Empty;
+				}
 			}
 		}
 		#endregion

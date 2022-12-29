@@ -198,6 +198,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>subd_schoolDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="subd_schoolDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>subd_schoolDataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ThemeColor.cs" />
     <EmbeddedResource Include="Forms\FormAchievements.resx">
       <DependentUpon>FormAchievements.cs</DependentUpon>
@@ -255,6 +260,17 @@
     </None>
     <None Include="subd_schoolDataSet.xss">
       <DependentUpon>subd_schoolDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="subd_schoolDataSet1.xsc">
+      <DependentUpon>subd_schoolDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="subd_schoolDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>subd_schoolDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="subd_schoolDataSet1.xss">
+      <DependentUpon>subd_schoolDataSet1.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

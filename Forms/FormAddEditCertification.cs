@@ -65,69 +65,61 @@ namespace coursework
 		private void button_editRecord_Click(object sender, System.EventArgs e)
 		{
 			AverageAnnual();
-			if (firstQuaterOfTextBox.Text == string.Empty || secondQuaterOfTextBox.Text == string.Empty || thirdQuaterOfTextBox.Text == string.Empty || 
-				fourthQuaterOfTextBox.Text == string.Empty || listSubjectsBox.SelectedValue == null)
+			conn.Connect();
+			try
 			{
-				MessageBox.Show("Не все поля заполнены!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-			else
-			{
-				conn.Connect();
-				try
+				SqlCommand command = new SqlCommand();
+				if (id == -1) // Добавление нового записи
 				{
-					SqlCommand command = new SqlCommand();
-					if (id == -1) // Добавление нового записи
+					command = new SqlCommand("insert into certification (subject, firstQuarter, secondQuarter, thirdQuarter, fourthQuarter, annual, id_Student) " +
+											"values (@subject, @firstQuarter, @secondQuarter, @thirdQuarter, @fourthQuarter, @annual, @id_Student)", conn.connection);
+					command.Parameters.Add("subject", SqlDbType.VarChar).Value = listSubjectsBox.Text;
+					command.Parameters.Add("firstQuarter", SqlDbType.Int).Value = firstQuaterOfTextBox.Text;
+					command.Parameters.Add("secondQuarter", SqlDbType.Int).Value = secondQuaterOfTextBox.Text;
+					command.Parameters.Add("thirdQuarter", SqlDbType.Int).Value = thirdQuaterOfTextBox.Text;
+					command.Parameters.Add("fourthQuarter", SqlDbType.Int).Value = fourthQuaterOfTextBox.Text;
+					command.Parameters.Add("annual", SqlDbType.Int).Value = averageAnnual;
+					command.Parameters.Add("id_Student", SqlDbType.Int).Value = idStudent;
+
+					command.ExecuteNonQuery();
+					MessageBox.Show("Запись добавлена!", "", MessageBoxButtons.OK);
+
+					this.Close();
+				}
+				else // Редактирование записи
+				{
+					if (checkingForChangesFirstQuater == firstQuaterOfTextBox.Text && checkingForChangesSecondQuater == secondQuaterOfTextBox.Text &&
+						checkingForChangesThirdQuater == thirdQuaterOfTextBox.Text && checkingForChangesFourthQuater == fourthQuaterOfTextBox.Text &&
+						listSubjectsBox.SelectedValue.ToString() == checkingForChangesSubject)
 					{
-						command = new SqlCommand("insert into certification (subject, firstQuarter, secondQuarter, thirdQuarter, fourthQuarter, annual, id_Student) " +
-												"values (@subject, @firstQuarter, @secondQuarter, @thirdQuarter, @fourthQuarter, @annual, @id_Student)", conn.connection);
-						command.Parameters.Add("subject", SqlDbType.VarChar).Value = listSubjectsBox.Text;
-						command.Parameters.Add("firstQuarter", SqlDbType.Int).Value = firstQuaterOfTextBox.Text;
-						command.Parameters.Add("secondQuarter", SqlDbType.Int).Value = secondQuaterOfTextBox.Text;
-						command.Parameters.Add("thirdQuarter", SqlDbType.Int).Value = thirdQuaterOfTextBox.Text;
-						command.Parameters.Add("fourthQuarter", SqlDbType.Int).Value = fourthQuaterOfTextBox.Text;
-						command.Parameters.Add("annual", SqlDbType.Int).Value = averageAnnual;
-						command.Parameters.Add("id_Student", SqlDbType.Int).Value = idStudent;
-
-						command.ExecuteNonQuery();
-						MessageBox.Show("Запись добавлена!", "", MessageBoxButtons.OK);
-
-						this.Close();
+						MessageBox.Show("Данные не изменились!", "");
 					}
-					else // Редактирование записи
+					else
 					{
-						if (checkingForChangesFirstQuater == firstQuaterOfTextBox.Text && checkingForChangesSecondQuater == secondQuaterOfTextBox.Text &&
-							checkingForChangesThirdQuater == thirdQuaterOfTextBox.Text && checkingForChangesFourthQuater == fourthQuaterOfTextBox.Text &&
-							listSubjectsBox.SelectedValue.ToString() == checkingForChangesSubject)
+						if (MessageBox.Show("Вы прадва хотите изменить запись?", "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
 						{
-							MessageBox.Show("Данные не изменились!", "");
-						}
-						else
-						{
-							if (MessageBox.Show("Вы прадва хотите изменить запись?", "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
-							{
-								command = new SqlCommand($"update certification set subject = @subject, firstQuarter = @firstQuarter, secondQuarter = @secondQuarter, thirdQuarter = @thirdQuarter, " +
-									$"fourthQuarter = @fourthQuarter, annual = @annual where id = @id", conn.connection);
-								command.Parameters.Add("@subject", SqlDbType.VarChar).Value = listSubjectsBox.Text;
-								command.Parameters.Add("@firstQuarter", SqlDbType.VarChar).Value = firstQuaterOfTextBox.Text;
-								command.Parameters.Add("@secondQuarter", SqlDbType.VarChar).Value = secondQuaterOfTextBox.Text;
-								command.Parameters.Add("@thirdQuarter", SqlDbType.VarChar).Value = thirdQuaterOfTextBox.Text;
-								command.Parameters.Add("@fourthQuarter", SqlDbType.VarChar).Value = fourthQuaterOfTextBox.Text;
-								command.Parameters.Add("@annual", SqlDbType.VarChar).Value = averageAnnual;
-								command.Parameters.Add("@id", SqlDbType.Int).Value = id;
-								command.Parameters.Add("@id_student", SqlDbType.Int).Value = idStudent;
-								command.ExecuteNonQuery();
+							command = new SqlCommand($"update certification set subject = @subject, firstQuarter = @firstQuarter, secondQuarter = @secondQuarter, thirdQuarter = @thirdQuarter, " +
+								$"fourthQuarter = @fourthQuarter, annual = @annual where id = @id", conn.connection);
+							command.Parameters.Add("@subject", SqlDbType.VarChar).Value = listSubjectsBox.Text;
+							command.Parameters.Add("@firstQuarter", SqlDbType.VarChar).Value = firstQuaterOfTextBox.Text;
+							command.Parameters.Add("@secondQuarter", SqlDbType.VarChar).Value = secondQuaterOfTextBox.Text;
+							command.Parameters.Add("@thirdQuarter", SqlDbType.VarChar).Value = thirdQuaterOfTextBox.Text;
+							command.Parameters.Add("@fourthQuarter", SqlDbType.VarChar).Value = fourthQuaterOfTextBox.Text;
+							command.Parameters.Add("@annual", SqlDbType.VarChar).Value = averageAnnual;
+							command.Parameters.Add("@id", SqlDbType.Int).Value = id;
+							command.Parameters.Add("@id_student", SqlDbType.Int).Value = idStudent;
+							command.ExecuteNonQuery();
 
-								this.Close();
-							}
+							this.Close();
 						}
 					}
 				}
-				catch (Exception exception)
-				{
-					MessageBox.Show(exception.Message, "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				}
-				conn.Disconnect();
 			}
+			catch (Exception exception)
+			{
+				MessageBox.Show(exception.Message, "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+			conn.Disconnect();
 		}
 		private void button_exitFromFrom_Click(object sender, System.EventArgs e)
 		{

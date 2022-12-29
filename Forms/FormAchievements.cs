@@ -13,8 +13,6 @@ namespace coursework
 	public partial class FormAchievements : Form
 	{
 		readonly DatabaseConnect conn = new DatabaseConnect();
-		private Thread dt;
-		private Thread dataTable;
 
 		public FormAchievements()
 		{
@@ -26,8 +24,8 @@ namespace coursework
 		#region[Загрузка  таблицы]
 		private  void FormAchievements_Load(object sender, EventArgs e)
 		{
-			this.achievements_studentsTableAdapter.Fill(this.subd_schoolDataSet.achievements_students);
-			this.studentsTableAdapter.Fill(this.subd_schoolDataSet.students);
+			this.achievements_studentsTableAdapter.Fill(this.subd_schoolDataSet1.achievements_students);
+			this.studentsTableAdapter.Fill(this.subd_schoolDataSet1.students);
 			this.GridListStudents.Sort(this.GridListStudents.Columns["surnameDataGridViewTextBoxColumn"], ListSortDirection.Ascending);
 			this.GridListAchievements.Sort(this.GridListAchievements.Columns["classOfReward"], ListSortDirection.Ascending);
 		}
@@ -36,8 +34,8 @@ namespace coursework
 		#region[Обновление таблиц]
 		private void ReloadTable()
 		{
-			this.achievements_studentsTableAdapter.Fill(this.subd_schoolDataSet.achievements_students);
-			this.studentsTableAdapter.Fill(this.subd_schoolDataSet.students);
+			this.achievements_studentsTableAdapter.Fill(this.subd_schoolDataSet1.achievements_students);
+			this.studentsTableAdapter.Fill(this.subd_schoolDataSet1.students);
 		}
 		#endregion
 

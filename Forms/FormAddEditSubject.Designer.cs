@@ -76,6 +76,7 @@ namespace coursework
 			this.hourSubjectOfTextBox.Name = "hourSubjectOfTextBox";
 			this.hourSubjectOfTextBox.Size = new System.Drawing.Size(231, 24);
 			this.hourSubjectOfTextBox.TabIndex = 0;
+			this.hourSubjectOfTextBox.TextChanged += new System.EventHandler(this.hourSubjectOfTextBox_TextChanged);
 			this.hourSubjectOfTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.hourSubjectOfTextBox_KeyPress);
 			// 
 			// groupBox2

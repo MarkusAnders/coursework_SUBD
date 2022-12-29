@@ -142,11 +142,9 @@ namespace coursework
 		{
 			if (GridListStudents.RowCount > 0)
 			{
-				if (MessageBox.Show("Вы прадва хотите удалить запись?", "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+				if (MessageBox.Show("Вы прадва хотите удалить запись?\nУданного ученика могут быть записи о достижениях или оценках, которые так же будут удалены", "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
 				{
 					conn.Connect();
-
-					string id = GridListStudents.SelectedRows[0].Cells["id"].Value.ToString();
 					SqlCommand delete = new SqlCommand("delete from students where id=" + id, conn.connection);
 					delete.ExecuteNonQuery();
 					MessageBox.Show("Запись удалена!", "", MessageBoxButtons.OK);
